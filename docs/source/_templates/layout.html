@@ -1,0 +1,25 @@
+{% extends "!layout.html" %}
+{%- block extrabody %}
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    {{ super() }}
+{% endblock %}

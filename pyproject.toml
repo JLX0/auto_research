@@ -1,0 +1,171 @@
+# Build system configuration
+[build-system]
+requires = ["setuptools >= 61.1.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# Project metadata
+[project]
+# Replace "package_name" with the actual name of your project
+name = "auto_research"
+# Add a brief description of the project
+description = "For automatically conduct research"
+# Specify the README file
+readme = "README.md"
+# Add the author's name and other relevant details
+authors = [
+  {name = "Jinglue Xu"}
+]
+
+
+# Classifiers provide metadata about the project
+# Example (Optuna's):
+# classifiers = [
+#   "Development Status :: 5 - Production/Stable",
+#   "Intended Audience :: Science/Research",
+#   "Intended Audience :: Developers",
+#   "License :: OSI Approved :: MIT License",
+#   "Programming Language :: Python :: 3",
+#   "Programming Language :: Python :: 3.8",
+#   "Programming Language :: Python :: 3.9",
+#   "Programming Language :: Python :: 3.10",
+#   "Programming Language :: Python :: 3.11",
+#   "Programming Language :: Python :: 3.12",
+#   "Programming Language :: Python :: 3 :: Only",
+#   "Topic :: Scientific/Engineering",
+#   "Topic :: Scientific/Engineering :: Mathematics",
+#   "Topic :: Scientific/Engineering :: Artificial Intelligence",
+#   "Topic :: Software Development",
+#   "Topic :: Software Development :: Libraries",
+#   "Topic :: Software Development :: Libraries :: Python Modules",
+# ]
+
+requires-python = ">=3.8"
+# Add the project dependencies here
+dependencies = [
+  "colorlog",
+  "numpy",
+  "packaging>=20.0",
+  "PyYAML",
+  "PyPDF2",
+  "openai",
+  "tiktoken",
+  "pymupdf"
+]
+
+
+dynamic = ["version"]
+
+
+[project.optional-dependencies]
+
+checking = [
+  "black",
+  "blackdoc",
+  "flake8",
+  "isort",
+  "mypy",
+  "mypy_boto3_s3",
+  "types-PyYAML",
+  "types-redis",
+  "types-setuptools",
+  "types-tqdm",
+  "typing_extensions>=3.10.0.0",
+]
+document = [
+  "ase",
+  "cmaes>=0.10.0",  # optuna/samplers/_cmaes.py.
+  "fvcore",
+  "kaleido<0.4",  # TODO(nzw0301): Remove the version constraint by installing browser separately.
+  "lightgbm",
+  "matplotlib!=3.6.0",
+  "pandas",
+  "pillow",
+  "plotly>=4.9.0",  # optuna/visualization.
+  "scikit-learn",
+  "sphinx",
+  "sphinx-copybutton",
+  "sphinx-gallery",
+  "sphinx_rtd_theme>=1.2.0",
+  "torch",
+  "torchvision",
+]
+
+
+# Project URLs (replace with your project links)
+# [project.urls]
+# homepage = "https://example.com"
+# repository = "https://example.com/repository"
+# documentation = "https://example.com/documentation"
+# bugtracker = "https://example.com/bugtracker"
+
+# Command-line scripts for your project
+# [project.scripts]
+# Replace "package_cli" with your package's CLI entry point
+# package_cli = "package_name.cli:main"
+
+# Directories to include in the package distribution
+[tool.setuptools.packages.find]
+include = ["auto_research*"]
+
+# Dynamically determines the version of the package
+[tool.setuptools.dynamic]
+version = {attr = "auto_research.version.__version__"}
+
+# specifies additional non-Python files that should be included in the package when it is built and distributed.  # This is important for including data files that are required by the package during runtime but are not Python   # source code.
+# For example:
+# [tool.setuptools.package-data]
+# "package_name" = [
+  # Add data files to include; examples below:
+  # "config/config.ini",
+  # "templates/*.html",
+#  "py.typed",
+# ]
+
+# Configuration for the Black code formatter
+[tool.black]
+line-length = 99
+target-version = ['py38']
+# Uncomment and adjust as needed for your specific folders and files:
+# force-exclude = '''
+# /(
+#   \.eggs
+#   | \.git
+#   | \.hg
+#   | \.mypy_cache
+#   | \.venv
+#   | venv
+#   | _build
+#   | buck-out
+#   | build
+#   | dist
+#   | docs
+# )/
+# '''
+
+# Configuration for the Isort import sorting tool
+[tool.isort]
+profile = 'black'
+# Uncomment and adjust as needed for your project folders and files:
+# src_paths = ['package_name', 'tests', 'docs', 'benchmarks']
+# skip_glob = [
+#   'docs/source/conf.py',
+#   '**/alembic/versions/*.py',
+#   'tutorial/**/*.py',
+#   'docs/visualization_examples/*.py',
+#   'docs/visualization_matplotlib_examples/*.py',
+# ]
+line_length = 99
+lines_after_imports = 2
+force_single_line = 'True'
+force_sort_within_sections = 'True'
+order_by_type = 'False'
+
+# Configuration for Pytest
+[tool.pytest.ini_options]
+addopts = "--color=yes"
+# Uncomment and adjust as needed for your project-specific warnings:
+# filterwarnings = 'ignore::yourproject.exceptions.SomeWarning'
+# markers = [
+#   "skip_coverage: marks tests are skipped when calculating the coverage",
+#   "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+# ]

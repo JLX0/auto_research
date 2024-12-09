@@ -1,0 +1,77 @@
+# .pre-commit-config.yaml
+# This configuration file is for the pre-commit framework.
+# Pre-commit is a tool that manages and runs linters, formatters, and other hooks before code is committed.
+# To use pre-commit, install the package and initialize it in your repository:
+# $ pip install pre-commit
+# $ pre-commit install
+
+# Specify the default Python interpreter to use for hooks.
+default_language_version:
+  python: python3  # Use Python 3 as the default language version for hooks.
+
+repos:
+  # Each "repo" defines a source of hooks to run before commits.
+  
+  # Repository for the Black code formatter.
+  - repo: https://github.com/psf/black
+    rev: 24.8.0  # Specify the version of the Black hook to use.
+    hooks:
+      - id: black  # Use the "black" hook to format Python code according to Black's style.
+
+  # Repository for the Flake8 code linting tool.
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.1.1  # Specify the version of the Flake8 hook to use.
+    hooks:
+      - id: flake8  # Use the "flake8" hook for Python code linting.
+        exclude: tutorial|docs/visualization_examples|docs/visualization_matplotlib_examples
+        # Exclude specific directories from Flake8 checks.
+        args: [
+            "--max-line-length=99",  # Set the maximum line length to 99 characters.
+            "--ignore=E203,E704,W503",  # Ignore specific error codes:
+            # E203: Whitespace before ':' (handled by Black)
+            # E704: Multiple statements on one line (def)
+            # W503: Line break before binary operator.
+            "--statistics",  # Display statistics about violations.
+        ]
+
+  # Repository for the isort import sorting tool.
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2  # Specify the version of the isort hook to use.
+    hooks:
+      - id: isort  # Use the "isort" hook to sort Python imports automatically.
+
+  # Repository for the MyPy static type checker.
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2  # Specify the version of the MyPy hook to use.
+    hooks:
+      - id: mypy  # Use the "mypy" hook for static type checking.
+        additional_dependencies: [  # Specify additional Python packages required for type checking.
+          "alembic>=1.5.0",  # Database migration tool for SQLAlchemy.
+          "colorlog",  # Logging with color support.
+          "numpy",  # Numerical computing library.
+          "packaging>=20.0",  # Package versioning utility.
+          "sqlalchemy>=1.3.0",  # SQL toolkit and ORM.
+          "tqdm",  # Progress bar library.
+          "PyYAML",  # YAML parsing and writing.
+          "mypy_boto3_s3",  # Type hints for boto3 S3 library.
+          "types-PyYAML",  # Type hints for PyYAML.
+          "types-redis",  # Type hints for Redis library.
+          "types-setuptools",  # Type hints for setuptools.
+          "types-tqdm",  # Type hints for tqdm.
+          "typing_extensions>=3.10.0.0",  # Backport of typing features.
+        ]
+        exclude: docs|tutorial|optuna/storages/_rdb/alembic
+        # Exclude specific directories and files from MyPy checks.
+        args: [  # Arguments to customize MyPy's behavior.
+          --warn-unused-configs,  # Warn about unused configuration options.
+          --disallow-untyped-calls,  # Disallow function calls without type annotations.
+          --disallow-untyped-defs,  # Disallow function definitions without type annotations.
+          --disallow-incomplete-defs,  # Disallow definitions with partial type annotations.
+          --check-untyped-defs,  # Check functions with incomplete type annotations.
+          --no-implicit-optional,  # Disable treating optional types as implicit.
+          --warn-redundant-casts,  # Warn about unnecessary type casts.
+          --strict-equality,  # Enforce stricter rules for equality operators.
+          --extra-checks,  # Enable additional checks for strictness.
+          --no-implicit-reexport,  # Disallow implicit re-export of imported symbols.
+          --ignore-missing-imports,  # Ignore errors about missing imports.
+        ]
