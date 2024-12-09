@@ -1,7 +1,7 @@
 from openai import OpenAI
 import os
 import json
-
+from auto_research.utils.fault_tolerance import retry_overtime_decorator
 
 def check_and_read_key_file(file_path , target_key) :
     """
@@ -43,30 +43,53 @@ def check_and_read_key_file(file_path , target_key) :
 
     return -1  # Return -1 if the target key is not found
 
+# TODO: make a base class for all LLM models?
 
 class gpt():
+
+    # settings for the retry decorator
+    timeout=60
+    maximum_retry=3
+
     def __init__(self, api_key, model='gpt-4o-mini',debug=False):
         self.client = OpenAI(api_key=api_key)
         self.model = model
         self.debug = debug
+
 
     @staticmethod
     def print_prompt(message):
         for prompt_segment in message:
             print(prompt_segment["content"])
 
-    def ask(self,message):
-        if self.debug:
-            print("-----Prompt beginning marker-----")
+    @retry_overtime_decorator(time_limit=timeout , maximum_retry=maximum_retry , ret=True)
+    def ask(self , message , ret_dict=None) :
+        """
+        A method to send a message to the chat model and capture the response.
+
+        Args:
+            message (list): The message to be sent to the chat model.
+            ret_dict (dict): A dictionary to capture the method's return value (if needed by the decorator).
+
+        Returns:
+            str: The chat model's response.
+        """
+        if self.debug :
+            print("---Prompt beginning marker---")
             self.print_prompt(message)
-            print("-----Prompt ending marker-----")
+            print("---Prompt ending marker---")
+
+        # Call the client to get the response
         response = self.client.chat.completions.create(
-            model=self.model,
+            model=self.model ,
             messages=message
-        )
-        response=response.choices[0].message.content
-        if self.debug:
-            print("------Response beginning marker-----")
+            )
+        response = response.choices[0].message.content
+
+        if self.debug :
+            print("---Response beginning marker---")
             print(response)
-            print("------Response ending marker-----")
-        return response
+            print("---Response ending marker---")
+
+        # Store the result in ret_dict if it exists
+        ret_dict['result'] = response

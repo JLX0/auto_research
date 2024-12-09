@@ -15,7 +15,7 @@ file_list=["A survey on evaluation of large language models.pdf",
            "MnasNet Platform-Aware Neural Architecture Search for Mobile.pdf",
            "Neural Fine-Tuning Search for Few-Shot Learning.pdf"]
 
-file_name=file_list[0]
+file_name=file_list[1]
 file_path=sample_folder+file_name
-auto_survey_instance=auto_survey(key,"gpt-4o-mini",file_path,True,"summarize_default")
+auto_survey_instance=auto_survey(key,"gpt-4o-mini",file_path,False,"summarize_default")
 auto_survey_instance.run()
