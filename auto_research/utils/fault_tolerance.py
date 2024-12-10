@@ -1,18 +1,21 @@
 from __future__ import annotations
 
 import multiprocessing
-from typing import Any , Callable , Optional , TypeVar
+from typing import Any
+from typing import Callable
+from typing import Optional
+from typing import TypeVar
 
 # Type variables for generic function types
-T = TypeVar('T')
-R = TypeVar('R')
+T = TypeVar("T")
+R = TypeVar("R")
 
 
 def overtime_kill(
         target_function: Callable[... , Any] ,
         target_function_args: tuple | None = None ,
         time_limit: int = 60 ,
-        ret: bool = True
+        ret: bool = True ,
         ) -> tuple[bool , dict] :
     """Run a target function with a time limit and terminate if it exceeds the limit.
 
@@ -36,10 +39,12 @@ def overtime_kill(
 
             import time
 
+
             def long_running_task(ret_dict):
                 # Simulate heavy computation
                 time.sleep(5)
-                ret_dict['result'] = 42
+                ret_dict["result"] = 42
+
 
             # Function will complete since time_limit > sleep duration
             exceeded, result = overtime_kill(long_running_task, time_limit=10)
@@ -56,7 +61,7 @@ def overtime_kill(
     if target_function_args is not None :
         p = multiprocessing.Process(
             target=target_function ,
-            args=(ret_dict ,) + target_function_args
+            args=(ret_dict ,) + target_function_args ,
             )
     elif ret :
         p = multiprocessing.Process(target=target_function , args=(ret_dict ,))
@@ -67,7 +72,10 @@ def overtime_kill(
     p.join(time_limit)
 
     if p.is_alive() :
-        print(f"The operation takes longer than {time_limit} seconds, terminating the execution...")
+        print(
+            f"The operation takes longer than {time_limit} seconds, "
+            "terminating the execution..."
+            )
         p.terminate()
         p.join()
         return True , dict(ret_dict)
@@ -81,7 +89,7 @@ def retry_overtime_kill(
         target_function_args: tuple | None = None ,
         time_limit: int = 60 ,
         maximum_retry: int = 3 ,
-        ret: bool = True
+        ret: bool = True ,
         ) -> tuple[bool , dict] :
     """Run a target function with a time limit and retry it up to maximum_retry times if it exceeds the limit.
 
@@ -107,18 +115,16 @@ def retry_overtime_kill(
 
             import time
 
+
             def unstable_task(ret_dict):
                 # Simulate an unstable computation that sometimes takes longer
                 sleep_time = 8 if time.time() % 2 == 0 else 3
                 time.sleep(sleep_time)
-                ret_dict['result'] = 42
+                ret_dict["result"] = 42
+
 
             # Function might succeed on retry if timing works out
-            exceeded, result = retry_overtime_kill(
-                unstable_task,
-                time_limit=5,
-                maximum_retry=3
-            )
+            exceeded, result = retry_overtime_kill(unstable_task, time_limit=5, maximum_retry=3)
             if not exceeded:
                 print(f"Task completed with result: {result['result']}")
             else:
@@ -126,7 +132,8 @@ def retry_overtime_kill(
     """
     for attempt in range(maximum_retry) :
         print(f"Attempt {attempt + 1} of {maximum_retry}")
-        exceeded , result = overtime_kill(target_function , target_function_args , time_limit , ret)
+        exceeded , result = overtime_kill(target_function , target_function_args , time_limit ,
+                                          ret)
 
         if not exceeded :
             # Successfully completed within the time limit
@@ -142,7 +149,7 @@ def retry_overtime_kill(
 def retry_overtime_decorator(
         time_limit: int = 60 ,
         maximum_retry: int = 3 ,
-        ret: bool = True
+        ret: bool = True ,
         ) -> Callable[[Callable[... , R]] , Callable[... , Optional[R]]] :
     """Decorator that retries a function if it exceeds a time limit, with multiprocessing support.
 
@@ -165,24 +172,28 @@ def retry_overtime_decorator(
 
             import time
 
+
             @retry_overtime_decorator(time_limit=5, maximum_retry=3)
             def long_computation(ret_dict):
                 # Simulate a computation that takes varying time
                 sleep_time = 7 if time.time() % 3 == 0 else 4
                 time.sleep(sleep_time)
-                ret_dict['result'] = 42
+                ret_dict["result"] = 42
+
 
             # Will retry up to 3 times if sleep_time is 7
             result = long_computation()
             if result is not None:
                 print(f"Computation completed: {result}")
 
+
             # Example with a class method
             class TimeConsumingTask:
                 @retry_overtime_decorator(time_limit=4, maximum_retry=2)
                 def process_data(self, data, ret_dict):
                     time.sleep(3)  # Simulate processing
-                    ret_dict['result'] = len(data)
+                    ret_dict["result"] = len(data)
+
 
             task = TimeConsumingTask()
             result = task.process_data("sample data")
@@ -197,20 +208,16 @@ def retry_overtime_decorator(
                 self_instance = args[0]  # Get class instance
                 message = args[1]  # Get message arg from method call
                 target_function_args = ((message ,) , kwargs)  # Pack args for multiprocessing
-                # Lambda to call method with class instance, message and ret_dict
-                target_function_with_self = lambda ret_dict , *func_args : target_function(
-                    self_instance ,
-                    func_args[0][0] ,
-                    ret_dict
-                    )
+
+                def target_function_with_self(ret_dict , *func_args) :
+                    return target_function(self_instance , func_args[0][0] , ret_dict)
+
             else :
                 # For regular functions, pass all args through
                 target_function_args = (args , kwargs)
-                target_function_with_self = lambda ret_dict , *func_args : target_function(
-                    ret_dict ,
-                    *func_args[0] ,
-                    **func_args[1]
-                    )
+
+                def target_function_with_self(ret_dict , *func_args) :
+                    return target_function(ret_dict , *func_args[0] , **func_args[1])
 
             # Call retry logic with wrapped function
             exceeded , result = retry_overtime_kill(
@@ -218,11 +225,11 @@ def retry_overtime_decorator(
                 target_function_args=target_function_args ,
                 time_limit=time_limit ,
                 maximum_retry=maximum_retry ,
-                ret=ret
+                ret=ret ,
                 )
 
             # Return result from shared dict or None if failed
-            return result.get('result') if result else None
+            return result.get("result") if result else None
 
         return wrapper
 
