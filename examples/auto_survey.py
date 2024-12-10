@@ -1,4 +1,4 @@
-from auto_research.survey.core import auto_survey
+from auto_research.survey.core import AutoSurvey
 from auto_research.utils.inquiry import check_and_read_key_file
 
 
@@ -17,5 +17,5 @@ file_list=["A survey on evaluation of large language models.pdf",
 
 file_name=file_list[1]
 file_path=sample_folder+file_name
-auto_survey_instance=auto_survey(key,"gpt-4o-mini",file_path,False,"summarize_default")
+auto_survey_instance=AutoSurvey(key,"gpt-4o-mini",file_path,False,"summarize_default")
 auto_survey_instance.run()
