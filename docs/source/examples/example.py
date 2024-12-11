@@ -17,9 +17,10 @@ Run this script to see the output and generated plot:
 2.25
 """
 
+import matplotlib.pyplot as plt
+
 # Import necessary libraries
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def compute_square(number):
@@ -44,7 +45,7 @@ def compute_square(number):
     >>> compute_square(1.5)
     2.25
     """
-    return number ** 2
+    return number**2
 
 
 # Example: Generate a range of numbers and compute squares

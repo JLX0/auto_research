@@ -5,9 +5,10 @@ This module demonstrates proper documentation formatting for Sphinx.
 It includes example classes and functions with proper docstrings.
 """
 
+
 class ExampleClass:
     """A demonstration class for documentation purposes.
-    
+
     This class shows how to properly document a Python class using
     Google-style docstrings that Sphinx can parse.
 
@@ -57,7 +58,4 @@ def example_function(param1: str, param2: int = 42) -> dict:
         >>> print(result)
         {'param1': 'test', 'param2': 123}
     """
-    return {
-        "param1": param1,
-        "param2": param2
-    }
+    return {"param1": param1, "param2": param2}

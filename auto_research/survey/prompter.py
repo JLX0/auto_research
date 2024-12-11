@@ -7,24 +7,18 @@ class Prompt:
     This class provides methods to generate various types of prompts for extracting and analyzing
     different sections of research papers.
 
-    Args:
-        None
-
     Attributes:
-        general_text_cleaning:
-            A list of text cleaning instructions applied across all prompt types.
-        prompt:
-            The formatted prompt string for GPT models. Initially empty.
+        general_text_cleaning (list[str]): A list of text cleaning instructions applied across all
+            prompt types.
+        prompt (list[dict[str, str]]): The formatted prompt string for GPT models. Initially empty.
 
     Example:
-        .. testcode::
-
-            prompt_generator = Prompt()
-            prompt_generator.extract_abstract("Sample paper text...")
-            prompt_generator.print_prompt()
+        >>> prompt_generator = Prompt()
+        >>> prompt_generator.extract_abstract("Sample paper text...")
+        >>> prompt_generator.print_prompt()
     """
 
-    general_text_cleaning = [
+    general_text_cleaning: list[str] = [
         "Your answer should not include any references marks, author information, page number, "
         "publisher information, figure captions, or table captions.",
         "Your answer should not paraphrase or summarize the text, but should be a direct "
@@ -32,24 +26,22 @@ class Prompt:
     ]
 
     def __init__(self) -> None:
+        """Initialize an empty prompt list."""
         self.prompt: list[dict[str, str]] = []
 
     def prompt_formatting_gpt(self, prompt: list[str]) -> list[dict[str, str]]:
-        """Formats a list of prompt strings into GPT-compatible format.
+        """Format a list of prompt strings into GPT-compatible format.
 
         Args:
-            prompt:
-                A list of strings representing the prompt segments.
+            prompt: A list of strings representing the prompt segments.
 
         Returns:
             A list of dictionaries containing role and content for GPT format.
 
         Example:
-            .. testcode::
-
-                prompts = ["System message 1", "System message 2"]
-                formatted = Prompt().prompt_formatting_gpt(prompts)
-                print(formatted[0]["role"])  # Outputs: system
+            >>> prompts = ["System message 1", "System message 2"]
+            >>> formatted = Prompt().prompt_formatting_gpt(prompts)
+            >>> print(formatted[0]["role"])  # Outputs: system
         """
         formatted_prompt: list[dict[str, str]] = []
         for idx, content in enumerate(prompt):
@@ -59,30 +51,25 @@ class Prompt:
         return formatted_prompt
 
     def print_prompt(self) -> None:
-        """Prints the content of all formatted prompts.
+        """Print the content of all formatted prompts.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_abstract("Sample text")
-                prompt.print_prompt()
+            >>> prompt = Prompt()
+            >>> prompt.extract_abstract("Sample text")
+            >>> prompt.print_prompt()
         """
         for prompt_segment in self.prompt:
             print(prompt_segment["content"])
 
     def extract_abstract(self, raw_text: str) -> None:
-        """Generates a prompt for extracting the abstract from raw text.
+        """Generate a prompt for extracting the abstract from raw text.
 
         Args:
-            raw_text:
-                The raw text extracted from the first 2 pages of a PDF file.
+            raw_text: The raw text extracted from the first 2 pages of a PDF file.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_abstract("Paper introduction and abstract...")
+            >>> prompt = Prompt()
+            >>> prompt.extract_abstract("Paper introduction and abstract...")
         """
         prompt_string = [
             "Given some raw text extracted from a PDF file, your task is to extract the abstract.",
@@ -95,17 +82,14 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def extract_introduction(self, raw_text: str) -> None:
-        """Generates a prompt for extracting the introduction from raw text.
+        """Generate a prompt for extracting the introduction from raw text.
 
         Args:
-            raw_text:
-                The raw text extracted from the first 5 pages of a PDF file.
+            raw_text: The raw text extracted from the first 5 pages of a PDF file.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_introduction("First few pages of paper...")
+            >>> prompt = Prompt()
+            >>> prompt.extract_introduction("First few pages of paper...")
         """
         prompt_string = [
             "Given some raw text extracted from a PDF file, your task is to extract the "
@@ -124,17 +108,14 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def extract_discussion(self, raw_text: str) -> None:
-        """Generates a prompt for extracting the discussion section from raw text.
+        """Generate a prompt for extracting the discussion section from raw text.
 
         Args:
-            raw_text:
-                The raw text extracted from the last 3 pages of a PDF file.
+            raw_text: The raw text extracted from the last 3 pages of a PDF file.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_discussion("Last pages of paper...")
+            >>> prompt = Prompt()
+            >>> prompt.extract_discussion("Last pages of paper...")
         """
         prompt_string = [
             "Given some raw text extracted from a PDF file, your task is to extract the "
@@ -155,17 +136,14 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def extract_conclusion(self, raw_text: str) -> None:
-        """Generates a prompt for extracting the conclusion from raw text.
+        """Generate a prompt for extracting the conclusion from raw text.
 
         Args:
-            raw_text:
-                The raw text extracted from the last 3 pages of a PDF file.
+            raw_text: The raw text extracted from the last 3 pages of a PDF file.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_conclusion("Last pages of paper...")
+            >>> prompt = Prompt()
+            >>> prompt.extract_conclusion("Last pages of paper...")
         """
         prompt_string = [
             "Given some raw text extracted from a PDF file, your task is to extract the "
@@ -186,17 +164,14 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def extract_algorithm(self, raw_text: str) -> None:
-        """Generates a prompt for extracting algorithms from raw text.
+        """Generate a prompt for extracting algorithms from raw text.
 
         Args:
-            raw_text:
-                The raw text extracted from the first 12 pages of a PDF file.
+            raw_text: The raw text extracted from the first 12 pages of a PDF file.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.extract_algorithm("Paper content with algorithms...")
+            >>> prompt = Prompt()
+            >>> prompt.extract_algorithm("Paper content with algorithms...")
         """
         prompt_string = [
             "Given some raw text extracted from a PDF file, your task is to extract the "
@@ -213,19 +188,15 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def explain_algorithm(self, paper: str, algorithm: str) -> None:
-        """Generates a prompt to explain an algorithm using paper text.
+        """Generate a prompt to explain an algorithm using paper text.
 
         Args:
-            paper:
-                The text from the first 12 pages of the paper.
-            algorithm:
-                The algorithm text to be explained.
+            paper: The text from the first 12 pages of the paper.
+            algorithm: The algorithm text to be explained.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.explain_algorithm("Paper text...", "Algorithm steps...")
+            >>> prompt = Prompt()
+            >>> prompt.explain_algorithm("Paper text...", "Algorithm steps...")
         """
         prompt_string = [
             "Given the algorithm described in a paper, your task is to explain the algorithm "
@@ -252,30 +223,28 @@ class Prompt:
         self.prompt = self.prompt_formatting_gpt(prompt_string)
 
     def summarize_default_computer_science(
-        self, abstract: str, introduction: str, discussion: str, conclusion: str
+        self,
+        abstract: str,
+        introduction: str,
+        discussion: str,
+        conclusion: str,
     ) -> None:
-        """Generates a comprehensive summary of a computer science paper.
+        """Generate a comprehensive summary of a computer science paper.
 
         Args:
-            abstract:
-                The paper's abstract text.
-            introduction:
-                The paper's introduction text.
-            discussion:
-                The paper's discussion text.
-            conclusion:
-                The paper's conclusion text.
+            abstract: The paper's abstract text.
+            introduction: The paper's introduction text.
+            discussion: The paper's discussion text.
+            conclusion: The paper's conclusion text.
 
         Example:
-            .. testcode::
-
-                prompt = Prompt()
-                prompt.summarize_default_computer_science(
-                    "Abstract text...",
-                    "Introduction text...",
-                    "Discussion text...",
-                    "Conclusion text...",
-                )
+            >>> prompt = Prompt()
+            >>> prompt.summarize_default_computer_science(
+            ...     "Abstract text...",
+            ...     "Introduction text...",
+            ...     "Discussion text...",
+            ...     "Conclusion text...",
+            ... )
         """
         prompt_string = [
             "Given the abstract, introduction, discussion, and conclusion of a paper, your "
@@ -303,7 +272,7 @@ class Prompt:
                 "1. The main topic: [answer]\n\n"
                 "2. Existing problems: [answer]\n\n"
                 "3. The main contributions: [answer]\n\n"
-                "4. Experimental results: [answer]]\n\n"
+                "4. Experimental results: [answer]\n\n"
                 "5. Conclusions: [answer]"
             ),
             "Each one of the [answer] should have a length between 1 to 5 sentences.",

@@ -8,46 +8,34 @@ from auto_research.utils.inquiry import GPT
 
 
 class AutoSurvey:
-    """A class for automating the process of surveying research papers.
+    """
+    A class for automating the process of surveying research papers.
 
     This class integrates and streamlines the functionalities for automatically analyzing
     research papers, including text extraction, summarization, and algorithm analysis.
 
     Args:
-        api_key:
-            The API key for GPT model access.
-        model:
-            The GPT model identifier to use.
-        paper_path:
-            Path to the research paper PDF file.
-        debug:
-            Enable debug mode for detailed logging.
-        mode:
-            Analysis mode to use. Currently supports "summarize_default" and "explain_algorithm".
+        api_key (str): The API key for GPT model access.
+        model (str): The GPT model identifier to use.
+        paper_path (str): Path to the research paper PDF file.
+        debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
+        mode (str, optional): Analysis mode to use. Currently supports "summarize_default"
+            and "explain_algorithm". Defaults to "summarize_default".
 
     Attributes:
-        gpt_instance:
-            Instance of GPT handler for text processing.
-        paper_path:
-            Path to the research paper being analyzed.
-        paper_instance:
-            Instance of Paper class for PDF processing.
-        prompt_instance:
-            Instance of Prompt class for generating prompts.
-        mode:
-            Current analysis mode.
-        output:
-            Storage for analysis results.
-        ending_pages:
-            Content of the paper's final pages.
+        gpt_instance (GPT): Instance of GPT handler for text processing.
+        paper_path (str): Path to the research paper being analyzed.
+        paper_instance (Paper): Instance of Paper class for PDF processing.
+        prompt_instance (Prompt): Instance of Prompt class for generating prompts.
+        mode (str): Current analysis mode.
+        output (Optional[str]): Storage for analysis results.
+        ending_pages (Optional[str]): Content of the paper's final pages.
 
     Example:
-        .. testcode::
-
-            survey = AutoSurvey(
-                api_key="your-api-key", model="gpt-4", paper_path="path/to/paper.pdf"
-            )
-            survey.run()
+        >>> survey = AutoSurvey(
+        ...     api_key="your-api-key", model="gpt-4", paper_path="path/to/paper.pdf"
+        ... )
+        >>> survey.run()
     """
 
     def __init__(
@@ -75,13 +63,12 @@ class AutoSurvey:
         }
 
     def run(self) -> None:
-        """Execute the paper analysis based on the selected mode.
+        """
+        Execute the paper analysis based on the selected mode.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.run()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.run()
         """
         if self.mode == "summarize_default":
             print(f"Begin analyzing the article located at {self.paper_path}")
@@ -95,13 +82,12 @@ class AutoSurvey:
             self.explain_algorithm()
 
     def extract_algorithm(self) -> None:
-        """Extract algorithm descriptions from the paper.
+        """
+        Extract algorithm descriptions from the paper.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extract_algorithm()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extract_algorithm()
         """
         raw_text = self.paper_instance.first_n_pages(12)
         self.prompt_instance.extract_algorithm(raw_text)
@@ -111,13 +97,12 @@ class AutoSurvey:
             self.paper_instance.extracted_information["algorithm"] = response
 
     def explain_algorithm(self) -> None:
-        """Generate explanations for extracted algorithms.
+        """
+        Generate explanations for extracted algorithms.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.explain_algorithm()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.explain_algorithm()
         """
         self.prompt_instance.explain_algorithm(
             self.paper_instance.first_n_pages(12),
@@ -130,16 +115,15 @@ class AutoSurvey:
         pass
 
     def extraction(self) -> None:
-        """Extract main sections from the paper.
+        """
+        Extract main sections from the paper.
 
         This method coordinates the extraction of abstract, introduction,
         discussion, and conclusion sections.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extraction()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extraction()
         """
         self.extract_abstract()
         self.extract_introduction()
@@ -150,13 +134,12 @@ class AutoSurvey:
             self.extract_conclusion()
 
     def extract_abstract(self) -> None:
-        """Extract the abstract section from the paper.
+        """
+        Extract the abstract section from the paper.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extract_abstract()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extract_abstract()
         """
         print("---extracting abstract---")
         raw_text = self.paper_instance.first_n_pages(2)
@@ -166,13 +149,12 @@ class AutoSurvey:
             self.paper_instance.extracted_information["abstract"] = response
 
     def extract_introduction(self) -> None:
-        """Extract the introduction section from the paper.
+        """
+        Extract the introduction section from the paper.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extract_introduction()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extract_introduction()
         """
         print("---extracting introduction---")
         raw_text = self.paper_instance.first_n_pages(5)
@@ -182,13 +164,12 @@ class AutoSurvey:
             self.paper_instance.extracted_information["introduction"] = response
 
     def extract_discussion(self) -> None:
-        """Extract the discussion section from the paper.
+        """
+        Extract the discussion section from the paper.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extract_discussion()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extract_discussion()
         """
         print("---extracting discussion---")
         if self.ending_pages:
@@ -198,13 +179,12 @@ class AutoSurvey:
                 self.paper_instance.extracted_information["discussion"] = response
 
     def extract_conclusion(self) -> None:
-        """Extract the conclusion section from the paper.
+        """
+        Extract the conclusion section from the paper.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.extract_conclusion()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.extract_conclusion()
         """
         print("---extracting conclusion---")
         if self.ending_pages:
@@ -214,13 +194,12 @@ class AutoSurvey:
                 self.paper_instance.extracted_information["conclusion"] = response
 
     def summary(self) -> None:
-        """Generate a summary of the paper from extracted sections.
+        """
+        Generate a summary of the paper from extracted sections.
 
         Example:
-            .. testcode::
-
-                survey = AutoSurvey(api_key, model, paper_path)
-                survey.summary()
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.summary()
         """
         print("---summarizing---")
         self.prompt_instance.summarize_default_computer_science(

@@ -1,39 +1,47 @@
 from __future__ import annotations
 
+from typing import Optional
+
 import fitz
 from PyPDF2 import PdfReader
 import tiktoken
 
 
 class Paper:
-    """A class for reading and extracting information from research articles in PDF format.
+    """
+    A class for reading and extracting information from research articles in PDF format.
 
     This class provides functionality to read PDF files using different libraries (PyPDF2 and
     PyMuPDF), extract specific sections, and analyze the content of research papers.
 
     Args:
-        paper_path:
-            Path to the PDF file containing the research paper.
-        model:
-            Name of the GPT model to use for token counting. Defaults to 'gpt-4o-mini'.
+        paper_path: Path to the PDF file containing the research paper.
+        model: Name of the GPT model to use for token counting. Defaults to 'gpt-4o-mini'.
 
     Attributes:
-        paper_path:
-            Path to the PDF file.
-        whole_paper:
-            List containing the text content of each page.
-        paper_length:
-            Total number of tokens in the paper based on the specified model.
-        model:
-            Name of the GPT model used for token counting.
-        extracted_information:
-            Dictionary containing extracted sections of the paper.
+        paper_path: Path to the PDF file.
+        whole_paper: List containing the text content of each page.
+        paper_length: Total number of tokens in the paper based on the specified model.
+        model: Name of the GPT model used for token counting.
+        extracted_information: Dictionary containing extracted sections of the paper.
+
+    Example:
+        >>> paper = Paper("example.pdf", model="gpt-4")
+        >>> paper.read_pymupdf()
+        >>> paper.calculate_token_length()
+        >>> print(paper.paper_length)
+        1234
+
+    Notes:
+        The class supports both PyPDF2 and PyMuPDF (fitz) for PDF processing,
+        allowing flexibility in PDF parsing approaches.
     """
 
-    # Class-level constants
-    _END_MARKERS = ["references", "acknowledgement", "bibliography"]
+    # Class-level constants for section markers
+    _END_MARKERS: list[str] = ["references", "acknowledgement", "bibliography"]
 
     def __init__(self, paper_path: str, model: str = "gpt-4o-mini") -> None:
+        """Initialize the Paper instance with the given PDF path and model."""
         self.paper_path: str = paper_path
         self.whole_paper: list[str] = []
         self.paper_length: int = 0
@@ -47,13 +55,15 @@ class Paper:
         }
 
     def read_pypdf2(self) -> None:
-        """Read PDF content using PyPDF2 library.
+        """
+        Read PDF content using PyPDF2 library.
+
+        This method extracts text from each page of the PDF using PyPDF2 and stores
+        it in the whole_paper list.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pypdf2()
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pypdf2()
         """
         pdf_obj = PdfReader(self.paper_path)
         self.whole_paper = []
@@ -62,13 +72,15 @@ class Paper:
             self.whole_paper.append(text)
 
     def read_pymupdf(self) -> None:
-        """Read PDF content using PyMuPDF library.
+        """
+        Read PDF content using PyMuPDF library.
+
+        This method extracts text from each page of the PDF using PyMuPDF (fitz)
+        and stores it in the whole_paper list.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pymupdf()
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pymupdf()
         """
         pdf_document = fitz.open(self.paper_path)
         self.whole_paper = []
@@ -78,33 +90,33 @@ class Paper:
             self.whole_paper.append(text)
 
     def first_n_pages(self, n: int) -> str:
-        """Return the concatenated text of the first n pages.
+        """
+        Return the concatenated text of the first n pages.
 
         Args:
-            n:
-                Number of pages to include.
+            n: Number of pages to include.
 
         Returns:
-            Concatenated text of the first n pages.
+            str: Concatenated text of the first n pages.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pymupdf()
-                first_three = paper.first_n_pages(3)
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pymupdf()
+            >>> first_three = paper.first_n_pages(3)
         """
         return "".join(self.whole_paper[:n])
 
     def print_whole_paper(self) -> None:
-        """Print the entire paper content with page markers.
+        """
+        Print the entire paper content with page markers.
+
+        This method prints the content of each page with clear beginning and
+        ending markers for better visualization.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pymupdf()
-                paper.print_whole_paper()
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pymupdf()
+            >>> paper.print_whole_paper()
         """
         for idx, text in enumerate(self.whole_paper):
             print(f"-----Page {idx + 1} beginning marker-----")
@@ -113,29 +125,26 @@ class Paper:
 
     @staticmethod
     def extract_up_to_first_match_exclude_list(a: list[str], b_list: list[str]) -> list[str]:
-        """Extract content up to the first occurrence of any marker in the exclude list.
+        """
+        Extract content up to the first occurrence of any marker in the exclude list.
 
         Args:
-            a:
-                List of strings to concatenate and search within.
-            b_list:
-                List of substrings to search for.
+            a: List of strings to concatenate and search within.
+            b_list: List of substrings to search for.
 
         Returns:
-            List of strings from input up to but not including the first occurrence
-            of any substring in b_list.
+            list[str]: List of strings from input up to but not including the first
+            occurrence of any substring in b_list.
 
         Example:
-            .. testcode::
-
-                text_list = ["Page 1", "Page 2", "References", "Page 3"]
-                result = Paper.extract_up_to_first_match_exclude_list(text_list, ["references"])
+            >>> text_list = ["Page 1", "Page 2", "References", "Page 3"]
+            >>> result = Paper.extract_up_to_first_match_exclude_list(text_list, ["references"])
         """
         concatenated_a = "".join(a)
         first_three_pages = "".join(a[:3])
         lower_concatenated_a = concatenated_a.lower()
 
-        first_index = None
+        first_index: Optional[int] = None
         for b in b_list:
             lower_b = b.lower()
             index = lower_concatenated_a.find(lower_b)
@@ -151,7 +160,7 @@ class Paper:
         else:
             extracted_string = concatenated_a
 
-        result = []
+        result: list[str] = []
         current_string = ""
         for char in extracted_string:
             current_string += char
@@ -165,21 +174,19 @@ class Paper:
         return result
 
     def extract_ending_pages(self, page_number: int = 3) -> str:
-        """Extract the specified number of ending pages before references section.
+        """
+        Extract the specified number of ending pages before references section.
 
         Args:
-            page_number:
-                Number of pages to extract from the end. Defaults to 3.
+            page_number: Number of pages to extract from the end. Defaults to 3.
 
         Returns:
-            Concatenated text of the specified number of ending pages.
+            str: Concatenated text of the specified number of ending pages.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pymupdf()
-                ending_pages = paper.extract_ending_pages(2)
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pymupdf()
+            >>> ending_pages = paper.extract_ending_pages(2)
         """
         ending_pages = self.extract_up_to_first_match_exclude_list(
             self.whole_paper, self._END_MARKERS
@@ -188,14 +195,16 @@ class Paper:
         return "".join(ending_pages)
 
     def calculate_token_length(self) -> None:
-        """Calculate the total number of tokens in the paper using the specified model.
+        """
+        Calculate the total number of tokens in the paper using the specified model.
+
+        This method uses the tiktoken library to encode and count tokens according
+        to the specified model's tokenization scheme.
 
         Example:
-            .. testcode::
-
-                paper = Paper("example.pdf")
-                paper.read_pymupdf()
-                paper.calculate_token_length()
+            >>> paper = Paper("example.pdf")
+            >>> paper.read_pymupdf()
+            >>> paper.calculate_token_length()
         """
         encoder = tiktoken.encoding_for_model(self.model)
         self.paper_length = 0
