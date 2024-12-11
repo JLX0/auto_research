@@ -28,4 +28,5 @@ This code disables the mypy error code "assignment" to suppress the checks for
 reassignment of variables.
 
 This code disables the flake8 error code "noqa" to suppress the checks for
+flake8 errors.
 """
