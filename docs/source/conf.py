@@ -1,10 +1,22 @@
 # flake8: noqa
+
 # -*- coding: utf-8 -*-
 #
 # Configuration file for the Sphinx documentation builder.
 #
 # For a complete list of options, see:
 # http://www.sphinx-doc.org/en/master/config
+
+# -- Settings -------------------------------------------------
+
+package_name = "auto_research"
+copyright = "copyright_info"
+author = "authors"
+
+github_username = "useranme"
+
+version = "0.1.0"
+release = "0.1.0"
 
 # -- Path setup --------------------------------------------------------------
 
@@ -13,29 +25,28 @@ import sys
 
 
 # Add the path to your package's source code
-sys.path.insert(0, os.path.abspath("./target_code"))
+def add_target_code_paths(target_dir):
+    for root, dirs, files in os.walk(target_dir):
+        sys.path.insert(0, os.path.abspath(root))
+
+
+# Include paths for the package dynamically
+add_target_code_paths(f"./target_code/{package_name}")
 
 import warnings
 
 from sklearn.exceptions import ConvergenceWarning
 
 
-# -- Project information -----------------------------------------------------
-
-project = "package_name"
-copyright = "2024, Your Company or Name"
-author = "Your Name or Organization"
-
-# The short X.Y version
-version = "0.1"
-# The full version, including alpha/beta/rc tags
-release = "0.1.0"
-
 # -- General configuration ---------------------------------------------------
+
+project = package_name
+
+# Define the root document
+root_doc = "index"
 
 # Add any Sphinx extension module names here
 extensions = [
-    # Core Sphinx extensions
     "sphinx.ext.autodoc",  # Generate API documentation from docstrings
     "sphinx.ext.autosummary",  # Generate summary tables for API docs
     "sphinx.ext.doctest",  # Test code snippets in documentation
@@ -45,7 +56,6 @@ extensions = [
     "sphinx.ext.napoleon",  # Support for NumPy and Google style docstrings
     "sphinx.ext.viewcode",  # Add links to highlighted source code
     "sphinx.ext.githubpages",  # Create .nojekyll file for GitHub Pages
-    # Third-party extensions
     "sphinx_copybutton",  # Add copy buttons to code blocks
     "sphinx_gallery.gen_gallery",  # Generate gallery from Python scripts
 ]
@@ -54,15 +64,14 @@ extensions = [
 # directories to ignore when looking for source files.
 templates_path = ["_templates"]
 source_suffix = ".rst"  # The suffix of source files
-master_doc = "index"  # The master toctree document
 
 # Files to ignore when building documentation
 exclude_patterns = [
     "_build",
     "Thumbs.db",
     ".DS_Store",
-    "examples/GALLERY_HEADER.rst",  # Exclude to prevent duplication
-    "target_code/GALLERY_HEADER.rst",  # Exclude to prevent duplication
+    "examples/GALLERY_HEADER.rst",
+    f"target_code/{package_name}/GALLERY_HEADER.rst",
 ]
 
 # Syntax highlighting style
@@ -89,17 +98,13 @@ html_css_files = ["css/custom.css"]
 html_favicon = None
 html_logo = None
 
-# -- Options for HTMLHelp output ---------------------------------------------
-
-htmlhelp_basename = "package_namedoc"
-
 # -- Options for LaTeX output ------------------------------------------------
 
 latex_documents = [
     (
-        master_doc,
-        "package_name.tex",
-        "package_name Documentation",
+        root_doc,
+        f"{package_name}.tex",
+        f"{package_name} Documentation",
         "Your Name or Organization",
         "manual",
     ),
@@ -107,23 +112,23 @@ latex_documents = [
 
 # -- Options for manual page output ------------------------------------------
 
-man_pages = [(master_doc, "package_name", "package_name Documentation", [author], 1)]
+man_pages = [(root_doc, package_name, f"{package_name} Documentation", [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
 texinfo_documents = [
     (
-        master_doc,
-        "package_name",
-        "package_name Documentation",
+        root_doc,
+        package_name,
+        f"{package_name} Documentation",
         author,
-        "package_name",
-        "One line description of package_name.",
+        package_name,
+        "A tool for automated research workflows.",
         "Miscellaneous",
     ),
 ]
 
-# -- Extension configuration ------------------------------------------------
+# -- Extension configuration -------------------------------------------------
 
 # Intersphinx configuration
 intersphinx_mapping = {
@@ -136,19 +141,16 @@ intersphinx_mapping = {
 }
 
 # Autodoc configuration
-autosummary_generate = True  # Generate API docs from autosummary directives
-autodoc_typehints = "description"  # Put type hints in description (not signature)
-autodoc_member_order = "bysource"  # Document members in source code order
-add_module_names = False  # Don't prefix members with module name
-
-# Default options for autodoc directives
+autosummary_generate = True
+autodoc_typehints = "description"
+autodoc_member_order = "bysource"
+add_module_names = False
 autodoc_default_options = {
-    "members": True,  # Document all members
-    "inherited-members": True,  # Document inherited members
-    "show-inheritance": True,  # Show base classes
-    "special-members": "__init__",  # Document constructors
-    "undoc-members": True,  # Document members without docstrings
-    "private-members": False,  # Don't document private members (_foo)
+    "members": True,
+    "inherited-members": True,
+    "show-inheritance": True,
+    "special-members": "__init__",
+    "undoc-members": True,
 }
 
 # Napoleon settings for docstring parsing
@@ -163,7 +165,6 @@ napoleon_use_admonition_for_references = True
 napoleon_use_ivar = False
 napoleon_use_param = True
 napoleon_use_rtype = True
-napoleon_type_aliases = None
 
 # Copy button configuration
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
@@ -171,35 +172,23 @@ copybutton_prompt_is_regexp = True
 
 # Sphinx Gallery configuration
 sphinx_gallery_conf = {
-    # Modules to document
-    "doc_module": "package_name",
-    # Paths
-    "examples_dirs": [
-        "examples",  # Examples gallery
-        "target_code",  # API code documentation
-    ],
-    "gallery_dirs": [
-        "_examples_gallery",  # Output directory for examples
-        "_api_gallery",  # Output directory for API documentation
-    ],
-    # File handling
+    "doc_module": package_name,
+    "examples_dirs": ["examples"],  # Example scripts directory
+    "gallery_dirs": ["_examples_gallery"],  # Output directory
     "filename_pattern": r".*\.py",
-    "ignore_pattern": r"(^__|GALLERY_HEADER)",  # Ignore GALLERY_HEADER and private files
-    # Image handling
+    "ignore_pattern": r"(^__|GALLERY_HEADER)",
     "compress_images": ("images", "thumbnails"),
     "thumbnail_size": (400, 280),
-    # Execution
     "within_subsection_order": "FileNameSortKey",
     "show_memory": True,
     "capture_repr": ("_repr_html_", "__repr__"),
-    # Additional settings to prevent duplication
-    "backreferences_dir": None,  # Changed from False to None
+    "backreferences_dir": None,
     "download_all_examples": True,
     "remove_config_comments": True,
     "show_signature": True,
 }
 
-# -- Additional settings ----------------------------------------------------
+# -- Additional settings -----------------------------------------------------
 
 # Default role for text marked up with single backticks
 default_role = "any"
@@ -224,6 +213,6 @@ autodoc_typehints_format = "fully-qualified"
 
 # Create a list of external links that can be used throughout the documentation
 extlinks = {
-    "issue": ("https://github.com/username/package_name/issues/%s", "#%s"),
-    "pull": ("https://github.com/username/package_name/pull/%s", "PR #%s"),
+    "issue": (f"https://github.com/{github_username}/{package_name}/issues/%s", "#%s"),
+    "pull": (f"https://github.com/{github_username}/{package_name}/pull/%s", "PR #%s"),
 }

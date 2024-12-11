@@ -28,10 +28,10 @@ help:
 # The "$@" variable substitutes the name of the invoked target.
 
 doctest:
+	sphinx-apidoc -o source/target_code target_code --force --separate --module-first
 	sphinx-autogen source/**/*.rst
-# Automatically generates .rst files for autodoc directives
 	@$(SPHINXBUILD) -M doctest "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
-# Runs tests on the examples embedded in the documentation to ensure they execute correctly.
+
 
 clean:
 	# Remove build directory
