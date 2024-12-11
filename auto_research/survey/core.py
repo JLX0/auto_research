@@ -12,7 +12,7 @@ class AutoSurvey:
     A class for automating the process of surveying research papers.
 
     This class integrates and streamlines functionalities for analyzing research papers,
-    including text extraction, summarization, and algorithm analysis.
+    including text extraction, summarization, algorithm analysis, and explanation.
 
     Args:
         api_key (str): The API key for GPT model access.
