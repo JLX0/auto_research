@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Optional
+
 from auto_research.utils.prompter import PromptBase
 
 
@@ -222,7 +224,7 @@ class SurveyPrompt(PromptBase):
         conclusion: str,
     ) -> None:
         """
-        Generate a comprehensive summary of a computer science paper.
+        Generate a prompt to comprehensively summarize a computer science paper.
 
         Args:
             abstract (str): The paper's abstract text.
@@ -280,4 +282,59 @@ class SurveyPrompt(PromptBase):
             "Each one of the [answer] should be specific.",
             "Here is the summary:",
         ]
+        self.prompt = self.prompt_formatting_gpt(prompt_string)
+
+    def explain_default_computer_science(
+        self,
+        abstract: str,
+        introduction: str,
+        discussion: str,
+        conclusion: str,
+        user_question: str,
+        past_response: Optional[str],
+    ) -> None:
+        """
+        Generate a prompt to comprehensively explain a computer science paper. This method keeps
+        the user's question and the LLM's response from the past conversation.
+
+        Args:
+            abstract (str): The paper's abstract text.
+            introduction (str): The paper's introduction text.
+            discussion (str): The paper's discussion text.
+            conclusion (str): The paper's conclusion text.
+            user_question (str): The user's question about the paper.
+            past_response (Optional[str]): The LLM's response from the past conversation.
+
+        Example:
+            >>> prompt = SurveyPrompt()
+            >>> prompt.explain_default_computer_science(
+            ...     "Abstract text...",
+            ...     "Introduction text...",
+            ...     "Discussion text...",
+            ...     "Conclusion text...",
+            ...     "User question...",
+            ...     "Past response...",
+            ... )
+        """
+        self.append_to_conversation(past_response, user_question)
+
+        prompt_string = [
+            "Given the abstract, introduction, discussion, and conclusion of a paper, your "
+            "task is to explain the paper based on the user's question.",
+            "The abstract of the paper is:",
+            abstract,
+            "The introduction of the paper is:",
+            introduction,
+            "The discussion of the paper is:",
+            discussion,
+            "The conclusion of the paper is:",
+            conclusion,
+        ]
+
+        prompt_string += self.conversation_history
+
+        prompt_string += [
+            "Here is the explanation:",
+        ]
+
         self.prompt = self.prompt_formatting_gpt(prompt_string)

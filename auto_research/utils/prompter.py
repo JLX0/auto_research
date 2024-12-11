@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from typing import Any
+from typing import Optional
+
 
 class PromptBase:
     """
@@ -10,8 +13,8 @@ class PromptBase:
     prompts and provides methods to manipulate and view them.
 
     Attributes:
-        prompt (list[dict[str, str]]): A list of dictionaries containing formatted prompts,
-            where each dictionary has 'role' and 'content' keys.
+        prompt (Any): The formatted prompts ready for being passed to the LLM.
+        conversation_history (list[str]): The history of conversations recorded.
 
     Example:
         >>> prompt_manager = PromptBase()
@@ -21,19 +24,22 @@ class PromptBase:
         >>> formatted[0]["content"]
         'Hello'
         >>> formatted[1]["content"]
-        '\nWorld'
+        '\\nWorld'
     """
 
     def __init__(self) -> None:
         """
-        Initialize a new PromptBase instance with an empty prompt list.
+        Initialize a new PromptBase instance with an empty prompt list and conversation history.
 
         Example:
             >>> prompt_base = PromptBase()
             >>> prompt_base.prompt
+            None
+            >>> prompt_base.conversation_history
             []
         """
-        self.prompt: list[dict[str, str]] = []
+        self.prompt: Any = None
+        self.conversation_history: list[str] = []
 
     def prompt_formatting_gpt(self, prompt: list[str]) -> list[dict[str, str]]:
         """
@@ -58,7 +64,7 @@ class PromptBase:
             >>> result[0]["content"]
             'First prompt'
             >>> result[1]["content"]
-            '\nSecond prompt'
+            '\\nSecond prompt'
         """
         formatted_prompt: list[dict[str, str]] = []
         for idx, content in enumerate(prompt):
@@ -80,5 +86,28 @@ class PromptBase:
             >>> base.print_prompt()
             Test prompt
         """
-        for prompt_segment in self.prompt:
-            print(prompt_segment["content"])
+        if self.prompt is not None:
+            for prompt_segment in self.prompt:
+                print(prompt_segment["content"])
+
+    def append_to_conversation(self, LLM_response: Optional[str], user_input: str) -> None:
+        """
+        Record the past conversation by appending the user input and LLM response
+        to the conversation history.
+
+        Args:
+            LLM_response (Optional[str]): The response from the LLM. If None, only
+                the user input is recorded.
+            user_input (str): The user input from the conversation.
+
+        Example:
+            >>> base = PromptBase()
+            >>> base.append_to_conversation("Hello", "Hi")
+            >>> base.conversation_history
+            ['Your response:', 'Hello', 'From the user:', 'Hi']
+        """
+        if LLM_response is not None:
+            self.conversation_history.append("Your response:")
+            self.conversation_history.append(LLM_response)
+        self.conversation_history.append("From the user:")
+        self.conversation_history.append(user_input)

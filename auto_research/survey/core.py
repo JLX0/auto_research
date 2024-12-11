@@ -11,22 +11,23 @@ class AutoSurvey:
     """
     A class for automating the process of surveying research papers.
 
-    This class integrates and streamlines the functionalities for automatically analyzing
-    research papers, including text extraction, summarization, and algorithm analysis.
+    This class integrates and streamlines functionalities for analyzing research papers,
+    including text extraction, summarization, and algorithm analysis.
 
     Args:
         api_key (str): The API key for GPT model access.
         model (str): The GPT model identifier to use.
         paper_path (str): Path to the research paper PDF file.
         debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
-        mode (str, optional): Analysis mode to use. Currently supports "summarize_default"
-            and "explain_algorithm". Defaults to "summarize_default".
+        mode (str, optional): Analysis mode to use. Supports "summarize_computer_science",
+            "explain_computer_science", and "explain_algorithm". Defaults to
+            "summarize_computer_science".
 
     Attributes:
         gpt_instance (GPT): Instance of GPT handler for text processing.
         paper_path (str): Path to the research paper being analyzed.
         paper_instance (Paper): Instance of Paper class for PDF processing.
-        prompt_instance (Prompt): Instance of Prompt class for generating prompts.
+        prompt_instance (SurveyPrompt): Instance for generating prompts.
         mode (str): Current analysis mode.
         output (Optional[str]): Storage for analysis results.
         ending_pages (Optional[str]): Content of the paper's final pages.
@@ -44,7 +45,7 @@ class AutoSurvey:
         model: str,
         paper_path: str,
         debug: bool = False,
-        mode: str = "summarize_default",
+        mode: str = "summarize_computer_science",
     ) -> None:
         self.gpt_instance = GPT(api_key, model=model, debug=debug)
         self.paper_path = paper_path
@@ -70,13 +71,17 @@ class AutoSurvey:
             >>> survey = AutoSurvey(api_key, model, paper_path)
             >>> survey.run()
         """
-        if self.mode == "summarize_default":
+        if self.mode == "summarize_computer_science":
             print(f"Begin analyzing the article located at {self.paper_path}")
             self.extraction()
-            self.summary()
+            self.summarize_computer_science()
             print("The summary is:")
             print()
             print(self.output)
+        elif self.mode == "explain_computer_science":
+            print(f"Begin analyzing the article located at {self.paper_path}")
+            self.extraction()
+            self.explain_computer_science()
         elif self.mode == "explain_algorithm":
             self.extract_algorithm()
             self.explain_algorithm()
@@ -193,13 +198,13 @@ class AutoSurvey:
             if response:
                 self.paper_instance.extracted_information["conclusion"] = response
 
-    def summary(self) -> None:
+    def summarize_computer_science(self) -> None:
         """
-        Generate a summary of the paper from extracted sections.
+        Generate a summary of computer science papers.
 
         Example:
             >>> survey = AutoSurvey(api_key, model, paper_path)
-            >>> survey.summary()
+            >>> survey.summarize_computer_science()
         """
         print("---summarizing---")
         self.prompt_instance.summarize_default_computer_science(
@@ -210,9 +215,35 @@ class AutoSurvey:
         )
         self.output = self.gpt_instance.ask(self.prompt_instance.prompt)
 
-    def explain(self) -> None:
-        """Generate explanations for paper content (placeholder for future implementation)."""
-        pass
+    def explain_computer_science(self) -> None:
+        """
+        Generate explanations for computer science papers.
+
+        This method allows the user to input questions about the paper, then sends
+        the paper content and the question to the LLM for an answer. The process
+        loops until the user cancels it.
+
+        Example:
+            >>> survey = AutoSurvey(api_key, model, paper_path)
+            >>> survey.explain_computer_science()
+        """
+        response = None
+        while True:
+            print("Please input your question (type 'exit' to quit):")
+            question = input()
+            if question.lower() == "exit":
+                break
+
+            self.prompt_instance.explain_default_computer_science(
+                self.paper_instance.extracted_information["abstract"],
+                self.paper_instance.extracted_information["introduction"],
+                self.paper_instance.extracted_information["discussion"],
+                self.paper_instance.extracted_information["conclusion"],
+                question,
+                response,
+            )
+            response = self.gpt_instance.ask(self.prompt_instance.prompt)
+            print(response)
 
     def findings(self) -> None:
         """Extract key findings from the paper (placeholder for future implementation)."""
