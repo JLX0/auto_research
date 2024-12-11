@@ -51,36 +51,62 @@ def check_and_read_key_file(file_path: str, target_key: str) -> Any:
     if not isinstance(data, dict):
         return -1
 
-    if target_key in data:
-        return data[target_key]
-
-    return -1
+    return data.get(target_key, -1)
 
 
-class GPT:
+class LLMBase:
+    """
+    Base class for all LLMs.
+
+    This class serves as the foundation for different language model implementations,
+    providing common functionality and attributes.
+
+    Attributes:
+        api_key (Optional[str]): The API key for authentication.
+        model (str): The LLM model identifier being used.
+        debug (bool): Flag indicating if debug mode is enabled.
+
+    Example:
+        >>> base_llm = LLMBase(api_key="your-key", model="gpt-4", debug=True)
+        >>> print(base_llm.model)
+        'gpt-4'
+    """
+
+    def __init__(
+        self,
+        api_key: Optional[str],
+        model: str = "gpt-4-mini",
+        debug: bool = False,
+    ) -> None:
+        """
+        Initialize the base LLM.
+
+        Args:
+            api_key (Optional[str]): The API key for authentication.
+            model (str, optional): The LLM model identifier to use. Defaults to 'gpt-4-mini'.
+            debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
+        """
+        self.api_key = api_key
+        self.model = model
+        self.debug = debug
+
+
+class GPT(LLMBase):
     """
     A client for interacting with OpenAI's GPT models.
 
     This class provides methods to communicate with GPT models through OpenAI's API,
     with built-in retry functionality for handling timeouts.
 
-    Args:
-        api_key (str): The OpenAI API key for authentication.
-        model (str, optional): The GPT model identifier to use. Defaults to 'gpt-4-mini'.
-        debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
-
     Attributes:
-        client (OpenAI): OpenAI client instance.
-        model (str): The GPT model identifier being used.
-        debug (bool): Flag indicating if debug mode is enabled.
         timeout (int): Maximum time limit for API calls.
         maximum_retry (int): Maximum number of retry attempts.
+        client (OpenAI): The OpenAI client instance for making API calls.
 
     Example:
-        >>> gpt_client = GPT(api_key="your-api-key", model="gpt-4")
-        >>> message = [{"role": "user", "content": "Hello!"}]
-        >>> response = gpt_client.ask(message)
-        >>> print(response)
+        >>> gpt = GPT(api_key="your-key", model="gpt-4")
+        >>> messages = [{"role": "user", "content": "Hello!"}]
+        >>> response = gpt.ask(messages)
     """
 
     timeout: int = 60
@@ -100,9 +126,8 @@ class GPT:
             model (str, optional): The GPT model identifier to use. Defaults to 'gpt-4-mini'.
             debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
         """
+        super().__init__(api_key, model, debug)
         self.client = OpenAI(api_key=api_key)
-        self.model = model
-        self.debug = debug
 
     @staticmethod
     def print_prompt(messages: list[ChatCompletionMessageParam]) -> None:

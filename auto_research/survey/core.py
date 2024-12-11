@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Optional
 
 from auto_research.survey.paper_reader import Paper
-from auto_research.survey.prompter import Prompt
+from auto_research.survey.prompts import SurveyPrompt
 from auto_research.utils.inquiry import GPT
 
 
@@ -50,7 +50,7 @@ class AutoSurvey:
         self.paper_path = paper_path
         self.paper_instance = Paper(paper_path, model=model)
         self.paper_instance.read_pymupdf()
-        self.prompt_instance = Prompt()
+        self.prompt_instance = SurveyPrompt()
         self.mode = mode
         self.output: Optional[str] = None
         self.ending_pages: Optional[str] = None
