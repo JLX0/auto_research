@@ -9,6 +9,7 @@ from openai import OpenAI
 from openai.types.chat import ChatCompletion
 from openai.types.chat import ChatCompletionMessageParam
 
+from auto_research.utils.cost import Calculator
 from auto_research.utils.fault_tolerance import retry_overtime_decorator
 
 
@@ -152,7 +153,7 @@ class GPT(LLMBase):
     def ask(
         self,
         messages: list[ChatCompletionMessageParam],
-        ret_dict: Optional[dict[str, str]] = None,
+        ret_dict: Optional[dict[str, any]] = None,
     ) -> Optional[str]:
         """
         Send a message to the chat model and capture the response.
@@ -196,7 +197,13 @@ class GPT(LLMBase):
             print(response_text)
             print("---Response ending marker---")
 
+        calculator_instance = Calculator(self.model, messages, response_text)
+        cost = calculator_instance.calculate_cost_OpenAI()
+
         if ret_dict is not None:
-            ret_dict["result"] = response_text
+            ret_dict["result"] = (
+                response_text,
+                cost,
+            )
 
         return response_text

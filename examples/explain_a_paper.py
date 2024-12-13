@@ -84,7 +84,11 @@ def main() -> None:
     key = get_api_key("../")
 
     auto_survey_instance = AutoSurvey(
-        key, "gpt-4o-mini", file_path, False, "explain_computer_science"
+        key,
+        "gpt-4o-mini",
+        file_path,
+        False,
+        "explain_computer_science",
     )
     auto_survey_instance.run()
 

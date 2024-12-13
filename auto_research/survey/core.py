@@ -5,6 +5,7 @@ from typing import Optional
 from auto_research.survey.paper_reader import Paper
 from auto_research.survey.prompts import SurveyPrompt
 from auto_research.utils.inquiry import GPT
+from auto_research.utils.stored_info import Storage
 
 
 class AutoSurvey:
@@ -46,13 +47,17 @@ class AutoSurvey:
         paper_path: str,
         debug: bool = False,
         mode: str = "summarize_computer_science",
+        approach: str = "load",
+        storage_path: str = "papers.json",
     ) -> None:
         self.gpt_instance = GPT(api_key, model=model, debug=debug)
         self.paper_path = paper_path
+        self.paper_name = paper_path.split("/")[-1]
         self.paper_instance = Paper(paper_path, model=model)
         self.paper_instance.read_pymupdf()
         self.prompt_instance = SurveyPrompt()
         self.mode = mode
+        self.approach = approach
         self.output: Optional[str] = None
         self.ending_pages: Optional[str] = None
         self.paper_instance.extracted_information = {
@@ -62,6 +67,8 @@ class AutoSurvey:
             "conclusion": "",
             "algorithm": "",
         }
+        self.storage_instance = Storage(storage_path)
+        self.cost_accumulation = 0
 
     def run(self) -> None:
         """
@@ -86,6 +93,13 @@ class AutoSurvey:
             self.extract_algorithm()
             self.explain_algorithm()
 
+        print(f"The total cost is {self.cost_accumulation} USD")
+
+    def send_inquiry(self):
+        response, cost = self.gpt_instance.ask(self.prompt_instance.prompt)
+        self.cost_accumulation += cost
+        return response
+
     def extract_algorithm(self) -> None:
         """
         Extract algorithm descriptions from the paper.
@@ -96,7 +110,7 @@ class AutoSurvey:
         """
         raw_text = self.paper_instance.first_n_pages(12)
         self.prompt_instance.extract_algorithm(raw_text)
-        response = self.gpt_instance.ask(self.prompt_instance.prompt)
+        response = self.send_inquiry()
         print(response)
         if response:
             self.paper_instance.extracted_information["algorithm"] = response
@@ -119,6 +133,16 @@ class AutoSurvey:
         """Review the paper content (placeholder for future implementation)."""
         pass
 
+    def extraction_base(self) -> None:
+        print("Extracting from paper.")
+        self.extract_abstract()
+        self.extract_introduction()
+        ending_pages = self.paper_instance.extract_ending_pages(3)
+        if ending_pages:
+            self.ending_pages = ending_pages
+            self.extract_discussion()
+            self.extract_conclusion()
+
     def extraction(self) -> None:
         """
         Extract main sections from the paper.
@@ -130,13 +154,27 @@ class AutoSurvey:
             >>> survey = AutoSurvey(api_key, model, paper_path)
             >>> survey.extraction()
         """
-        self.extract_abstract()
-        self.extract_introduction()
-        ending_pages = self.paper_instance.extract_ending_pages(3)
-        if ending_pages:
-            self.ending_pages = ending_pages
-            self.extract_discussion()
-            self.extract_conclusion()
+        if self.approach == "load":
+            self.storage_instance.load_info()
+            try:
+                abstract = self.storage_instance.paper_info[self.paper_name]["abstract"]
+                abstract = Storage.get_latest_trial(abstract)
+                self.paper_instance.extracted_information["abstract"] = abstract
+                introduction = self.storage_instance.paper_info[self.paper_name]["introduction"]
+                introduction = Storage.get_latest_trial(introduction)
+                self.paper_instance.extracted_information["introduction"] = introduction
+                discussion = self.storage_instance.paper_info[self.paper_name]["discussion"]
+                discussion = Storage.get_latest_trial(discussion)
+                self.paper_instance.extracted_information["discussion"] = discussion
+                conclusion = self.storage_instance.paper_info[self.paper_name]["conclusion"]
+                conclusion = Storage.get_latest_trial(conclusion)
+                self.paper_instance.extracted_information["conclusion"] = conclusion
+                print("Summary information loaded from storage.")
+            except:
+                print("Summary information not found in storage")
+                self.extraction_base()
+        if self.approach == "new_trial":
+            self.extraction_base()
 
     def extract_abstract(self) -> None:
         """
@@ -149,9 +187,10 @@ class AutoSurvey:
         print("---extracting abstract---")
         raw_text = self.paper_instance.first_n_pages(2)
         self.prompt_instance.extract_abstract(raw_text)
-        response = self.gpt_instance.ask(self.prompt_instance.prompt)
+        response = self.send_inquiry()
         if response:
             self.paper_instance.extracted_information["abstract"] = response
+            self.storage_instance.add_info_to_a_paper(self.paper_name, "abstract", response)
 
     def extract_introduction(self) -> None:
         """
@@ -164,9 +203,10 @@ class AutoSurvey:
         print("---extracting introduction---")
         raw_text = self.paper_instance.first_n_pages(5)
         self.prompt_instance.extract_introduction(raw_text)
-        response = self.gpt_instance.ask(self.prompt_instance.prompt)
+        response = self.send_inquiry()
         if response:
             self.paper_instance.extracted_information["introduction"] = response
+            self.storage_instance.add_info_to_a_paper(self.paper_name, "introduction", response)
 
     def extract_discussion(self) -> None:
         """
@@ -179,9 +219,10 @@ class AutoSurvey:
         print("---extracting discussion---")
         if self.ending_pages:
             self.prompt_instance.extract_discussion(self.ending_pages)
-            response = self.gpt_instance.ask(self.prompt_instance.prompt)
+            response = self.send_inquiry()
             if response:
                 self.paper_instance.extracted_information["discussion"] = response
+                self.storage_instance.add_info_to_a_paper(self.paper_name, "discussion", response)
 
     def extract_conclusion(self) -> None:
         """
@@ -194,9 +235,10 @@ class AutoSurvey:
         print("---extracting conclusion---")
         if self.ending_pages:
             self.prompt_instance.extract_conclusion(self.ending_pages)
-            response = self.gpt_instance.ask(self.prompt_instance.prompt)
+            response = self.send_inquiry()
             if response:
                 self.paper_instance.extracted_information["conclusion"] = response
+                self.storage_instance.add_info_to_a_paper(self.paper_name, "conclusion", response)
 
     def summarize_computer_science(self) -> None:
         """
@@ -213,7 +255,11 @@ class AutoSurvey:
             self.paper_instance.extracted_information["discussion"],
             self.paper_instance.extracted_information["conclusion"],
         )
-        self.output = self.gpt_instance.ask(self.prompt_instance.prompt)
+
+        self.output = self.send_inquiry()
+        # TODO: change the output style
+
+        self.storage_instance.add_info_to_a_paper(self.paper_name, "summary", self.output)
 
     def explain_computer_science(self) -> None:
         """
@@ -227,6 +273,7 @@ class AutoSurvey:
             >>> survey = AutoSurvey(api_key, model, paper_path)
             >>> survey.explain_computer_science()
         """
+
         response = None
         while True:
             print("Please input your question (type 'exit' to quit):")
@@ -242,7 +289,12 @@ class AutoSurvey:
                 question,
                 response,
             )
-            response = self.gpt_instance.ask(self.prompt_instance.prompt)
+
+            response = self.send_inquiry()
+
+            self.prompt_instance.input_history.append(question)
+            self.prompt_instance.output_history.append(response)
+
             print(response)
 
     def findings(self) -> None:

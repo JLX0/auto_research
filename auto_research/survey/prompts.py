@@ -316,7 +316,8 @@ class SurveyPrompt(PromptBase):
             ...     "Past response...",
             ... )
         """
-        self.append_to_conversation(past_response, user_question)
+
+        # self.append_to_conversation(past_response, user_question)
 
         prompt_string = [
             "Given the abstract, introduction, discussion, and conclusion of a paper, your "
@@ -331,10 +332,14 @@ class SurveyPrompt(PromptBase):
             conclusion,
         ]
 
-        prompt_string += self.conversation_history
+        conversation = self.conversation_prompting(
+            SurveyPrompt.sequence_assembler_default, user_question
+        )
+        print(conversation)
+        prompt_string += [conversation]
 
         prompt_string += [
-            "Here is the explanation:",
+            "------ Your response: ------\n",
         ]
 
         self.prompt = self.prompt_formatting_gpt(prompt_string)
