@@ -49,7 +49,13 @@ dependencies = [
   "PyPDF2",
   "openai",
   "tiktoken",
-  "pymupdf"
+  "pymupdf",
+  "scholarly",
+  "PyMuPDF",
+  "arxiv",
+  "openai",
+  "httpx==0.27.2",
+  "matplotlib"
 ]
 
 

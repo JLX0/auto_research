@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from auto_research.utils.prompter import PromptBase
+from LLM_utils.prompter import PromptBase
 
 
 class SurveyPrompt(PromptBase):
@@ -48,7 +48,7 @@ class SurveyPrompt(PromptBase):
             *self.general_text_cleaning,
             "Here is the abstract:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def extract_introduction(self, raw_text: str) -> None:
         """
@@ -79,7 +79,7 @@ class SurveyPrompt(PromptBase):
             *self.general_text_cleaning,
             "Here is the introduction:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def extract_discussion(self, raw_text: str) -> None:
         """
@@ -114,7 +114,7 @@ class SurveyPrompt(PromptBase):
             *self.general_text_cleaning,
             "Here is the discussion:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def extract_conclusion(self, raw_text: str) -> None:
         """
@@ -149,7 +149,7 @@ class SurveyPrompt(PromptBase):
             *self.general_text_cleaning,
             "Here is the conclusion:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def extract_algorithm(self, raw_text: str) -> None:
         """
@@ -176,7 +176,7 @@ class SurveyPrompt(PromptBase):
             *self.general_text_cleaning,
             "Here is the Python list:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def explain_algorithm(self, paper: str, algorithm: str) -> None:
         """
@@ -214,7 +214,7 @@ class SurveyPrompt(PromptBase):
             ),
             "Here is the explanation:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def summarize_default_computer_science(
         self,
@@ -282,7 +282,7 @@ class SurveyPrompt(PromptBase):
             "Each one of the [answer] should be specific.",
             "Here is the summary:",
         ]
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
     def explain_default_computer_science(
         self,
@@ -342,4 +342,19 @@ class SurveyPrompt(PromptBase):
             "------ Your response: ------\n",
         ]
 
-        self.prompt = self.prompt_formatting_gpt(prompt_string)
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)
+
+    def information_retrieval(self,
+                             raw_extracted_text: str,
+                             designated_information: str
+                             ) -> None:
+        prompt_string = [
+            "Given the raw extracted text from the PDF file of a research article, your "
+            "task is to retrieve the information designated by the user. The raw extracted text is:",
+            raw_extracted_text,
+            "The user's designated information is:",
+            designated_information,
+            "Here is the retrieved information:",
+            ]
+
+        self.prompt = self.list_to_formatted_OpenAI(prompt_string)

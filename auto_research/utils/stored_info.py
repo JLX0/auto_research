@@ -1,43 +1,8 @@
-import json
 import os
+from LLM_utils.storage import Storage_base
 
-
-class Storage:
+class Storage(Storage_base):
     """This class is used to read and write information about papers in a json file"""
-
-    def __init__(self, path):
-        self.path = path
-        self.paper_info = {}
-
-    def load_info(self):
-        """
-        This method loads the info dictionary from a json file.
-
-        Args:
-
-        Returns:
-
-        """
-
-        try:
-            with open(self.path, "r") as file:
-                self.paper_info = json.load(file)
-            print(f"Information is loaded from {self.path}.")
-        except:
-            print(f"No existing stored information is found in {self.path}.")
-
-    def save_info(self):
-        """
-        This method saves the info dictionary to a JSON file in a nicely formatted way.
-
-        Args:
-
-        Returns:
-
-        """
-        with open(self.path, "w") as file:
-            json.dump(self.paper_info, file, indent=4)  # Use indent=4 for pretty formatting
-        print(f"Information is saved to {self.path}.")
 
     def add_papers_by_path(self, path_to_paper):
         """
@@ -54,7 +19,7 @@ class Storage:
         files = os.listdir(path_to_paper)
         # add the file names to the info dictionary
         for file in files:
-            self.paper_info[file] = {}
+            self.information[file] = {}
 
     def add_papers_by_name(self, list_of_papers):
         """
@@ -67,7 +32,7 @@ class Storage:
 
         """
         for paper in list_of_papers:
-            self.paper_info[paper] = {}
+            self.information[paper] = {}
 
     def add_info_to_a_paper(self, paper_name, info_type, info_content, info_trial=None):
         """
@@ -83,26 +48,26 @@ class Storage:
 
         self.load_info()
 
-        if paper_name not in self.paper_info:
-            self.paper_info[paper_name] = {}
+        if paper_name not in self.information:
+            self.information[paper_name] = {}
 
-        if info_type not in self.paper_info[paper_name]:
-            self.paper_info[paper_name][info_type] = {}
+        if info_type not in self.information[paper_name]:
+            self.information[paper_name][info_type] = {}
 
-        if info_trial in self.paper_info[paper_name][info_type]:
+        if info_trial in self.information[paper_name][info_type]:
             raise ValueError(
                 f"This trial already exists for the paper {paper_name} and info type "
                 f"{info_type}"
             )
 
         if info_trial is None:
-            existing_trials = list(map(int, self.paper_info[paper_name][info_type].keys()))
+            existing_trials = list(map(int , self.information[paper_name][info_type].keys()))
             if len(existing_trials) == 0:
                 info_trial = 1
             else:
                 info_trial = max(existing_trials) + 1
 
-        self.paper_info[paper_name][info_type][str(info_trial)] = info_content
+        self.information[paper_name][info_type][str(info_trial)] = info_content
 
         self.save_info()
 
@@ -121,28 +86,28 @@ class Storage:
         """
         # If paper_list is None, include all papers
         if paper_list is None:
-            paper_list = list(self.paper_info.keys())
+            paper_list = list(self.information.keys())
 
         for paper in paper_list:
-            if paper not in self.paper_info:
+            if paper not in self.information:
                 raise ValueError(f'Paper "{paper}" not found in the info dictionary.')
 
             # If type_list is None, include all types for this paper
-            current_types = type_list or list(self.paper_info[paper].keys())
+            current_types = type_list or list(self.information[paper].keys())
             for info_type in current_types:
-                if info_type not in self.paper_info[paper]:
+                if info_type not in self.information[paper]:
                     if verbose:
                         print(f'No info type "{info_type}" in paper "{paper}".')
                     continue
 
                 # If trial_list is None, include all trials for this type
-                current_trials = trial_list or list(self.paper_info[paper][info_type].keys())
+                current_trials = trial_list or list(self.information[paper][info_type].keys())
                 for trial in current_trials:
-                    if trial in self.paper_info[paper][info_type]:
+                    if trial in self.information[paper][info_type]:
                         print(
                             f"---Paper name: {paper}, Info type: {info_type}, Trial number: {trial}---"
                         )
-                        print(self.paper_info[paper][info_type][trial])
+                        print(self.information[paper][info_type][trial])
                     else:
                         if verbose:
                             print(
@@ -166,10 +131,10 @@ class Storage:
         results = {}
 
         # If paper_list is None, check all papers
-        papers_to_check = paper_list or list(self.paper_info.keys())
+        papers_to_check = paper_list or list(self.information.keys())
 
         for paper in papers_to_check:
-            if paper not in self.paper_info:
+            if paper not in self.information:
                 results[paper] = False
                 continue
 
@@ -179,7 +144,7 @@ class Storage:
 
             results[paper] = {}
             for info_type in type_list:
-                if info_type not in self.paper_info[paper]:
+                if info_type not in self.information[paper]:
                     results[paper][info_type] = False
                     continue
 
@@ -190,7 +155,7 @@ class Storage:
                 results[paper][info_type] = {}
                 for trial in trial_list:
                     results[paper][info_type][trial] = (
-                        str(trial) in self.paper_info[paper][info_type]
+                        str(trial) in self.information[paper][info_type]
                     )
 
         if verbose:
@@ -217,28 +182,3 @@ class Storage:
             return None  # Return None if the info_papers is empty
         largest_key = max(info_papers.keys())  # Find the largest key
         return info_papers[largest_key]  # Return the value corresponding to the largest key
-
-
-#
-# storage_instance = Storage('info.json')
-#
-# storage_instance.load_info()
-#
-# storage_instance.add_papers_by_path('/home/j/experiments/auto_research/auto_research/survey/sample_articles')
-#
-# print(storage_instance.paper_info)
-#
-# storage_instance.add_info_to_a_paper('example.pdf', 'abstract', 'This is an abstract')
-# storage_instance.add_info_to_a_paper('example.pdf', 'abstract', 'This is an abstract')
-# storage_instance.get_info(None , ['abstract'] , [1])
-# storage_instance.get_info()
-#
-# storage_instance.save_info()
-#
-# # Check if specific papers, types, and trials exist
-# result = storage_instance.check_info(
-#     ['example.pdf', 'another_paper.pdf'],
-#     ['abstract', 'summary'],
-# )
-#
-# print(result)

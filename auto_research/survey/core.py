@@ -4,7 +4,7 @@ from typing import Optional
 
 from auto_research.survey.paper_reader import Paper
 from auto_research.survey.prompts import SurveyPrompt
-from auto_research.utils.inquiry import GPT
+from LLM_utils.inquiry import OpenAI_interface
 from auto_research.utils.stored_info import Storage
 
 
@@ -25,7 +25,7 @@ class AutoSurvey:
             "summarize_computer_science".
 
     Attributes:
-        gpt_instance (GPT): Instance of GPT handler for text processing.
+        OpenAI_instance (OpenAI): Instance of GPT handler for text processing.
         paper_path (str): Path to the research paper being analyzed.
         paper_instance (Paper): Instance of Paper class for PDF processing.
         prompt_instance (SurveyPrompt): Instance for generating prompts.
@@ -50,7 +50,8 @@ class AutoSurvey:
         approach: str = "load",
         storage_path: str = "papers.json",
     ) -> None:
-        self.gpt_instance = GPT(api_key, model=model, debug=debug)
+
+        self.OpenAI_instance = OpenAI_interface(api_key , model=model , debug=debug)
         self.paper_path = paper_path
         self.paper_name = paper_path.split("/")[-1]
         self.paper_instance = Paper(paper_path, model=model)
@@ -70,7 +71,7 @@ class AutoSurvey:
         self.storage_instance = Storage(storage_path)
         self.cost_accumulation = 0
 
-    def run(self) -> None:
+    def run(self,target_information=None, tests=None) -> None:
         """
         Execute the paper analysis based on the selected mode.
 
@@ -92,13 +93,29 @@ class AutoSurvey:
         elif self.mode == "explain_algorithm":
             self.extract_algorithm()
             self.explain_algorithm()
+        elif self.mode == "information_retrieval":
+            self.information_retrieval(target_information,tests)
+            print("The retrieved information is:")
+            print()
+            print(self.output)
 
         print(f"The total cost is {self.cost_accumulation} USD")
 
-    def send_inquiry(self):
-        response, cost = self.gpt_instance.ask(self.prompt_instance.prompt)
+    def send_inquiry(self,tests=None):
+        if tests:
+            response, cost = self.OpenAI_instance.ask_with_test(self.prompt_instance.prompt , tests)
+        else:
+            response, cost = self.OpenAI_instance.ask(self.prompt_instance.prompt)
         self.cost_accumulation += cost
         return response
+
+    def information_retrieval(self,target_information, tests):
+
+        raw_text=self.paper_instance.get_whole_paper()
+        self.prompt_instance.information_retrieval(raw_text,target_information)
+        self.output = self.send_inquiry(tests)
+
+        self.storage_instance.add_info_to_a_paper(self.paper_name, f"information_retrieval:{target_information}", self.output)
 
     def extract_algorithm(self) -> None:
         """
@@ -127,13 +144,13 @@ class AutoSurvey:
             self.paper_instance.first_n_pages(12),
             self.paper_instance.extracted_information["algorithm"],
         )
-        print(self.gpt_instance.ask(self.prompt_instance.prompt))
+        print(self.OpenAI_instance.ask(self.prompt_instance.prompt))
 
     def review(self) -> None:
         """Review the paper content (placeholder for future implementation)."""
         pass
 
-    def extraction_base(self) -> None:
+    def extraction_key_information(self) -> None:
         print("Extracting from paper.")
         self.extract_abstract()
         self.extract_introduction()
@@ -157,24 +174,24 @@ class AutoSurvey:
         if self.approach == "load":
             self.storage_instance.load_info()
             try:
-                abstract = self.storage_instance.paper_info[self.paper_name]["abstract"]
+                abstract = self.storage_instance.information[self.paper_name]["abstract"]
                 abstract = Storage.get_latest_trial(abstract)
                 self.paper_instance.extracted_information["abstract"] = abstract
-                introduction = self.storage_instance.paper_info[self.paper_name]["introduction"]
+                introduction = self.storage_instance.information[self.paper_name]["introduction"]
                 introduction = Storage.get_latest_trial(introduction)
                 self.paper_instance.extracted_information["introduction"] = introduction
-                discussion = self.storage_instance.paper_info[self.paper_name]["discussion"]
+                discussion = self.storage_instance.information[self.paper_name]["discussion"]
                 discussion = Storage.get_latest_trial(discussion)
                 self.paper_instance.extracted_information["discussion"] = discussion
-                conclusion = self.storage_instance.paper_info[self.paper_name]["conclusion"]
+                conclusion = self.storage_instance.information[self.paper_name]["conclusion"]
                 conclusion = Storage.get_latest_trial(conclusion)
                 self.paper_instance.extracted_information["conclusion"] = conclusion
                 print("Summary information loaded from storage.")
             except:
                 print("Summary information not found in storage")
-                self.extraction_base()
+                self.extraction_key_information()
         if self.approach == "new_trial":
-            self.extraction_base()
+            self.extraction_key_information()
 
     def extract_abstract(self) -> None:
         """
@@ -243,6 +260,7 @@ class AutoSurvey:
     def summarize_computer_science(self) -> None:
         """
         Generate a summary of computer science papers.
+
 
         Example:
             >>> survey = AutoSurvey(api_key, model, paper_path)

@@ -106,22 +106,34 @@ class Paper:
         """
         return "".join(self.whole_paper[:n])
 
-    def print_whole_paper(self) -> None:
+    def get_whole_paper(self , print_mode: bool = False) -> None | str :
         """
-        Print the entire paper content with page markers.
+        Print the entire paper content with page markers or return it as a formatted string.
 
-        This method prints the content of each page with clear beginning and
-        ending markers for better visualization.
+        This method either prints the content of each page with clear beginning and
+        ending markers for better visualization or returns the entire content as a
+        single string in the same format.
+
+        Args:
+            print_mode (bool): If True, print the content. If False, return the content as a formatted string.
 
         Example:
             >>> paper = Paper("example.pdf")
             >>> paper.read_pymupdf()
-            >>> paper.print_whole_paper()
+            >>> paper.get_whole_paper(print_mode=True)  # Prints the content
+            >>> full_text = paper.get_whole_paper(print_mode=False)  # Returns the content as a formatted string
         """
-        for idx, text in enumerate(self.whole_paper):
-            print(f"-----Page {idx + 1} beginning marker-----")
-            print(text)
-            print(f"-----Page {idx + 1} ending marker-----")
+        result = []
+        for idx , text in enumerate(self.whole_paper) :
+            page_content = f"-----Page {idx + 1} beginning marker-----\n{text}\n-----Page {idx + 1} ending marker-----"
+            result.append(page_content)
+
+        formatted_string = "\n".join(result)
+
+        if print_mode :
+            print(formatted_string)
+        else :
+            return formatted_string
 
     @staticmethod
     def extract_up_to_first_match_exclude_list(a: list[str], b_list: list[str]) -> list[str]:
