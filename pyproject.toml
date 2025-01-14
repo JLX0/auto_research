@@ -55,7 +55,9 @@ dependencies = [
   "arxiv",
   "openai",
   "httpx==0.27.2",
-  "matplotlib"
+  "matplotlib",
+  "LLM_utils @ git+https://github.com/JLX0/LLM_utilities.git"
+
 ]
 
 
