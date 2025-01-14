@@ -1,4 +1,8 @@
-# Currently under active development, documentations and examples will be added soon
+# Currently under active development
+
+- Documentations and more examples will be added soon
+- Currently, mainly targets computer scient research, especially machine learning research
+- Example usage is available
 
 # Auto-Research
 Automatically assisting academic research with LLMs etc.
