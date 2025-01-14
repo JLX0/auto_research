@@ -19,9 +19,7 @@ Python: >= 3.10
 
 `cd auto_research`
 
-1. `pip install -e .` (for installation in editable mode)
-
-2. `pip install .` (for ordinary installation)
+`pip install .`
 
 # Usage
 
