@@ -15,7 +15,7 @@ Python: >= 3.10
 
 # Installation
 
-`git clone https://github.com/JLX0/auto_research.git`
+`git clone https://github.com/JLX0/auto_research`
 
 `cd auto_research`
 
