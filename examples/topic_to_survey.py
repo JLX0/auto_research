@@ -9,15 +9,17 @@ import os
 
 def main() -> None:
     # Settings
-    num_results = 3
+    num_results = 30
     sort_by = "relevance"
     date_cutoff = "2024-12-01"
     score_threshold = 0.5
     destination_folder = "papers"
     key = get_api_key("../", "OpenAI")
+    # key = get_api_key("../", "DeepSeek")
     # It is recommended to use models like Deepseek-V3 (deepseek-chat) or gpt-4o
     # to increase accuracy, especially for checking code availability
     model = "gpt-4o-mini"
+    # model = "deepseek-chat"
 
 
     # Ask for user_prompt from the user
