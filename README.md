@@ -1,7 +1,7 @@
 # Currently under active development
 
 - Documentations and more examples will be added soon
-- Currently, mainly targets computer scient research, especially machine learning research
+- Currently, mainly targets computer science research, especially machine learning research
 - Example usage is available
 
 # Auto-Research
