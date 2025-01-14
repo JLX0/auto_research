@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 # Replace "package_name" with the actual name of your project
 name = "auto_research"
 # Add a brief description of the project
-description = "For automatically conduct research"
+description = "For assisting academic research"
 # Specify the README file
 readme = "README.md"
 # Add the author's name and other relevant details

@@ -9,17 +9,23 @@ import os
 
 def main() -> None:
     # Settings
+
+    # How many articles to retrieve at maximum for each search keywords
     num_results = 30
+    # Choose one between "date" and "relevance" for Google Scholar search engine
     sort_by = "relevance"
+    # Only relevant when sort_by is "date"
     date_cutoff = "2024-12-01"
+    # Minimum score that the article must have to be downloaded
     score_threshold = 0.5
+    # Path where the downloaded articles and metadata will be stored
     destination_folder = "papers"
     key = get_api_key("../", "OpenAI")
-    # key = get_api_key("../", "DeepSeek")
+    # key = get_api_key("../", "DeepSeek") # If you are using DeepSeek models
     # It is recommended to use models like Deepseek-V3 (deepseek-chat) or gpt-4o
     # to increase accuracy, especially for checking code availability
     model = "gpt-4o-mini"
-    # model = "deepseek-chat"
+    # model = "deepseek-chat" # If you are using DeepSeek models
 
 
     # Ask for user_prompt from the user
