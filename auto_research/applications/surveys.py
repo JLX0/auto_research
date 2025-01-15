@@ -132,12 +132,12 @@ def topic_to_survey(
     paper_organizer = ArticleOrganizer(
         source_folder=destination_folder,
         target_folder="papers_organized",
-        threshold_type="rank",
+        threshold_type="score",
         score_threshold=score_threshold,
-        rank_threshold=num_results,
         organize_files=organize_files,
         order_by_score=order_by_score,
         zip_folder=zip_folder,
+        plotting=False,
     )
     paper_organizer.organize_and_visualize()
 

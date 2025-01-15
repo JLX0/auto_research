@@ -25,6 +25,7 @@ class ArticleOrganizer:
         organize_files (bool): Whether to organize files into the target folder.
         order_by_score (bool): Whether to rename files with their combined score.
         zip_folder (bool): Whether to zip the target folder and source folder.
+        plotting (bool): Whether to plot the combined scores of papers.
     """
 
     def __init__(
@@ -37,6 +38,7 @@ class ArticleOrganizer:
         organize_files: bool = True,
         order_by_score: bool = True,
         zip_folder: bool = True,
+        plotting: bool = True,
     ) -> None:
         """
         Initialize the ArticleOrganizer class with the given parameters.
@@ -57,6 +59,7 @@ class ArticleOrganizer:
             True.
             zip_folder (bool): Whether to zip the target folder and source folder. Defaults to
             True.
+            plotting (bool): Whether to plot the combined scores of papers. Defaults to True.
         """
         self.source_folder = source_folder
         self.target_folder = os.path.join(source_folder, target_folder)
@@ -66,6 +69,7 @@ class ArticleOrganizer:
         self.organize_files = organize_files
         self.order_by_score = order_by_score
         self.zip_folder = zip_folder
+        self.plotting = plotting
 
         # Create the target folder if it doesn't exist
         if not os.path.exists(self.target_folder):
@@ -122,9 +126,9 @@ class ArticleOrganizer:
         Steps:
         1. Read metadata from the source folder.
         2. Sort papers by combined score in descending order.
-        3. Draw a plot of the unfiltered papers.
+        3. Draw a plot of the unfiltered papers if plotting is True.
         4. Filter papers based on the selected threshold type ("rank" or "score").
-        5. Draw a plot of the filtered papers.
+        5. Draw a plot of the filtered papers if plotting is True.
         6. Organize files into the target folder if required.
         7. Zip the target folder and source folder if required.
         """
@@ -139,8 +143,9 @@ class ArticleOrganizer:
             reverse=True,
         )
 
-        # Draw the unfiltered plot
-        self.draw(original_list, "Unfiltered")
+        # Draw the unfiltered plot if plotting is True
+        if self.plotting:
+            self.draw(original_list, "Unfiltered")
 
         # Filter papers based on the selected method
         if self.threshold_type == "score":
@@ -156,8 +161,9 @@ class ArticleOrganizer:
         else:  # "rank"
             filtered_list = original_list[: self.rank_threshold]
 
-        # Draw the filtered plot
-        self.draw(filtered_list, "Filtered")
+        # Draw the filtered plot if plotting is True
+        if self.plotting:
+            self.draw(filtered_list, "Filtered")
 
         # Organize files if required
         if self.organize_files:
