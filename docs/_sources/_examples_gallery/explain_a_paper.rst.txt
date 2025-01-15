@@ -37,25 +37,71 @@ This script assumes that
 
 - At least one valid PDF file of the article is available. (located at "sample_articles/")
 
-- A valid key.json file is available (located at the current working directory (""))
+- A valid `key.json` file is available (located at the current working directory (""))
 
 The process involves user interaction, including selecting a PDF file and asking questions about its content.
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-60
+Below is an example output from the following input:
+
+- 3
+- Besides generating ML programs, what else can the method do?
+- exit
+
+.. GENERATED FROM PYTHON SOURCE LINES 33-66
+
+
 
 
 .. rst-class:: sphx-glr-script-out
 
-.. code-block:: pytb
+ .. code-block:: none
 
-    Traceback (most recent call last):
-      File "/home/j/experiments/auto_research/docs/source/examples/explain_a_paper.py", line 60, in <module>
-        main()
-      File "/home/j/experiments/auto_research/docs/source/examples/explain_a_paper.py", line 39, in main
-        selected_file, file_path = select_pdf_file(sample_folder)
-      File "/home/j/experiments/auto_research/auto_research/utils/files.py", line 39, in select_pdf_file
-        raise ValueError("Invalid choice. Please enter a valid index number.")
-    ValueError: Invalid choice. Please enter a valid index number.
+    Available PDF files:
+    0: BOHB Robust and Efficient Hyperparameter Optimization at Scale.pdf
+    1: A survey on evaluation of large language models.pdf
+    2: The AI Scientist Towards Fully Automated Open-Ended Scientific Discovery.pdf
+    3: Large Language Models Synergize with Automated Machine Learning.pdf
+    4: Active Learning for Distributionally Robust Level-Set Estimation.pdf
+    Enter the index of the file you want to process: Begin analyzing the article located at sample_articles/Large Language Models Synergize with Automated Machine Learning.pdf
+    Summary information not found in storage
+    Extracting from paper.
+    ---extracting abstract---
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    ---extracting introduction---
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    ---extracting discussion---
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    ---extracting conclusion---
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    Please input your question (type 'exit' to quit):
+    inputs: ['Besides generating ML programs, what else can the method do?']
+    previous_outputs: []
+    ------ From the user: ------
+
+    Besides generating ML programs, what else can the method do?
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    The method presented in the paper, known as Text-to-ML, goes beyond simply generating machine learning (ML) programs. Here are several additional capabilities and contributions of the method:
+
+    1. **Optimization of ML Programs**: The method not only generates ML programs but also optimizes them. By leveraging automated machine learning (autoML) techniques, Text-to-ML automates the numerical evaluation and selection of the best-performing candidates based on performance metrics, significantly enhancing the generated programs' effectiveness.
+
+    2. **Modular Generation Approach**: The framework employs a Contextual Modular Generation strategy, which means it breaks down complex ML programs into smaller, more manageable components. This modular approach allows for better management of the generation process, ensuring that each part of the ML workflow can be created independently while still maintaining overall compatibility.
+
+    3. **Enhanced Testing Techniques**: The method incorporates a unique testing technique called Constrained Generative Unit Testing. This technique is designed specifically for ML programs and enables a more sophisticated evaluation process that goes beyond binary correctness. It allows for performance evaluation based on numerical metrics, which is crucial for assessing ML program effectiveness.
+
+    4. **Seamless Integration with Existing Frameworks**: The generated code can seamlessly integrate with pre-existing modules and frameworks, allowing users to utilize both automatically generated and hand-written code in their projects. This compatibility ensures that the integration process is smooth and does not require modifications to the generated code for it to fit into the ML workflow.
+
+    5. **Handling of Diverse ML Tasks**: The method aims to automate a wide range of ML tasks, including traditional algorithms as well as tasks in more complex domains like computer vision (CV) and natural language processing (NLP). This versatility makes it applicable to various scenarios, broadening its potential use cases.
+
+    6. **Performance Improvement Over Existing Methods**: The experiments demonstrated that Text-to-ML outperforms existing methods in generating ML programs across numerous tasks, particularly in deep learning contexts. This highlights the method's capability in producing high-quality outputs.
+
+    In summary, while the primary focus of Text-to-ML is on generating and optimizing ML programs, it also incorporates advanced testing methodologies, supports modular design, ensures compatibility with existing code, and applies across a diverse set of ML tasks, significantly enhancing the automation and effectiveness of the ML program synthesis process.
+    Please input your question (type 'exit' to quit):
+    The total cost is 0.00284475 USD
 
 
 
@@ -103,7 +149,7 @@ The process involves user interaction, including selecting a PDF file and asking
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.002 seconds)
+   **Total running time of the script:** (1 minutes 35.397 seconds)
 
 
 .. _sphx_glr_download__examples_gallery_explain_a_paper.py:

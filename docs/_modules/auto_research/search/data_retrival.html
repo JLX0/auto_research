@@ -117,7 +117,7 @@
 
 <div class="viewcode-block" id="download_pdf">
 <a class="viewcode-back" href="../../../target_code/auto_research.search.data_retrival.html#auto_research.search.data_retrival.download_pdf">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">download_pdf</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">download_pdf</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">folder</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Downloads a PDF file from the specified URL and saves it to the given filename and folder.</span>
 
@@ -126,7 +126,7 @@
 <span class="sd">        filename (str): The name of the file to save the PDF as.</span>
 <span class="sd">        folder (Optional[str]): The folder to save the PDF in. If None, saves in the current</span>
 <span class="sd">         directory.</span>
-<span class="sd">        timeout (int): The timeout for the request in seconds. Defaults to 30.</span>
+<span class="sd">        timeout (int): The timeout for the request in seconds. Defaults to 10.</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        bool: True if the download was successful and the file is not corrupted, False otherwise.</span>

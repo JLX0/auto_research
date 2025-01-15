@@ -104,37 +104,24 @@
   <section id="autoresearch-a-general-framework-for-academic-research-automation">
 <h1>AutoResearch: A General Framework for Academic Research Automation<a class="headerlink" href="#autoresearch-a-general-framework-for-academic-research-automation" title="Link to this heading"></a></h1>
 <p><em>AutoResearch</em> is a framework designed to simplify and accelerate academic research tasks. It offers a <strong>modular and extensible architecture</strong> to help researchers, developers, and academics efficiently search, organize, summarize, and analyze academic papers.</p>
+<p>See this <a class="reference external" href="https://colab.research.google.com/drive/1Xj0xTpHvpnPfmK9tYnI8Ep7oRKrQ9gn7?usp=sharing">Google Colab notebook</a> for an installation-free quick demo.</p>
 <section id="key-features">
 <h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="_examples_gallery/explain_a_paper.html"><span class="doc">Automated Paper Search</span></a>
-- Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv.</p></li>
-<li><p><span class="xref std std-doc">Paper Organization and Filtering</span>
-- Organize and filter papers based on combined scores (citation count and recency).</p></li>
-<li><p><span class="xref std std-doc">Paper Summarization</span>
-- Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models.</p></li>
-</ul>
-<p>,
-- <span class="xref std std-doc">Code Availability Check</span></p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Check for GitHub links in papers and validate their availability.</p></li>
-</ul>
-</div></blockquote>
-<ul class="simple">
-<li><p><span class="xref std std-doc">Cost Tracking</span>
-- Track API usage costs for summarization and code availability checks.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/search_papers.html"><span class="doc">Automated Paper Search</span></a>
+- Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv. Organize results by relevance or date, apply filters, and save articles to a specified folder.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/summarize_a_paper.html"><span class="doc">Paper Summarization</span></a>
+- Summarize individual papers or all papers in a folder. Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models. Track and display the total cost of summarization.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/explain_a_paper.html"><span class="doc">Explain a Paper with LLMs</span></a>
+- Interactively explain concepts, methodologies, or results from a selected paper using LLMs. Supports user queries and detailed explanations of specific sections.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/get_github_link.html"><span class="doc">Code Availability Check</span></a>
+- Check for GitHub links in papers and validate their availability.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/top_to_survey.html"><span class="doc">Topic-to-Survey Automation</span></a>
+- Convert a topic or research question into a comprehensive survey of relevant papers. Generate keywords, retrieve articles, summarize content, and optionally check code availability. Organize and zip results for easy access.</p></li>
 </ul>
 </section>
-<section id="basic-concepts">
-<h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
-<p>Here are some basic terms used in <em>AutoResearch</em>:</p>
-<ul class="simple">
-<li><p><strong>Combined Score</strong>: A metric to rank papers based on citation count and recency.</p></li>
-<li><p><strong>Threshold Filtering</strong>: Filter papers based on rank (top N papers) or score (minimum combined score).</p></li>
-<li><p><strong>Metadata Management</strong>: Store and retrieve metadata (e.g., paper details, summaries) in JSON files.</p></li>
-</ul>
-<p>Below is a sample code to demonstrate how <em>AutoResearch</em> can be used:</p>
+<section id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Link to this heading"></a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSearch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.survey.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSurvey</span>
 
@@ -147,28 +134,7 @@
 <span class="n">survey</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-</section>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
-<p>Here are some examples of how <em>AutoResearch</em> can be used in practice:</p>
-<ol class="arabic simple">
-<li><p><strong>Searching and Downloading Papers</strong>:
-- Search for papers on “machine learning” and download the top 10 results.
-- Filter papers based on a combined score threshold.</p></li>
-<li><p><strong>Summarizing Papers</strong>:
-- Extract and summarize key sections (abstract, introduction, discussion, conclusion) from a paper.
-- Store summaries for future reference.</p></li>
-<li><p><strong>Checking Code Availability</strong>:
-- Check if a paper includes a GitHub link for code implementation.
-- Validate the GitHub link and ensure it is functional.</p></li>
-<li><p><strong>Visualizing Paper Scores</strong>:
-- Plot combined scores vs. rank to visualize the impact and recency of papers.
-- Highlight downloaded papers in the plot.</p></li>
-</ol>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Please check out the <a class="reference external" href="https://example.com/getting-started">Getting Started</a> section of the documentation.</p>
-</div>
+<p>See <a class="reference internal" href="_examples_gallery/index.html"><span class="doc">Examples</span></a> for more advanced usages</p>
 </section>
 <section id="communication">
 <h2>Communication<a class="headerlink" href="#communication" title="Link to this heading"></a></h2>

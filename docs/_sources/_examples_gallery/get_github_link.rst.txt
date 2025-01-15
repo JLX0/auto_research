@@ -18,6 +18,8 @@
 .. _sphx_glr__examples_gallery_get_github_link.py:
 
 
+.. _get_github_link_page:
+
 Code Availability Check
 ====================================================================
 
@@ -31,33 +33,43 @@ This script demonstrates the usage of `AutoSurvey` in the :mod:`auto_research.su
 
 - Test the availability of code on GitHub.
 
-- Run an automated survey analysis using the selected PDF, the LLM, and the formatted prompt.
-
 To get started with the package, you need to set up API keys. For detailed instructions, see :ref:`setting_up_api_keys`.
 
 This script assumes that:
 
 - At least one valid PDF file of the article is available. (located at "sample_articles/")
 
-- A valid key.json file is available (located at the current working directory (""))
+- A valid `key.json` file is available (located at the current working directory (""))
 
-The process involves user interaction, including selecting a PDF file and running a survey analysis with a focus on code availability.
+The process involves user interaction, including selecting a PDF file.
 
-.. GENERATED FROM PYTHON SOURCE LINES 27-77
+Below is an example output from the following input:
+
+- 3
+
+.. GENERATED FROM PYTHON SOURCE LINES 32-82
+
+
 
 
 .. rst-class:: sphx-glr-script-out
 
-.. code-block:: pytb
+ .. code-block:: none
 
-    Traceback (most recent call last):
-      File "/home/j/experiments/auto_research/docs/source/examples/get_github_link.py", line 77, in <module>
-        main()
-      File "/home/j/experiments/auto_research/docs/source/examples/get_github_link.py", line 53, in main
-        selected_file, file_path = select_pdf_file(sample_folder)
-      File "/home/j/experiments/auto_research/auto_research/utils/files.py", line 39, in select_pdf_file
-        raise ValueError("Invalid choice. Please enter a valid index number.")
-    ValueError: Invalid choice. Please enter a valid index number.
+    Available PDF files:
+    0: BOHB Robust and Efficient Hyperparameter Optimization at Scale.pdf
+    1: A survey on evaluation of large language models.pdf
+    2: The AI Scientist Towards Fully Automated Open-Ended Scientific Discovery.pdf
+    3: Large Language Models Synergize with Automated Machine Learning.pdf
+    4: Active Learning for Distributionally Robust Level-Set Estimation.pdf
+    Enter the index of the file you want to process: Sequence generation under testing: attempt 1 of 3
+    Operation under time limit: attempt 1 of 3
+    The operation finishes in time
+    Test passed
+    The retrieved information is:
+
+    https://github.com/JLX0/llm-automl
+    The total cost is 0.004786649999999999 USD
 
 
 
@@ -88,7 +100,7 @@ The process involves user interaction, including selecting a PDF file and runnin
         - Retrieves the API key for the LLM.
         - Formats the base prompt for code availability checks.
         - Initializes the AutoSurvey instance.
-        - Runs the automated survey analysis with the formatted prompt and GitHub link test.
+        - Checks whether GitHub link is available
         """
         # Specify the folder containing the target PDF files
         sample_folder = "sample_articles/"
@@ -113,7 +125,7 @@ The process involves user interaction, including selecting a PDF file and runnin
         # Format the base prompt for code availability checks
         prompt = base_prompt_formatted()
 
-        # Run the automated survey analysis with the formatted prompt and GitHub link test
+        # Check whether GitHub link is available
         auto_survey_instance.run(prompt, test_github_link)
 
 
@@ -122,7 +134,7 @@ The process involves user interaction, including selecting a PDF file and runnin
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.001 seconds)
+   **Total running time of the script:** (0 minutes 31.762 seconds)
 
 
 .. _sphx_glr_download__examples_gallery_get_github_link.py:

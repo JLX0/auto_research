@@ -19,9 +19,15 @@ This script assumes that
 
 - At least one valid PDF file of the article is available. (located at "sample_articles/")
 
-- A valid key.json file is available (located at the current working directory (""))
+- A valid `key.json` file is available (located at the current working directory (""))
 
 The process involves user interaction, including selecting a PDF file and asking questions about its content.
+
+Below is an example output from the following input:
+
+- 3
+- Besides generating ML programs, what else can the method do?
+- exit
 
 """
 

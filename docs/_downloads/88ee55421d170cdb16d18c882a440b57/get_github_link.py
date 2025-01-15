@@ -1,4 +1,6 @@
 """
+.. _get_github_link_page:
+
 Code Availability Check
 ====================================================================
 
@@ -12,17 +14,20 @@ This script demonstrates the usage of `AutoSurvey` in the :mod:`auto_research.su
 
 - Test the availability of code on GitHub.
 
-- Run an automated survey analysis using the selected PDF, the LLM, and the formatted prompt.
-
 To get started with the package, you need to set up API keys. For detailed instructions, see :ref:`setting_up_api_keys`.
 
 This script assumes that:
 
 - At least one valid PDF file of the article is available. (located at "sample_articles/")
 
-- A valid key.json file is available (located at the current working directory (""))
+- A valid `key.json` file is available (located at the current working directory (""))
 
-The process involves user interaction, including selecting a PDF file and running a survey analysis with a focus on code availability.
+The process involves user interaction, including selecting a PDF file.
+
+Below is an example output from the following input:
+
+- 3
+
 """
 
 from __future__ import annotations
@@ -44,7 +49,7 @@ def main() -> None:
     - Retrieves the API key for the LLM.
     - Formats the base prompt for code availability checks.
     - Initializes the AutoSurvey instance.
-    - Runs the automated survey analysis with the formatted prompt and GitHub link test.
+    - Checks whether GitHub link is available
     """
     # Specify the folder containing the target PDF files
     sample_folder = "sample_articles/"
@@ -69,7 +74,7 @@ def main() -> None:
     # Format the base prompt for code availability checks
     prompt = base_prompt_formatted()
 
-    # Run the automated survey analysis with the formatted prompt and GitHub link test
+    # Check whether GitHub link is available
     auto_survey_instance.run(prompt, test_github_link)
 
 

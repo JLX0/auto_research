@@ -3,6 +3,7 @@ AutoResearch: A General Framework for Academic Research Automation
 
 *AutoResearch* is a framework designed to simplify and accelerate academic research tasks. It offers a **modular and extensible architecture** to help researchers, developers, and academics efficiently search, organize, summarize, and analyze academic papers.
 
+See this `Google Colab notebook <https://colab.research.google.com/drive/1Xj0xTpHvpnPfmK9tYnI8Ep7oRKrQ9gn7?usp=sharing>`__ for an installation-free quick demo.
 
 Key Features
 ------------
@@ -37,7 +38,6 @@ Basic Example
     # Summarize a paper
     survey = AutoSurvey(api_key="your-api-key", model="gpt-4", paper_path="path/to/paper.pdf")
     survey.run()
-
 
 See :doc:`Examples <_examples_gallery/index>` for more advanced usages
 

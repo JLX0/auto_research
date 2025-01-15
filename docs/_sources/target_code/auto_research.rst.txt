@@ -12,6 +12,7 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
+   auto_research.applications
    auto_research.reimplementation
    auto_research.search
    auto_research.survey
