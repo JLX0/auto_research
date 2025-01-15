@@ -1,0 +1,850 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatically converts a topic or question of interests into a survey over relevant papers &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Summarize All Papers in a Folder" href="summarize_all_papers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="explain_a_paper.html">Explain a Paper with LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_github_link.html">Code Availability Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_papers.html">Automatically Search and Download Papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_a_paper.html">Summarize a Paper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_all_papers.html">Summarize All Papers in a Folder</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Automatically converts a topic or question of interests into a survey over relevant papers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Automatically converts a topic or question of interests into a survey over relevant papers</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-top-to-survey-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="automatically-converts-a-topic-or-question-of-interests-into-a-survey-over-relevant-papers">
+<span id="top-to-survey-page"></span><span id="sphx-glr-examples-gallery-top-to-survey-py"></span><h1>Automatically converts a topic or question of interests into a survey over relevant papers<a class="headerlink" href="#automatically-converts-a-topic-or-question-of-interests-into-a-survey-over-relevant-papers" title="Link to this heading"></a></h1>
+<p>This script demonstrates the usage of the <a class="reference internal" href="../target_code/auto_research.applications.surveys.html#auto_research.applications.surveys.topic_to_survey" title="auto_research.applications.surveys.topic_to_survey"><code class="xref any py py-func docutils literal notranslate"><span class="pre">topic_to_survey</span></code></a> function from the <a class="reference internal" href="../target_code/auto_research.applications.surveys.html#module-auto_research.applications.surveys" title="auto_research.applications.surveys"><code class="xref py py-mod docutils literal notranslate"><span class="pre">auto_research.applications.surveys</span></code></a> module to:</p>
+<ul class="simple">
+<li><p>Conduct an automated research process based on a user-provided topic.</p></li>
+<li><p>Generate and refine a list of keywords for searching research articles.</p></li>
+<li><p>Retrieve and download articles based on the specified search criteria.</p></li>
+<li><p>Organize and summarize the downloaded articles.</p></li>
+<li><p>Check the code availability of the summarized articles (optional).</p></li>
+</ul>
+<p>To get started with the package, you need to set up API keys. For detailed instructions, see <a class="reference internal" href="../installation.html#setting-up-api-keys"><span class="std std-ref">Setting up API keys for LLMs</span></a>.</p>
+<p>This script assumes that:</p>
+<ul class="simple">
+<li><p>A valid <code class="xref any docutils literal notranslate"><span class="pre">key.json</span></code> file is available (located at the current working directory (“”))</p></li>
+</ul>
+<p>The process involves user interaction, including selecting keywords, summarizing articles, and optionally checking code availability.</p>
+<p>Below is an example output from the following input:</p>
+<ul class="simple">
+<li><p>generate code with LLMs</p></li>
+<li><p>select</p></li>
+<li><p>1,3</p></li>
+<li><p>select</p></li>
+<li><p>2,3</p></li>
+<li><p>yes</p></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Please enter your research topic or question (e.g., &#39;Applications of AI in healthcare&#39;): Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+
+Suggested keywords for searching articles based on your input:
+1. code generation with language models
+2. code generation with LLMs
+3. code synthesis using language models
+4. automated code generation
+5. artificial intelligence for code generation
+6. code generation using GPT
+7. natural language code generation
+8. generative models for programming
+9. software development with language models
+10. programming assistance using language models
+
+How would you like to proceed with the suggested keywords?
+1. &#39;all&#39;: Use all the suggested keywords for searching.
+2. &#39;select&#39;: Choose specific keywords by their ranks.
+3. &#39;custom&#39;: Enter your own list of keywords manually.
+
+Choose an option (&#39;all&#39;, &#39;select&#39;, or &#39;custom&#39;):
+Available keywords with their ranks:
+1. code generation with language models
+2. code generation with LLMs
+3. code synthesis using language models
+4. automated code generation
+5. artificial intelligence for code generation
+6. code generation using GPT
+7. natural language code generation
+8. generative models for programming
+9. software development with language models
+10. programming assistance using language models
+
+Enter the ranks of the keywords you want to use, separated by commas (e.g., 1,3,5):
+Using the following keywords: [&#39;code generation with language models&#39;, &#39;code synthesis using language models&#39;]
+
+Final keywords to search: [&#39;code generation with language models&#39;, &#39;code synthesis using language models&#39;]
+------Searching for the 1th keyword &#39;code generation with language models&#39;------
+
+Searching papers:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+Searching papers:  20%|██        | 1/5 [00:03&lt;00:13,  3.43s/it]
+Searching papers:  40%|████      | 2/5 [00:07&lt;00:11,  3.81s/it]
+Searching papers:  60%|██████    | 3/5 [00:11&lt;00:08,  4.10s/it]
+Searching papers:  80%|████████  | 4/5 [00:15&lt;00:03,  3.79s/it]
+Searching papers: 100%|██████████| 5/5 [00:19&lt;00:00,  3.89s/it]
+Searching papers: 100%|██████████| 5/5 [00:19&lt;00:00,  3.87s/it]
+
+
+Paper 1:
+Title: Is your code generated by chatgpt really correct? rigorous evaluation of large language models for code generation
+Abstract:
+
+Program synthesis has been long studied with recent approaches focused on
+directly using the power of Large Language Models (LLMs) to generate code.
+Programming benchmarks, with curated synthesis problems and test-cases, are
+used to measure the performance of various LLMs on code synthesis. However,
+these test-cases can be limited in both quantity and quality for fully
+assessing the functional correctness of the generated code. Such limitation in
+the existing benchmarks begs the following question: In the era of LLMs, is the
+code generated really correct? To answer this, we propose EvalPlus -- a code
+synthesis evaluation framework to rigorously benchmark the functional
+correctness of LLM-synthesized code. EvalPlus augments a given evaluation
+dataset with large amounts of test-cases newly produced by an automatic test
+input generator, powered by both LLM- and mutation-based strategies. While
+EvalPlus is general, we extend the test-cases of the popular HumanEval
+benchmark by 80x to build HumanEval+. Our extensive evaluation across 26
+popular LLMs (e.g., GPT-4 and ChatGPT) demonstrates that HumanEval+ is able to
+catch significant amounts of previously undetected wrong code synthesized by
+LLMs, reducing the pass@k by up-to 19.3-28.9%. We also surprisingly found that
+test insufficiency can lead to mis-ranking. For example, both
+WizardCoder-CodeLlama and Phind-CodeLlama now outperform ChatGPT on HumanEval+,
+while none of them could on HumanEval. Our work not only indicates that prior
+popular code synthesis evaluation results do not accurately reflect the true
+performance of LLMs for code synthesis, but also opens up a new direction to
+improve such programming benchmarks through automated testing. We have
+open-sourced our tools, enhanced datasets as well as all LLM-generated code at
+https://github.com/evalplus/evalplus to facilitate and accelerate future
+LLM-for-code research.
+Combined Score: 60.54601813909813
+Citation count: 685
+Year of publication: 2024
+Publication venue: Neural Information Processing Systems
+Authors: J Liu, CS Xia, Y Wang, L Zhang
+
+
+Link: https://proceedings.neurips.cc/paper_files/paper/2023/file/43e9d647ccd3e4b7b5baab53f0368686-Paper-Conference.pdf
+ArXiv Link: http://arxiv.org/pdf/2305.01210v3
+Downloading Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf... with upper time limit: 10 seconds
+Downloaded: Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf.
+
+
+Paper 2:
+Title: Self-planning code generation with large language models
+Abstract:
+
+Large language models have demonstrated the ability to generate both natural
+language and programming language text. Such models open up the possibility of
+multi-language code generation: could code generation models generalize
+knowledge from one language to another? Although contemporary code generation
+models can generate semantically correct Python code, little is known about
+their abilities with other languages. We propose MultiPL-E, a system for
+translating unit test-driven code generation benchmarks to new languages. We
+create the first massively multilingual code generation benchmark by using
+MultiPL-E to translate two popular Python code generation benchmarks to 18
+additional programming languages.
+  We use MultiPL-E to extend the HumanEval benchmark and MBPP benchmark to 18
+languages that encompass a range of programming paradigms and popularity. Using
+these new parallel benchmarks, we evaluate the multi-language performance of
+three state-of-the-art code generation models: Codex, CodeGen, and InCoder. We
+find that Codex matches or even exceeds its performance on Python for several
+other languages. The range of programming languages represented in MultiPL-E
+allow us to explore the impact of language frequency and language features on
+model performance. Finally, the MultiPL-E approach of compiling code generation
+benchmarks to new programming languages is both scalable and extensible, making
+it straightforward to evaluate new models, benchmarks, and languages.
+Combined Score: 10.341436674853258
+Citation count: 117
+Year of publication: 2024
+Publication venue: ACM Transactions on Software Engineering and Methodology
+Authors: X Jiang, Y Dong, L Wang, Z Fang, Q Shang
+
+
+Link: https://dl.acm.org/doi/full/10.1145/3672456
+ArXiv Link: http://arxiv.org/pdf/2208.08227v4
+Downloading Self-planning code generation with large language models.pdf... with upper time limit: 10 seconds
+Downloaded: Self-planning code generation with large language models.pdf.
+/home/j/experiments/auto_research/auto_research/search/files_management.py:56: UserWarning: Error opening PDF: Failed to open file &#39;papers/Self-planning code generation with large language models.pdf&#39;.
+  warnings.warn(f&quot;Error opening PDF: {e}&quot;, UserWarning)
+The downloaded PDF file &#39;Self-planning code generation with large language models.pdf&#39; is corrupted.
+File removed: Self-planning code generation with large language models.pdf
+Trying to download from ArXiv link: http://arxiv.org/pdf/2208.08227v4
+Downloading Self-planning code generation with large language models.pdf... with upper time limit: 10 seconds
+Downloaded: Self-planning code generation with large language models.pdf.
+
+
+Paper 3:
+Title: Planning with large language models for code generation
+Abstract:
+
+Developing domain models is one of the few remaining places that require
+manual human labor in AI planning. Thus, in order to make planning more
+accessible, it is desirable to automate the process of domain model generation.
+To this end, we investigate if large language models (LLMs) can be used to
+generate planning domain models from simple textual descriptions. Specifically,
+we introduce a framework for automated evaluation of LLM-generated domains by
+comparing the sets of plans for domain instances. Finally, we perform an
+empirical analysis of 7 large language models, including coding and chat models
+across 9 different planning domains, and under three classes of natural
+language domain descriptions. Our results indicate that LLMs, particularly
+those with high parameter counts, exhibit a moderate level of proficiency in
+generating correct planning domains from natural language descriptions. Our
+code is available at https://github.com/IBM/NL2PDDL.
+Combined Score: 2.8653680026448094
+Citation count: 134
+Year of publication: 2023
+Publication venue: International Conference on Learning Representations
+Authors: S Zhang, Z Chen, Y Shen, M Ding
+
+
+Link: https://arxiv.org/pdf/2303.05510
+ArXiv Link: http://arxiv.org/pdf/2405.06650v1
+Downloading Planning with large language models for code generation.pdf... with upper time limit: 10 seconds
+Downloaded: Planning with large language models for code generation.pdf.
+
+
+Paper 4:
+Title: Synchromesh: Reliable code generation from pre-trained language models
+Abstract:
+
+Large language models have demonstrated the ability to generate both natural
+language and programming language text. Such models open up the possibility of
+multi-language code generation: could code generation models generalize
+knowledge from one language to another? Although contemporary code generation
+models can generate semantically correct Python code, little is known about
+their abilities with other languages. We propose MultiPL-E, a system for
+translating unit test-driven code generation benchmarks to new languages. We
+create the first massively multilingual code generation benchmark by using
+MultiPL-E to translate two popular Python code generation benchmarks to 18
+additional programming languages.
+  We use MultiPL-E to extend the HumanEval benchmark and MBPP benchmark to 18
+languages that encompass a range of programming paradigms and popularity. Using
+these new parallel benchmarks, we evaluate the multi-language performance of
+three state-of-the-art code generation models: Codex, CodeGen, and InCoder. We
+find that Codex matches or even exceeds its performance on Python for several
+other languages. The range of programming languages represented in MultiPL-E
+allow us to explore the impact of language frequency and language features on
+model performance. Finally, the MultiPL-E approach of compiling code generation
+benchmarks to new programming languages is both scalable and extensible, making
+it straightforward to evaluate new models, benchmarks, and languages.
+Combined Score: 1.765625
+Citation count: 226
+Year of publication: 2022
+Publication venue: International Conference on Learning Representations
+Authors: G Poesia, O Polozov, V Le, A Tiwari, G Soares
+
+
+Link: https://arxiv.org/pdf/2201.11227
+ArXiv Link: http://arxiv.org/pdf/2208.08227v4
+Downloading Synchromesh Reliable code generation from pre-trained language models.pdf... with upper time limit: 10 seconds
+Downloaded: Synchromesh Reliable code generation from pre-trained language models.pdf.
+
+
+Paper 5:
+Title: A survey on evaluating large language models in code generation tasks
+Abstract:
+
+This paper provides a comprehensive review of the current methods and metrics
+used to evaluate the performance of Large Language Models (LLMs) in code
+generation tasks. With the rapid growth in demand for automated software
+development, LLMs have demonstrated significant potential in the field of code
+generation. The paper begins by reviewing the historical development of LLMs
+and their applications in code generation. Next, it details various methods and
+metrics for assessing the code generation capabilities of LLMs, including code
+correctness, efficiency, readability, and evaluation methods based on expert
+review and user experience. The paper also evaluates the widely used benchmark
+datasets, identifying their limitations and proposing directions for future
+improvements. Specifically, the paper analyzes the performance of code
+generation models across different tasks by combining multiple evaluation
+metrics, such as code compilation/interpretation success rates, unit test pass
+rates, and performance and efficiency metrics, to comprehensively assess the
+practical application of LLMs in code generation. Finally, the paper discusses
+the challenges faced in evaluating LLMs in code generation, particularly how to
+ensure the comprehensiveness and accuracy of evaluation methods and how to
+adapt to the evolving practices of software development. These analyses and
+discussions provide valuable insights for further optimizing and improving the
+application of LLMs in code generation tasks.
+Combined Score: 0.44194173824159216
+Citation count: 5
+Year of publication: 2024
+Publication venue: arXiv.org
+Authors: L Chen, Q Guo, H Jia, Z Zeng, X Wang, Y Xu
+
+
+Link: https://arxiv.org/pdf/2408.16498
+ArXiv Link: http://arxiv.org/pdf/2408.16498v1
+Downloading A survey on evaluating large language models in code generation tasks.pdf... with upper time limit: 10 seconds
+Downloaded: A survey on evaluating large language models in code generation tasks.pdf.
+
+The above displays all paper with a combined score no less than 0
+Metadata saved to papers/metadata.json
+
+Folder saved to papers.zip
+------Searching for the 2th keyword &#39;code synthesis using language models&#39;------
+
+Searching papers:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+Searching papers:  20%|██        | 1/5 [00:04&lt;00:18,  4.68s/it]
+Searching papers:  40%|████      | 2/5 [00:08&lt;00:11,  3.92s/it]
+Searching papers:  60%|██████    | 3/5 [00:12&lt;00:08,  4.07s/it]
+Searching papers:  80%|████████  | 4/5 [00:15&lt;00:03,  3.64s/it]
+Searching papers: 100%|██████████| 5/5 [00:20&lt;00:00,  4.03s/it]
+Searching papers: 100%|██████████| 5/5 [00:20&lt;00:00,  4.00s/it]
+
+
+Paper 1:
+Title: Is your code generated by chatgpt really correct? rigorous evaluation of large language models for code generation
+Abstract:
+
+Program synthesis has been long studied with recent approaches focused on
+directly using the power of Large Language Models (LLMs) to generate code.
+Programming benchmarks, with curated synthesis problems and test-cases, are
+used to measure the performance of various LLMs on code synthesis. However,
+these test-cases can be limited in both quantity and quality for fully
+assessing the functional correctness of the generated code. Such limitation in
+the existing benchmarks begs the following question: In the era of LLMs, is the
+code generated really correct? To answer this, we propose EvalPlus -- a code
+synthesis evaluation framework to rigorously benchmark the functional
+correctness of LLM-synthesized code. EvalPlus augments a given evaluation
+dataset with large amounts of test-cases newly produced by an automatic test
+input generator, powered by both LLM- and mutation-based strategies. While
+EvalPlus is general, we extend the test-cases of the popular HumanEval
+benchmark by 80x to build HumanEval+. Our extensive evaluation across 26
+popular LLMs (e.g., GPT-4 and ChatGPT) demonstrates that HumanEval+ is able to
+catch significant amounts of previously undetected wrong code synthesized by
+LLMs, reducing the pass@k by up-to 19.3-28.9%. We also surprisingly found that
+test insufficiency can lead to mis-ranking. For example, both
+WizardCoder-CodeLlama and Phind-CodeLlama now outperform ChatGPT on HumanEval+,
+while none of them could on HumanEval. Our work not only indicates that prior
+popular code synthesis evaluation results do not accurately reflect the true
+performance of LLMs for code synthesis, but also opens up a new direction to
+improve such programming benchmarks through automated testing. We have
+open-sourced our tools, enhanced datasets as well as all LLM-generated code at
+https://github.com/evalplus/evalplus to facilitate and accelerate future
+LLM-for-code research.
+Combined Score: 60.54601813909813
+Citation count: 685
+Year of publication: 2024
+Publication venue: Neural Information Processing Systems
+Authors: J Liu, CS Xia, Y Wang, L Zhang
+
+
+Link: https://proceedings.neurips.cc/paper_files/paper/2023/file/43e9d647ccd3e4b7b5baab53f0368686-Paper-Conference.pdf
+ArXiv Link: http://arxiv.org/pdf/2305.01210v3
+Downloading Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf... with upper time limit: 10 seconds
+Downloaded: Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf.
+
+
+Paper 2:
+Title: A systematic evaluation of large language models of code
+Abstract:
+
+Language models (LMs) have exhibited impressive abilities in generating codes
+from natural language requirements. In this work, we highlight the diversity of
+code generated by LMs as a critical criterion for evaluating their code
+generation capabilities, in addition to functional correctness. Despite its
+practical implications, there is a lack of studies focused on assessing the
+diversity of generated code, which overlooks its importance in the development
+of code LMs. We propose a systematic approach to evaluate the diversity of
+generated code, utilizing various metrics for inter-code similarity as well as
+functional correctness. Specifically, we introduce a pairwise code similarity
+measure that leverages large LMs&#39; capabilities in code understanding and
+reasoning, demonstrating the highest correlation with human judgment. We
+extensively investigate the impact of various factors on the quality of
+generated code, including model sizes, temperatures, training approaches,
+prompting strategies, and the difficulty of input problems. Our consistent
+observation of a positive correlation between the test pass score and the
+inter-code similarity score indicates that current LMs tend to produce
+functionally correct code with limited diversity.
+Combined Score: 5.2421875
+Citation count: 671
+Year of publication: 2022
+Publication venue: MAPS@PLDI
+Authors: FF Xu, U Alon, G Neubig, VJ Hellendoorn
+
+
+Link: https://dl.acm.org/doi/pdf/10.1145/3520312.3534862
+ArXiv Link: http://arxiv.org/pdf/2408.14504v1
+Downloading A systematic evaluation of large language models of code.pdf... with upper time limit: 10 seconds
+Downloaded: A systematic evaluation of large language models of code.pdf.
+
+
+Paper 3:
+Title: Program synthesis with large language models
+Abstract:
+
+GitHub Copilot, an extension for the Visual Studio Code development
+environment powered by the large-scale language model Codex, makes automatic
+program synthesis available for software developers. This model has been
+extensively studied in the field of deep learning, however, a comparison to
+genetic programming, which is also known for its performance in automatic
+program synthesis, has not yet been carried out. In this paper, we evaluate
+GitHub Copilot on standard program synthesis benchmark problems and compare the
+achieved results with those from the genetic programming literature. In
+addition, we discuss the performance of both approaches. We find that the
+performance of the two approaches on the benchmark problems is quite similar,
+however, in comparison to GitHub Copilot, the program synthesis approaches
+based on genetic programming are not yet mature enough to support programmers
+in practical software development. Genetic programming usually needs a huge
+amount of expensive hand-labeled training cases and takes too much time to
+generate solutions. Furthermore, source code generated by genetic programming
+approaches is often bloated and difficult to understand. For future work on
+program synthesis with genetic programming, we suggest researchers to focus on
+improving the execution time, readability, and usability.
+Combined Score: 4.765508073647552
+Citation count: 1332
+Year of publication: 2021
+Publication venue: arXiv.org
+Authors: J Austin, A Odena, M Nye, M Bosma
+
+
+Link: https://arxiv.org/pdf/2108.07732
+ArXiv Link: http://arxiv.org/pdf/2111.07875v1
+Downloading Program synthesis with large language models.pdf... with upper time limit: 10 seconds
+Downloaded: Program synthesis with large language models.pdf.
+
+
+Paper 4:
+Title: Jigsaw: Large language models meet program synthesis
+Abstract:
+
+Large pre-trained language models such as GPT-3, Codex, and Google&#39;s language
+model are now capable of generating code from natural language specifications
+of programmer intent. We view these developments with a mixture of optimism and
+caution. On the optimistic side, such large language models have the potential
+to improve productivity by providing an automated AI pair programmer for every
+programmer in the world. On the cautionary side, since these large language
+models do not understand program semantics, they offer no guarantees about
+quality of the suggested code. In this paper, we present an approach to augment
+these large language models with post-processing steps based on program
+analysis and synthesis techniques, that understand the syntax and semantics of
+programs. Further, we show that such techniques can make use of user feedback
+and improve with usage. We present our experiences from building and evaluating
+such a tool jigsaw, targeted at synthesizing code for using Python Pandas API
+using multi-modal inputs. Our experience suggests that as these large language
+models evolve for synthesizing code from intent, jigsaw has an important role
+to play in improving the accuracy of the systems.
+Combined Score: 1.7265625
+Citation count: 221
+Year of publication: 2022
+Publication venue: International Conference on Software Engineering
+Authors: N Jain, S Vaidyanath, A Iyer, N Natarajan
+
+
+Link: https://arxiv.org/pdf/2112.02969
+ArXiv Link: http://arxiv.org/pdf/2112.02969v1
+Downloading Jigsaw Large language models meet program synthesis.pdf... with upper time limit: 10 seconds
+Downloaded: Jigsaw Large language models meet program synthesis.pdf.
+
+
+Paper 5:
+Title: A hazard analysis framework for code synthesis large language models
+Abstract:
+
+Codex, a large language model (LLM) trained on a variety of codebases,
+exceeds the previous state of the art in its capacity to synthesize and
+generate code. Although Codex provides a plethora of benefits, models that may
+generate code on such scale have significant limitations, alignment problems,
+the potential to be misused, and the possibility to increase the rate of
+progress in technical fields that may themselves have destabilizing impacts or
+have misuse potential. Yet such safety impacts are not yet known or remain to
+be explored. In this paper, we outline a hazard analysis framework constructed
+at OpenAI to uncover hazards or safety risks that the deployment of models like
+Codex may impose technically, socially, politically, and economically. The
+analysis is informed by a novel evaluation framework that determines the
+capacity of advanced code generation techniques against the complexity and
+expressivity of specification prompts, and their capability to understand and
+execute them relative to human ability.
+Combined Score: 0.1953125
+Citation count: 25
+Year of publication: 2022
+Publication venue: arXiv.org
+Authors: H Khlaaf, P Mishkin, J Achiam, G Krueger
+
+
+Link: https://www.33wang.com/blogfile/20230424200649628.pdf
+ArXiv Link: http://arxiv.org/pdf/2207.14157v1
+Downloading A hazard analysis framework for code synthesis large language models.pdf... with upper time limit: 10 seconds
+Failed to download A hazard analysis framework for code synthesis large language models.pdf from https://www.33wang.com/blogfile/20230424200649628.pdf: 502 Server Error: Bad Gateway for url: https://www.33wang.com/blogfile/20230424200649628.pdf
+Trying to download from ArXiv link: http://arxiv.org/pdf/2207.14157v1
+Downloading A hazard analysis framework for code synthesis large language models.pdf... with upper time limit: 10 seconds
+Downloaded: A hazard analysis framework for code synthesis large language models.pdf.
+
+The above displays all paper with a combined score no less than 0
+Metadata saved to papers/metadata.json
+
+Folder saved to papers.zip
+Files organized in papers/papers_organized
+Target folder saved to papers/papers_organized.zip
+The entire source folder saved to papers.zip
+
+How would you like to summarize the papers?
+1. &#39;all&#39;: Summarize all papers in the organized folder.
+2. &#39;select&#39;: Choose specific papers by their ranks to summarize.
+
+Choose an option (&#39;all&#39; or &#39;select&#39;):
+Available papers with their ranks:
+1. 3_5.24_A systematic evaluation of large language models of code.pdf
+2. 9_0.195_A hazard analysis framework for code synthesis large language models.pdf
+3. 4_4.77_Program synthesis with large language models.pdf
+4. 5_2.87_Planning with large language models for code generation.pdf
+5. 1_60.5_Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf
+6. 7_1.73_Jigsaw Large language models meet program synthesis.pdf
+7. 6_1.77_Synchromesh Reliable code generation from pre-trained language models.pdf
+8. 2_10.3_Self-planning code generation with large language models.pdf
+9. 8_0.442_A survey on evaluating large language models in code generation tasks.pdf
+
+Enter the ranks of the papers you want to summarize, separated by commas (e.g., 1,3,5):
+Summarizing the following papers: [&#39;9_0.195_A hazard analysis framework for code synthesis large language models.pdf&#39;, &#39;4_4.77_Program synthesis with large language models.pdf&#39;]
+
+Processing file: 9_0.195_A hazard analysis framework for code synthesis large language models.pdf
+Begin analyzing the article located at papers/papers_organized/9_0.195_A hazard analysis framework for code synthesis large language models.pdf
+Summary information not found in storage
+Extracting from paper.
+---extracting abstract---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting introduction---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting discussion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting conclusion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---summarizing---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+The summary is:
+
+1. The main topic: The paper focuses on the safety and hazard analysis of Codex, a large language model (LLM) for code synthesis, including its capabilities and potential risks associated with its deployment in technical and non-technical contexts.
+
+2. Existing problems: Previous studies have primarily centered on simple code generation tasks and have not adequately addressed the alignment problems, misuse potential, and complex safety implications associated with advanced code synthesis models like Codex. Moreover, standard evaluation metrics have not considered the complexity of real-world coding scenarios or the potential hazards stemming from these models.
+
+3. The main contributions: The authors propose a novel evaluation framework to assess the generative capabilities of code synthesis LLMs against human ability and complexity of specification prompts. This framework is complemented by a hazard analysis tailored for LLMs, identifying risks associated with technical, social, political, and economic dimensions of deploying such models.
+
+4. Experimental results: The paper outlines qualitative metrics developed to benchmark the capabilities of Codex against complexity levels of specification prompts, although specific datasets and comparative benchmarks are not explicitly detailed in the summary. The results of the hazard analysis highlight pressing safety risks applicable to code synthesis LLMs, both at operational and systemic levels.
+
+5. Conclusions: The authors emphasize the importance of an ongoing evaluation of model capabilities and safety implications as part of the design and deployment processes for code synthesis LLMs. They outline critical hazards and mitigation strategies, advocating for a proactive approach in assessing these models as they evolve and become more integrated into technical workflows.
+The total cost is 0.00257925 USD
+
+Processing file: 4_4.77_Program synthesis with large language models.pdf
+Begin analyzing the article located at papers/papers_organized/4_4.77_Program synthesis with large language models.pdf
+Summary information not found in storage
+Extracting from paper.
+---extracting abstract---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting introduction---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting discussion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting conclusion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---summarizing---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+The summary is:
+
+1. The main topic: This paper investigates the capabilities of large language models in synthesizing Python programs from natural language descriptions, focusing on their performance in generating outputs for general-purpose programming tasks.
+
+2. Existing problems: Previous studies and datasets in program synthesis predominantly targeted domain-specific languages or utilized coding competition problems, which often obfuscate algorithms, leading to poor model performance. There has been a lack of focused benchmarking for general-purpose programming languages like Python that can assess model capabilities effectively.
+
+3. The main contributions: The paper introduces two novel datasets, the Mostly Basic Programming Problems (MBPP) and MathQA-Python, which contain structured and clearer programming tasks to facilitate better model evaluation. It finds that model performance improves significantly when fine-tuned on coding tasks and demonstrates the potential of integrating human feedback to enhance the generation of code.
+
+4. Experimental results: The evaluation encompassed multiple models with sizes ranging from 244M to 137B parameters on the MBPP and MathQA-Python datasets. Models achieved a synthesis rate of 59.6% on MBPP through few-shot learning and improved by about 10 percentage points with fine-tuning; the best model on MathQA-Python reached 83.8% accuracy. Compared to past benchmarks, these results indicate substantial progress in leveraging general language models for code synthesis.
+
+5. Conclusions: The findings indicate that large language models can successfully synthesize code from natural language descriptions, with performance scaling log-linearly with model size. The incorporation of human feedback significantly cuts error rates, suggesting a promising avenue for improving code generation tasks. Future research should focus on enhancing these models&#39; capabilities to predict program outputs and further refining their performance across diverse programming challenges.
+The total cost is 0.00375225 USD
+
+Total cost for summarizing all files: 0.0063315
+
+The summaries for all selected files are printed below:
+------Paper title: 9_0.195_A hazard analysis framework for code synthesis large language models.pdf------
+
+1. The main topic: The paper focuses on the safety and hazard analysis of Codex, a large language model (LLM) for code synthesis, including its capabilities and potential risks associated with its deployment in technical and non-technical contexts.
+
+2. Existing problems: Previous studies have primarily centered on simple code generation tasks and have not adequately addressed the alignment problems, misuse potential, and complex safety implications associated with advanced code synthesis models like Codex. Moreover, standard evaluation metrics have not considered the complexity of real-world coding scenarios or the potential hazards stemming from these models.
+
+3. The main contributions: The authors propose a novel evaluation framework to assess the generative capabilities of code synthesis LLMs against human ability and complexity of specification prompts. This framework is complemented by a hazard analysis tailored for LLMs, identifying risks associated with technical, social, political, and economic dimensions of deploying such models.
+
+4. Experimental results: The paper outlines qualitative metrics developed to benchmark the capabilities of Codex against complexity levels of specification prompts, although specific datasets and comparative benchmarks are not explicitly detailed in the summary. The results of the hazard analysis highlight pressing safety risks applicable to code synthesis LLMs, both at operational and systemic levels.
+
+5. Conclusions: The authors emphasize the importance of an ongoing evaluation of model capabilities and safety implications as part of the design and deployment processes for code synthesis LLMs. They outline critical hazards and mitigation strategies, advocating for a proactive approach in assessing these models as they evolve and become more integrated into technical workflows.
+
+
+
+------Paper title: 4_4.77_Program synthesis with large language models.pdf------
+
+1. The main topic: This paper investigates the capabilities of large language models in synthesizing Python programs from natural language descriptions, focusing on their performance in generating outputs for general-purpose programming tasks.
+
+2. Existing problems: Previous studies and datasets in program synthesis predominantly targeted domain-specific languages or utilized coding competition problems, which often obfuscate algorithms, leading to poor model performance. There has been a lack of focused benchmarking for general-purpose programming languages like Python that can assess model capabilities effectively.
+
+3. The main contributions: The paper introduces two novel datasets, the Mostly Basic Programming Problems (MBPP) and MathQA-Python, which contain structured and clearer programming tasks to facilitate better model evaluation. It finds that model performance improves significantly when fine-tuned on coding tasks and demonstrates the potential of integrating human feedback to enhance the generation of code.
+
+4. Experimental results: The evaluation encompassed multiple models with sizes ranging from 244M to 137B parameters on the MBPP and MathQA-Python datasets. Models achieved a synthesis rate of 59.6% on MBPP through few-shot learning and improved by about 10 percentage points with fine-tuning; the best model on MathQA-Python reached 83.8% accuracy. Compared to past benchmarks, these results indicate substantial progress in leveraging general language models for code synthesis.
+
+5. Conclusions: The findings indicate that large language models can successfully synthesize code from natural language descriptions, with performance scaling log-linearly with model size. The incorporation of human feedback significantly cuts error rates, suggesting a promising avenue for improving code generation tasks. Future research should focus on enhancing these models&#39; capabilities to predict program outputs and further refining their performance across diverse programming challenges.
+
+
+
+
+Would you like to check the code availability of the articles? (yes/no):
+Checking code availability for the summarized articles...
+
+Checking code availability for: 9_0.195_A hazard analysis framework for code synthesis large language models.pdf
+Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+The retrieved information is:
+
+not available
+The total cost is 0.0021236999999999996 USD
+
+Checking code availability for: 4_4.77_Program synthesis with large language models.pdf
+Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+The retrieved information is:
+
+not available
+The total cost is 0.00475935 USD
+
+Total cost for checking code availability: 0.00688305 USD
+Total cost for the entire process (summaries + code availability check): 0.01321455 USD
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.applications.surveys</span><span class="w"> </span><span class="kn">import</span> <span class="n">topic_to_survey</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main execution block for the `topic_to_survey` function.</span>
+
+<span class="sd">    This block initializes the `topic_to_survey` function with the specified parameters and runs the automated research process.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        # Sample usage:</span>
+<span class="sd">        topic_to_survey(</span>
+<span class="sd">            num_results=5,</span>
+<span class="sd">            sort_by=&quot;relevance&quot;,</span>
+<span class="sd">            date_cutoff=&quot;2024-12-01&quot;,</span>
+<span class="sd">            score_threshold=0,</span>
+<span class="sd">            destination_folder=&quot;papers&quot;,</span>
+<span class="sd">            model=&quot;gpt-4o-mini&quot;,</span>
+<span class="sd">            api_key_path=&quot;&quot;,</span>
+<span class="sd">            api_key_type=&quot;OpenAI&quot;,</span>
+<span class="sd">            organize_files=True,</span>
+<span class="sd">            order_by_score=True,</span>
+<span class="sd">            zip_folder=True,</span>
+<span class="sd">            api_key=None,  # Directly provide the API key as a string. If None, the key will be retrieved from the file.</span>
+<span class="sd">        )</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_results : int, optional</span>
+<span class="sd">        Number of search results to retrieve. Defaults to 30.</span>
+<span class="sd">    sort_by : str, optional</span>
+<span class="sd">        Sorting criteria for search results. Options: &quot;relevance&quot;, &quot;date&quot;. Defaults to &quot;relevance&quot;.</span>
+<span class="sd">    date_cutoff : str, optional</span>
+<span class="sd">        Cutoff date for search results. Only articles published before this date will be included. Defaults to &quot;2024-12-01&quot;. Only relevant when `sort_by` is set as &quot;date&quot;.</span>
+<span class="sd">    score_threshold : float, optional</span>
+<span class="sd">        Minimum score threshold for articles. Articles with a score below this will be excluded. Defaults to 0.5.</span>
+<span class="sd">    destination_folder : str, optional</span>
+<span class="sd">        Folder to store downloaded articles. Defaults to &quot;papers&quot;.</span>
+<span class="sd">    model : str, optional</span>
+<span class="sd">        Model to use for summarization and keyword suggestions. Defaults to &quot;gpt-4o-mini&quot;.</span>
+<span class="sd">    api_key_path : str, optional</span>
+<span class="sd">        Path to the directory containing the API key. Defaults to &quot;../&quot;. Set it as &quot;&quot; if the file is located at the current directory.</span>
+<span class="sd">    api_key_type : str, optional</span>
+<span class="sd">        Type of API key to retrieve. Options: &quot;OpenAI&quot;, &quot;DeepSeek&quot;. Defaults to &quot;OpenAI&quot;.</span>
+<span class="sd">    organize_files : bool, optional</span>
+<span class="sd">        Whether to organize the downloaded articles into subfolders based on their rank and score. Defaults to True.</span>
+<span class="sd">    order_by_score : bool, optional</span>
+<span class="sd">        Whether to order articles by their score when organizing. Defaults to True.</span>
+<span class="sd">    zip_folder : bool, optional</span>
+<span class="sd">        Whether to zip the organized folder after processing. Defaults to True.</span>
+<span class="sd">    api_key : str, optional</span>
+<span class="sd">        Directly provide the API key as a string. If None, the key will be retrieved from the file. Defaults to None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">topic_to_survey</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;relevance&quot;</span><span class="p">,</span>
+        <span class="n">date_cutoff</span><span class="o">=</span><span class="s2">&quot;2024-12-01&quot;</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">destination_folder</span><span class="o">=</span><span class="s2">&quot;papers&quot;</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">api_key_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">api_key_type</span><span class="o">=</span><span class="s2">&quot;OpenAI&quot;</span><span class="p">,</span>
+        <span class="n">organize_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">order_by_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">zip_folder</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (4 minutes 42.881 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-top-to-survey-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/644d8df530e3104a4d1286e1c2c345c2/top_to_survey.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">top_to_survey.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/13bc742be66adfd2c069ff7bb129495c/top_to_survey.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">top_to_survey.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/6b4286711a3f521178a0a586bf82a27f/top_to_survey.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">top_to_survey.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="summarize_all_papers.html" class="btn btn-neutral float-left" title="Summarize All Papers in a Folder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
