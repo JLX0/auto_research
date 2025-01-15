@@ -9,9 +9,10 @@ if __name__ == "__main__":
         score_threshold=0,  # Minimum score threshold for articles. Articles with a score below this will be excluded. Defaults to 0.5.
         destination_folder="papers",  # Folder to store downloaded articles. Defaults to "papers".
         model="gpt-4o-mini",  # Model to use for summarization and keyword suggestions. Defaults to "gpt-4o-mini".
-        api_key_path="../",  # Path to the directory containing the API key. Defaults to "../". Set it as "" if the file is located at the current directory
+        api_key_path="../",  # Path to the directory containing the API key. Defaults to "../". Set it as "" if the file is located at the current directory.
         api_key_type="OpenAI",  # Type of API key to retrieve. Options: "OpenAI", "DeepSeek". Defaults to "OpenAI".
         organize_files=True,  # Whether to organize the downloaded articles into subfolders based on their rank and score. Defaults to True.
         order_by_score=True,  # Whether to order articles by their score when organizing. Defaults to True.
         zip_folder=True,  # Whether to zip the organized folder after processing. Defaults to True.
+        api_key=None,  # Directly provide the API key as a string. If None, the key will be retrieved from the file. Defaults to None.
     )

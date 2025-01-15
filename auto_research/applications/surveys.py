@@ -27,6 +27,7 @@ def topic_to_survey(
     organize_files: bool = True,
     order_by_score: bool = True,
     zip_folder: bool = True,
+    api_key: str | None = None,  # New parameter for direct API key input
 ) -> None:
     """
     Conducts an automated research process based on the provided topic and settings.
@@ -43,16 +44,19 @@ def topic_to_survey(
         organize_files: Whether to organize the downloaded articles. Defaults to True.
         order_by_score: Whether to order articles by their score. Defaults to True.
         zip_folder: Whether to zip the organized folder. Defaults to True.
+        api_key: Directly provide the API key as a string. If None, the key will be retrieved from
+        the file. Defaults to None.
 
     Example:
-        >>> topic_to_survey()
+        >>> topic_to_survey(api_key="your_api_key_here")
     """
     # Get user input for the research topic
     user_prompt = input(
         "Please enter your research topic or question (e.g., 'Applications of AI in healthcare'): "
     )
 
-    key = get_api_key(api_key_path, api_key_type)
+    # Retrieve the API key
+    key = api_key if api_key is not None else get_api_key(api_key_path, api_key_type)
 
     # Generate keyword list based on user_prompt
     keyword_list = suggest_keywords(user_prompt=user_prompt, model=model, api_key=key)
@@ -246,7 +250,3 @@ def topic_to_survey(
         f"Total cost for the entire process (summaries + code availability check): "
         f"{summary_cost + code_check_cost} USD"
     )
-
-
-if __name__ == "__main__":
-    topic_to_survey()
