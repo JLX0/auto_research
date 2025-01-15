@@ -7,13 +7,13 @@ repos:
     rev: 24.8.0
     hooks:
       - id: black
-        exclude: examples/|docs/
+        exclude: examples/|docs/|docs_source/
 
   - repo: https://github.com/pycqa/flake8
     rev: 7.1.1
     hooks:
       - id: flake8
-        exclude: examples/|docs/
+        exclude: examples/|docs/|docs_source/
         args: [
             "--max-line-length=99",
             "--ignore=E203,E704,W503",
@@ -24,7 +24,7 @@ repos:
     rev: 5.13.2
     hooks:
       - id: isort
-        exclude: examples/|docs/
+        exclude: examples/|docs/|docs_source/
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.11.2
@@ -45,7 +45,7 @@ repos:
           "types-tqdm",
           "typing_extensions>=3.10.0.0",
         ]
-        exclude: examples/|docs/
+        exclude: examples/|docs/|docs_source/
         args: [
           --warn-unused-configs,
           --disallow-untyped-calls,
