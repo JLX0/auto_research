@@ -10,7 +10,9 @@ class SurveyPrompt(PromptBase):
     A class for generating prompts to automatically survey research articles.
 
     This class provides methods to generate various types of prompts for extracting and analyzing
-    different sections of research papers.
+    different sections of research papers, including abstract, introduction, discussion,
+    conclusion, and algorithms. It also supports summarizing and explaining computer science
+    papers.
 
     Attributes:
         general_text_cleaning (list[str]): A list of text cleaning instructions applied across all
@@ -316,9 +318,6 @@ class SurveyPrompt(PromptBase):
             ...     "Past response...",
             ... )
         """
-
-        # self.append_to_conversation(past_response, user_question)
-
         prompt_string = [
             "Given the abstract, introduction, discussion, and conclusion of a paper, your "
             "task is to explain the paper based on the user's question.",
@@ -344,17 +343,25 @@ class SurveyPrompt(PromptBase):
 
         self.prompt = self.list_to_formatted_OpenAI(prompt_string)
 
-    def information_retrieval(self,
-                             raw_extracted_text: str,
-                             designated_information: str
-                             ) -> None:
+    def information_retrieval(self, raw_extracted_text: str, designated_information: str) -> None:
+        """
+        Generate a prompt to retrieve specific information from raw extracted text.
+
+        Args:
+            raw_extracted_text (str): The raw text extracted from a PDF file.
+            designated_information (str): The specific information the user wants to retrieve.
+
+        Example:
+            >>> prompt = SurveyPrompt()
+            >>> prompt.information_retrieval("Raw text...", "Designated information...")
+        """
         prompt_string = [
             "Given the raw extracted text from the PDF file of a research article, your "
-            "task is to retrieve the information designated by the user. The raw extracted text is:",
+            "task is to retrieve the information designated by the user. The raw extracted text "
+            "is:",
             raw_extracted_text,
             "The user's designated information is:",
             designated_information,
             "Here is the retrieved information:",
-            ]
-
+        ]
         self.prompt = self.list_to_formatted_OpenAI(prompt_string)

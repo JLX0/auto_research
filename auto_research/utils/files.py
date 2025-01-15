@@ -1,5 +1,8 @@
-import os
+from __future__ import annotations
+
 import json
+import os
+
 
 def select_pdf_file(folder_path: str) -> tuple[str, str]:
     """
@@ -9,21 +12,20 @@ def select_pdf_file(folder_path: str) -> tuple[str, str]:
         folder_path (str): Path to the folder containing PDF files.
 
     Returns:
-        tuple[str, str]: A tuple containing the selected file name and its full path.
+        Tuple[str, str]: A tuple containing the selected file name and its full path.
 
     Raises:
-        ValueError: If no PDF files are found or if user input is invalid.
+        ValueError: If no PDF files are found in the folder or if the user input is invalid.
 
     Example:
-        # Sample usage:
-        folder = "./sample_articles"
-        filename, filepath = select_pdf_file(folder)
-        # This will display available PDFs and prompt for selection
+        >>> folder = "./sample_articles"
+        >>> filename, filepath = select_pdf_file(folder)
+        # This will display available PDFs and prompt for selection.
     """
     file_list = [f for f in os.listdir(folder_path) if f.endswith(".pdf")]
 
     if not file_list:
-        raise ValueError("No PDF files found in the sample folder.")
+        raise ValueError("No PDF files found in the specified folder.")
 
     print("Available PDF files:")
     for i, fname in enumerate(file_list):
@@ -42,8 +44,7 @@ def select_pdf_file(folder_path: str) -> tuple[str, str]:
     return selected_file, file_path
 
 
-
-def get_all_pdf_files(folder_path: str) -> list[str]:
+def get_all_pdf_files(folder_path: str) -> list[str] | None:
     """
     Retrieve all PDF files in the specified folder.
 
@@ -54,22 +55,35 @@ def get_all_pdf_files(folder_path: str) -> list[str]:
         list[str]: A list of full paths to the PDF files.
 
     Raises:
-        ValueError: If no PDF files are found.
+        ValueError: If no PDF files are found in the folder.
 
     Example:
-        # Sample usage:
-        folder = "./sample_articles"
-        pdf_files = get_all_pdf_files(folder)
-        # Returns a list of full paths to the PDFs
+        >>> folder = "./sample_articles"
+        >>> pdf_files = get_all_pdf_files(folder)
+        # Returns a list of full paths to the PDFs.
     """
-    file_list = [os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(".pdf")]
+    file_list = [
+        os.path.join(folder_path, f) for f in os.listdir(folder_path) if f.endswith(".pdf")
+    ]
 
     if not file_list:
-        raise ValueError("No PDF files found in the sample folder.")
+        return None
 
     return file_list
 
-def print_summaries(storage_path="papers.json"):
+
+def print_summaries(storage_path: str = "papers.json") -> None:
+    """
+    Print summaries of papers from a JSON file.
+
+    Args:
+        storage_path (str): Path to the JSON file containing paper summaries. Defaults to
+        "papers.json".
+
+    Example:
+        >>> print_summaries()
+        # This will print the summaries of all papers stored in the JSON file.
+    """
     with open(storage_path, "r") as file:
         input_data = json.load(file)
 
@@ -78,7 +92,7 @@ def print_summaries(storage_path="papers.json"):
 
     # Output the filtered dictionary in a nicely formatted manner
     for paper, details in filtered_data.items():
-        print("------Paper title: "f"{paper}------\n")
+        print("------Paper title: " f"{paper}------\n")
         for _, summary in details["summary"].items():
             print(f"{summary}\n")
         print("\n")

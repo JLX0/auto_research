@@ -6,8 +6,11 @@
 
 # Initialize default variables.
 update=1  # Default is to update files.
-target="/home/j/experiments/formatter/target_file.py"  # Default target file path.
-mypy_target="/home/j/experiments/formatter/target_file.py"  # Default mypy target file path.
+# Change the paths to the path of the targeted file
+target_path=""
+
+target="$target_path"
+mypy_target="$target_path"
 # Initialize an empty array to track missing dependencies.
 missing_dependencies=()
 

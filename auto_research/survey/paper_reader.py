@@ -19,11 +19,12 @@ class Paper:
         model: Name of the GPT model to use for token counting. Defaults to 'gpt-4o-mini'.
 
     Attributes:
-        paper_path: Path to the PDF file.
-        whole_paper: List containing the text content of each page.
-        paper_length: Total number of tokens in the paper based on the specified model.
-        model: Name of the GPT model used for token counting.
-        extracted_information: Dictionary containing extracted sections of the paper.
+        paper_path (str): Path to the PDF file.
+        whole_paper (list[str]): List containing the text content of each page.
+        paper_length (int): Total number of tokens in the paper based on the specified model.
+        model (str): Name of the GPT model used for token counting.
+        extracted_information (dict[str, str]): Dictionary containing extracted sections of the
+        paper.
 
     Example:
         >>> paper = Paper("example.pdf", model="gpt-4")
@@ -106,7 +107,7 @@ class Paper:
         """
         return "".join(self.whole_paper[:n])
 
-    def get_whole_paper(self , print_mode: bool = False) -> None | str :
+    def get_whole_paper(self, print_mode: bool = False) -> Optional[str]:
         """
         Print the entire paper content with page markers or return it as a formatted string.
 
@@ -115,24 +116,35 @@ class Paper:
         single string in the same format.
 
         Args:
-            print_mode (bool): If True, print the content. If False, return the content as a formatted string.
+            print_mode: If True, print the content. If False, return the content as a formatted
+            string.
+
+        Returns:
+            Optional[str]: If print_mode is False, returns the formatted string. Otherwise,
+            returns None.
 
         Example:
             >>> paper = Paper("example.pdf")
             >>> paper.read_pymupdf()
             >>> paper.get_whole_paper(print_mode=True)  # Prints the content
-            >>> full_text = paper.get_whole_paper(print_mode=False)  # Returns the content as a formatted string
+            >>> full_text = paper.get_whole_paper(
+            ...     print_mode=False
+            ... )  # Returns the content as a string
         """
         result = []
-        for idx , text in enumerate(self.whole_paper) :
-            page_content = f"-----Page {idx + 1} beginning marker-----\n{text}\n-----Page {idx + 1} ending marker-----"
+        for idx, text in enumerate(self.whole_paper):
+            page_content = (
+                f"-----Page {idx + 1} beginning marker-----\n{text}\n"
+                f"-----Page {idx + 1} ending marker-----"
+            )
             result.append(page_content)
 
         formatted_string = "\n".join(result)
 
-        if print_mode :
+        if print_mode:
             print(formatted_string)
-        else :
+            return None
+        else:
             return formatted_string
 
     @staticmethod

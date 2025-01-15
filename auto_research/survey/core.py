@@ -2,9 +2,10 @@ from __future__ import annotations
 
 from typing import Optional
 
+from LLM_utils.inquiry import OpenAI_interface
+
 from auto_research.survey.paper_reader import Paper
 from auto_research.survey.prompts import SurveyPrompt
-from LLM_utils.inquiry import OpenAI_interface
 from auto_research.utils.stored_info import Storage
 
 
@@ -21,17 +22,25 @@ class AutoSurvey:
         paper_path (str): Path to the research paper PDF file.
         debug (bool, optional): Enable debug mode for detailed logging. Defaults to False.
         mode (str, optional): Analysis mode to use. Supports "summarize_computer_science",
-            "explain_computer_science", and "explain_algorithm". Defaults to
-            "summarize_computer_science".
+            "explain_computer_science", "explain_algorithm", and "information_retrieval".
+            Defaults to "summarize_computer_science".
+        approach (str, optional): Approach to use for extraction. Supports "load" and "new_trial".
+            Defaults to "load".
+        storage_path (str, optional): Path to the storage file for saving extracted information.
+            Defaults to "papers.json".
 
     Attributes:
-        OpenAI_instance (OpenAI): Instance of GPT handler for text processing.
+        OpenAI_instance (OpenAI_interface): Instance of GPT handler for text processing.
         paper_path (str): Path to the research paper being analyzed.
+        paper_name (str): Name of the research paper file.
         paper_instance (Paper): Instance of Paper class for PDF processing.
         prompt_instance (SurveyPrompt): Instance for generating prompts.
         mode (str): Current analysis mode.
+        approach (str): Current extraction approach.
         output (Optional[str]): Storage for analysis results.
         ending_pages (Optional[str]): Content of the paper's final pages.
+        storage_instance (Storage): Instance for storing and retrieving extracted information.
+        cost_accumulation (float): Accumulated cost of API usage.
 
     Example:
         >>> survey = AutoSurvey(
@@ -51,7 +60,7 @@ class AutoSurvey:
         storage_path: str = "papers.json",
     ) -> None:
 
-        self.OpenAI_instance = OpenAI_interface(api_key , model=model , debug=debug)
+        self.OpenAI_instance = OpenAI_interface(api_key, model=model, debug=debug)
         self.paper_path = paper_path
         self.paper_name = paper_path.split("/")[-1]
         self.paper_instance = Paper(paper_path, model=model)
@@ -71,9 +80,14 @@ class AutoSurvey:
         self.storage_instance = Storage(storage_path)
         self.cost_accumulation = 0
 
-    def run(self,target_information=None, tests=None) -> None:
+    def run(self, target_information: Optional[str] = None, tests: Optional[list] = None) -> None:
         """
         Execute the paper analysis based on the selected mode.
+
+        Args:
+            target_information (Optional[str]): Specific information to retrieve when mode is
+            "information_retrieval".
+            tests (Optional[list]): List of tests to run when sending inquiries.
 
         Example:
             >>> survey = AutoSurvey(api_key, model, paper_path)
@@ -94,28 +108,55 @@ class AutoSurvey:
             self.extract_algorithm()
             self.explain_algorithm()
         elif self.mode == "information_retrieval":
-            self.information_retrieval(target_information,tests)
+            if target_information is None:
+                raise ValueError(
+                    "target_information cannot be None when mode is 'information_retrieval'"
+                )
+            self.information_retrieval(target_information, tests)
             print("The retrieved information is:")
             print()
             print(self.output)
 
         print(f"The total cost is {self.cost_accumulation} USD")
 
-    def send_inquiry(self,tests=None):
+    def send_inquiry(self, tests: Optional[list] = None) -> str:
+        """
+        Send an inquiry to the GPT model.
+
+        Args:
+            tests (Optional[list]): List of tests to run when sending inquiries.
+
+        Returns:
+            str: The response from the GPT model.
+        """
         if tests:
-            response, cost = self.OpenAI_instance.ask_with_test(self.prompt_instance.prompt , tests)
+            response, cost = self.OpenAI_instance.ask_with_test(self.prompt_instance.prompt, tests)
         else:
             response, cost = self.OpenAI_instance.ask(self.prompt_instance.prompt)
         self.cost_accumulation += cost
         return response
 
-    def information_retrieval(self,target_information, tests):
+    def information_retrieval(self, target_information: str, tests: Optional[list] = None) -> None:
+        """
+        Retrieve specific information from the paper.
 
-        raw_text=self.paper_instance.get_whole_paper()
-        self.prompt_instance.information_retrieval(raw_text,target_information)
+        Args:
+            target_information (str): The specific information to retrieve.
+            tests (Optional[list]): List of tests to run when sending inquiries.
+        """
+        if target_information is None:
+            raise ValueError("target_information cannot be None")
+
+        raw_text = self.paper_instance.get_whole_paper()
+        if raw_text is None:
+            raise ValueError("Failed to extract text from the paper. raw_text is None.")
+
+        self.prompt_instance.information_retrieval(raw_text, target_information)
         self.output = self.send_inquiry(tests)
 
-        self.storage_instance.add_info_to_a_paper(self.paper_name, f"information_retrieval:{target_information}", self.output)
+        self.storage_instance.add_info_to_a_paper(
+            self.paper_name, f"information_retrieval:{target_information}", self.output
+        )
 
     def extract_algorithm(self) -> None:
         """
@@ -151,6 +192,8 @@ class AutoSurvey:
         pass
 
     def extraction_key_information(self) -> None:
+        """Extract key information from the paper, including abstract, introduction, discussion,
+        and conclusion."""
         print("Extracting from paper.")
         self.extract_abstract()
         self.extract_introduction()
@@ -187,8 +230,11 @@ class AutoSurvey:
                 conclusion = Storage.get_latest_trial(conclusion)
                 self.paper_instance.extracted_information["conclusion"] = conclusion
                 print("Summary information loaded from storage.")
-            except:
+            except KeyError:
                 print("Summary information not found in storage")
+                self.extraction_key_information()
+            except FileNotFoundError:
+                print("Storage file not found")
                 self.extraction_key_information()
         if self.approach == "new_trial":
             self.extraction_key_information()
@@ -261,7 +307,6 @@ class AutoSurvey:
         """
         Generate a summary of computer science papers.
 
-
         Example:
             >>> survey = AutoSurvey(api_key, model, paper_path)
             >>> survey.summarize_computer_science()
@@ -317,4 +362,4 @@ class AutoSurvey:
 
     def findings(self) -> None:
         """Extract key findings from the paper (placeholder for future implementation)."""
-        pass
+        raise NotImplementedError

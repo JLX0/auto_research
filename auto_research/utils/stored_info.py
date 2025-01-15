@@ -1,51 +1,99 @@
+from __future__ import annotations
+
 import os
+from typing import Optional
+from typing import Union
+
 from LLM_utils.storage import Storage_base
 
-class Storage(Storage_base):
-    """This class is used to read and write information about papers in a json file"""
 
-    def add_papers_by_path(self, path_to_paper):
+class Storage(Storage_base):
+    """
+    A class for managing and storing information about papers in a structured format.
+
+    This class provides functionality to add, retrieve, and check information about
+    papers stored in a JSON-like structure. It supports adding papers by path or name,
+    adding information to specific papers, and retrieving or checking information
+    based on specified criteria.
+
+    Attributes:
+        information (dict): A dictionary storing paper information, where keys are
+                            paper names and values are nested dictionaries containing
+                            information types and their corresponding trials.
+
+    Example:
+        >>> storage = Storage()
+        >>> storage.add_papers_by_name(["paper1.pdf", "paper2.pdf"])
+        >>> storage.add_info_to_a_paper("paper1.pdf", "summary", "This is a summary.")
+        >>> storage.get_info(paper_list=["paper1.pdf"], type_list=["summary"])
+        ---Paper name: paper1.pdf, Info type: summary, Trial number: 1---
+        This is a summary.
+    """
+
+    def add_papers_by_path(self, path_to_paper: str) -> None:
         """
-        This method adds the file names of all papers in a directory as keys to the info dictionary.
+        Add the file names of all papers in a specified directory as keys to the info dictionary.
 
         Args:
-            path_to_paper:
+            path_to_paper (str): The path to the directory containing the paper files.
 
         Returns:
+            None
 
+        Example:
+            >>> storage = Storage()
+            >>> storage.add_papers_by_path("/path/to/papers")
         """
-
-        # get all files in the directory
         files = os.listdir(path_to_paper)
-        # add the file names to the info dictionary
         for file in files:
             self.information[file] = {}
 
-    def add_papers_by_name(self, list_of_papers):
+    def add_papers_by_name(self, list_of_papers: list[str]) -> None:
         """
-        This method adds the file names of all papers in a list as keys to the info dictionary.
+        Add the file names of all papers in a provided list as keys to the info dictionary.
 
         Args:
-            names:
+            list_of_papers (list[str]): A list of paper file names to be added to the info
+            dictionary.
 
         Returns:
+            None
 
+        Example:
+            >>> storage = Storage()
+            >>> storage.add_papers_by_name(["paper1.pdf", "paper2.pdf"])
         """
         for paper in list_of_papers:
             self.information[paper] = {}
 
-    def add_info_to_a_paper(self, paper_name, info_type, info_content, info_trial=None):
+    def add_info_to_a_paper(
+        self, paper_name: str, info_type: str, info_content: str, info_trial: Optional[int] = None
+    ) -> None:
         """
-        This method adds information to a paper in the info dictionary.
+        Add information to a specific paper in the info dictionary.
+
+        If the paper or info type does not exist, they are initialized. If a trial number
+        is not provided, the next available trial number is automatically assigned.
 
         Args:
-            paper_name:
-            info:
+            paper_name (str): The name of the paper to which information will be added.
+            info_type (str): The type of information to be added (e.g., 'summary', 'analysis').
+            info_content (str): The content of the information to be stored.
+            info_trial (Optional[int]): The trial number for the information. If None, the
+                                        next available trial number is used.
 
         Returns:
+            None
 
+        Raises:
+            ValueError: If the specified trial number already exists for the given paper
+                       and info type.
+
+        Example:
+            >>> storage = Storage()
+            >>> storage.add_papers_by_name(["paper1.pdf"])
+            >>> storage.add_info_to_a_paper("paper1.pdf", "summary", "This is a summary.")
         """
-
         self.load_info()
 
         if paper_name not in self.information:
@@ -56,35 +104,46 @@ class Storage(Storage_base):
 
         if info_trial in self.information[paper_name][info_type]:
             raise ValueError(
-                f"This trial already exists for the paper {paper_name} and info type "
-                f"{info_type}"
+                f"This trial already exists for the paper {paper_name} and info type {info_type}."
             )
 
         if info_trial is None:
-            existing_trials = list(map(int , self.information[paper_name][info_type].keys()))
-            if len(existing_trials) == 0:
-                info_trial = 1
-            else:
-                info_trial = max(existing_trials) + 1
+            existing_trials = list(map(int, self.information[paper_name][info_type].keys()))
+            info_trial = max(existing_trials) + 1 if existing_trials else 1
 
         self.information[paper_name][info_type][str(info_trial)] = info_content
-
         self.save_info()
 
-    def get_info(self, paper_list=None, type_list=None, trial_list=None, verbose=False):
+    def get_info(
+        self,
+        paper_list: Optional[list[str]] = None,
+        type_list: Optional[list[str]] = None,
+        trial_list: Optional[list[int]] = None,
+        verbose: bool = False,
+    ) -> None:
         """
-        This method gets the information in the info dictionary according to the specified range.
+        Retrieve information from the info dictionary based on the specified criteria.
 
         Args:
-            paper_list: List of paper names to retrieve info for. If None, all papers are included.
-            type_list: List of types to retrieve info for. If None, all types are included.
-            trial_list: List of trial numbers to retrieve info for. If None, all trials are included.
-            verbose: If True, prints messages for missing data.
+            paper_list (Optional[list[str]]): List of paper names to retrieve info for.
+                                              If None, all papers are included.
+            type_list (Optional[list[str]]): List of info types to retrieve info for.
+                                             If None, all types are included.
+            trial_list (Optional[list[int]]): List of trial numbers to retrieve info for.
+                                              If None, all trials are included.
+            verbose (bool): If True, prints messages for missing data.
 
         Returns:
             None
+
+        Example:
+            >>> storage = Storage()
+            >>> storage.add_papers_by_name(["paper1.pdf"])
+            >>> storage.add_info_to_a_paper("paper1.pdf", "summary", "This is a summary.")
+            >>> storage.get_info(paper_list=["paper1.pdf"], type_list=["summary"])
+            ---Paper name: paper1.pdf, Info type: summary, Trial number: 1---
+            This is a summary.
         """
-        # If paper_list is None, include all papers
         if paper_list is None:
             paper_list = list(self.information.keys())
 
@@ -92,7 +151,6 @@ class Storage(Storage_base):
             if paper not in self.information:
                 raise ValueError(f'Paper "{paper}" not found in the info dictionary.')
 
-            # If type_list is None, include all types for this paper
             current_types = type_list or list(self.information[paper].keys())
             for info_type in current_types:
                 if info_type not in self.information[paper]:
@@ -100,12 +158,13 @@ class Storage(Storage_base):
                         print(f'No info type "{info_type}" in paper "{paper}".')
                     continue
 
-                # If trial_list is None, include all trials for this type
                 current_trials = trial_list or list(self.information[paper][info_type].keys())
                 for trial in current_trials:
                     if trial in self.information[paper][info_type]:
                         print(
-                            f"---Paper name: {paper}, Info type: {info_type}, Trial number: {trial}---"
+                            f"---Paper name: {paper}, Info type: {info_type}, Trial number: "
+                            f"{trial}"
+                            f"---"
                         )
                         print(self.information[paper][info_type][trial])
                     else:
@@ -114,25 +173,41 @@ class Storage(Storage_base):
                                 f'No trial {trial} for info type "{info_type}" in paper "{paper}".'
                             )
 
-    def check_info(self, paper_list=None, type_list=None, trial_list=None, verbose=False):
+    def check_info(
+        self,
+        paper_list: Optional[list[str]] = None,
+        type_list: Optional[list[str]] = None,
+        trial_list: Optional[list[int]] = None,
+        verbose: bool = False,
+    ) -> Union[bool, dict]:
         """
-        This method checks if the info dictionary contains the information for the specified ranges.
+        Check if the info dictionary contains the specified information.
 
         Args:
-            paper_list: List of paper names to check. If None, checks all papers.
-            type_list: List of info types to check. If None, checks all types.
-            trial_list: List of trial numbers to check. If None, checks all trials.
-            verbose: If True, returns the detailed results dictionary; if False, returns a boolean.
+            paper_list (Optional[list[str]]): List of paper names to check. If None, checks all
+            papers.
+            type_list (Optional[list[str]]): List of info types to check. If None, checks all
+            types.
+            trial_list (Optional[list[int]]): List of trial numbers to check. If None, checks all
+            trials.
+            verbose (bool): If True, returns a detailed results dictionary; if False, returns a
+            boolean.
 
         Returns:
-            If verbose=True, returns a nested dictionary with results of the existence check.
-            If verbose=False, returns a boolean indicating if all checks passed.
+            Union[bool, dict]: If verbose=True, returns a nested dictionary with results of the
+            existence check.
+                               If verbose=False, returns a boolean indicating if all checks passed.
+
+        Example:
+            >>> storage = Storage()
+            >>> storage.add_papers_by_name(["paper1.pdf"])
+            >>> storage.add_info_to_a_paper("paper1.pdf", "summary", "This is a summary.")
+            >>> storage.check_info(paper_list=["paper1.pdf"], type_list=["summary"])
+            True
         """
-        results = {}
+        results: dict = {}
 
-        # If paper_list is None, check all papers
         papers_to_check = paper_list or list(self.information.keys())
-
         for paper in papers_to_check:
             if paper not in self.information:
                 results[paper] = False
@@ -161,7 +236,6 @@ class Storage(Storage_base):
         if verbose:
             return results
 
-        # Return False if any value in the results is False
         for paper, paper_data in results.items():
             if isinstance(paper_data, bool) and not paper_data:
                 return False
@@ -177,8 +251,23 @@ class Storage(Storage_base):
         return True
 
     @staticmethod
-    def get_latest_trial(info_papers):
+    def get_latest_trial(info_papers: dict) -> Optional[str]:
+        """
+        Retrieve the latest trial information from a given dictionary of trials.
+
+        Args:
+            info_papers (dict): A dictionary containing trial information.
+
+        Returns:
+            Optional[str]: The value corresponding to the latest trial. Returns None if the
+            dictionary is empty.
+
+        Example:
+            >>> storage = Storage()
+            >>> storage.get_latest_trial({"1": "Trial 1", "2": "Trial 2"})
+            'Trial 2'
+        """
         if not info_papers:
-            return None  # Return None if the info_papers is empty
-        largest_key = max(info_papers.keys())  # Find the largest key
-        return info_papers[largest_key]  # Return the value corresponding to the largest key
+            return None
+        largest_key = max(info_papers.keys())
+        return info_papers[largest_key]

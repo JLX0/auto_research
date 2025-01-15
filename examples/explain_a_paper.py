@@ -1,8 +1,10 @@
 from __future__ import annotations
 
-from auto_research.survey.core import AutoSurvey
 from LLM_utils.inquiry import get_api_key
+
+from auto_research.survey.core import AutoSurvey
 from auto_research.utils.files import select_pdf_file
+
 
 def main() -> None:
     """
