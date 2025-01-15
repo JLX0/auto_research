@@ -1,0 +1,390 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.applications.surveys &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">auto_research.applications.surveys</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for auto_research.applications.surveys</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">traceback</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">LLM_utils.inquiry</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_api_key</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">base_prompt_formatted</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_github_link</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSearch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.keywords</span><span class="w"> </span><span class="kn">import</span> <span class="n">suggest_keywords</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.post_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticleOrganizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.survey.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSurvey</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.utils.files</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_all_pdf_files</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.utils.files</span><span class="w"> </span><span class="kn">import</span> <span class="n">print_summaries</span>
+
+
+<div class="viewcode-block" id="topic_to_survey">
+<a class="viewcode-back" href="../../../target_code/auto_research.applications.surveys.html#auto_research.applications.surveys.topic_to_survey">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">topic_to_survey</span><span class="p">(</span>
+    <span class="n">num_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">sort_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;relevance&quot;</span><span class="p">,</span>
+    <span class="n">date_cutoff</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;2024-12-01&quot;</span><span class="p">,</span>
+    <span class="n">score_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">destination_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;papers&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">api_key_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;../&quot;</span><span class="p">,</span>
+    <span class="n">api_key_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OpenAI&quot;</span><span class="p">,</span>
+    <span class="n">organize_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">order_by_score</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">zip_folder</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># New parameter for direct API key input</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Conducts an automated research process based on the provided topic and settings.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        num_results: Number of search results to retrieve. Defaults to 30.</span>
+<span class="sd">        sort_by: Sorting criteria for search results. Defaults to &quot;relevance&quot;.</span>
+<span class="sd">        date_cutoff: Cutoff date for search results. Defaults to &quot;2024-12-01&quot;.</span>
+<span class="sd">        score_threshold: Minimum score threshold for articles. Defaults to 0.5.</span>
+<span class="sd">        destination_folder: Folder to store downloaded articles. Defaults to &quot;papers&quot;.</span>
+<span class="sd">        model: Model to use for summarization and keyword suggestions. Defaults to &quot;gpt-4o-mini&quot;.</span>
+<span class="sd">        api_key_path: Path to the directory containing the API key. Defaults to &quot;../&quot;.</span>
+<span class="sd">        api_key_type: Type of API key to retrieve. Defaults to &quot;OpenAI&quot;.</span>
+<span class="sd">        organize_files: Whether to organize the downloaded articles. Defaults to True.</span>
+<span class="sd">        order_by_score: Whether to order articles by their score. Defaults to True.</span>
+<span class="sd">        zip_folder: Whether to zip the organized folder. Defaults to True.</span>
+<span class="sd">        api_key: Directly provide the API key as a string. If None, the key will be retrieved from</span>
+<span class="sd">        the file. Defaults to None.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; topic_to_survey(api_key=&quot;your_api_key_here&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get user input for the research topic</span>
+    <span class="n">user_prompt</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+        <span class="s2">&quot;Please enter your research topic or question (e.g., &#39;Applications of AI in healthcare&#39;): &quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Retrieve the API key</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">api_key</span> <span class="k">if</span> <span class="n">api_key</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">get_api_key</span><span class="p">(</span><span class="n">api_key_path</span><span class="p">,</span> <span class="n">api_key_type</span><span class="p">)</span>
+
+    <span class="c1"># Generate keyword list based on user_prompt</span>
+    <span class="n">keyword_list</span> <span class="o">=</span> <span class="n">suggest_keywords</span><span class="p">(</span><span class="n">user_prompt</span><span class="o">=</span><span class="n">user_prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Suggested keywords for searching articles based on your input:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">keyword</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Step 2: Ask the user for their preferred option with detailed explanations</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">How would you like to proceed with the suggested keywords?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. &#39;all&#39;: Use all the suggested keywords for searching.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. &#39;select&#39;: Choose specific keywords by their ranks.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3. &#39;custom&#39;: Enter your own list of keywords manually.&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">option</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Choose an option (&#39;all&#39;, &#39;select&#39;, or &#39;custom&#39;): &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">option</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;select&quot;</span><span class="p">,</span> <span class="s2">&quot;custom&quot;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid option. Please try again.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Determine the final list of keywords based on the user&#39;s choice</span>
+    <span class="k">if</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+        <span class="n">keywords</span> <span class="o">=</span> <span class="n">keyword_list</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using all suggested keywords for the search.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;select&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Available keywords with their ranks:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">keyword</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">keyword</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">custom_ranks</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter the ranks of the keywords you want to use, separated by commas &quot;</span>
+                <span class="s2">&quot;(e.g., 1,3,5): &quot;</span>
+            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">selected_ranks</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">custom_ranks</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="p">]</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">rank</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">)</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">):</span>
+                    <span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="n">keyword_list</span><span class="p">[</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">]</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using the following keywords:&quot;</span><span class="p">,</span> <span class="n">keywords</span><span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please enter ranks between 1 and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">keyword_list</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input. Please enter valid integers separated by commas.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">option</span> <span class="o">==</span> <span class="s2">&quot;custom&quot;</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">custom_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter your custom keywords, separated by commas without quotation marks (e.g., &quot;</span>
+                <span class="s2">&quot;&#39;AI in diagnostics, healthcare automation&#39;): &quot;</span>
+            <span class="p">)</span>
+            <span class="n">keywords</span> <span class="o">=</span> <span class="p">[</span><span class="n">kw</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">kw</span> <span class="ow">in</span> <span class="n">custom_input</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">kw</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">if</span> <span class="n">keywords</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using custom keywords for the search:&quot;</span><span class="p">,</span> <span class="n">keywords</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No valid keywords entered. Please try again.&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final keywords to search:&quot;</span><span class="p">,</span> <span class="n">keywords</span><span class="p">)</span>
+
+    <span class="c1"># Initialize and run the AutoSearch to find and download articles</span>
+    <span class="n">paper_search</span> <span class="o">=</span> <span class="n">AutoSearch</span><span class="p">(</span>
+        <span class="n">keywords</span><span class="o">=</span><span class="n">keywords</span><span class="p">,</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="n">num_results</span><span class="p">,</span>
+        <span class="n">sort_by</span><span class="o">=</span><span class="n">sort_by</span><span class="p">,</span>
+        <span class="n">date_cutoff</span><span class="o">=</span><span class="n">date_cutoff</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="o">=</span><span class="n">score_threshold</span><span class="p">,</span>
+        <span class="n">destination_folder</span><span class="o">=</span><span class="n">destination_folder</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">paper_search</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+    <span class="c1"># Organize the downloaded articles based on rank and score</span>
+    <span class="n">paper_organizer</span> <span class="o">=</span> <span class="n">ArticleOrganizer</span><span class="p">(</span>
+        <span class="n">source_folder</span><span class="o">=</span><span class="n">destination_folder</span><span class="p">,</span>
+        <span class="n">target_folder</span><span class="o">=</span><span class="s2">&quot;papers_organized&quot;</span><span class="p">,</span>
+        <span class="n">threshold_type</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="o">=</span><span class="n">score_threshold</span><span class="p">,</span>
+        <span class="n">organize_files</span><span class="o">=</span><span class="n">organize_files</span><span class="p">,</span>
+        <span class="n">order_by_score</span><span class="o">=</span><span class="n">order_by_score</span><span class="p">,</span>
+        <span class="n">zip_folder</span><span class="o">=</span><span class="n">zip_folder</span><span class="p">,</span>
+        <span class="n">plotting</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">paper_organizer</span><span class="o">.</span><span class="n">organize_and_visualize</span><span class="p">()</span>
+
+    <span class="c1"># Get the list of all PDF files in the organized folder</span>
+    <span class="n">organized_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">destination_folder</span><span class="p">,</span> <span class="s2">&quot;papers_organized&quot;</span><span class="p">)</span>
+    <span class="n">pdf_files</span> <span class="o">=</span> <span class="n">get_all_pdf_files</span><span class="p">(</span><span class="n">organized_folder</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">pdf_files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Error: No downloaded articles found in &#39;</span><span class="si">{</span><span class="n">organized_folder</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Possible reasons:&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- The search did not return any results matching your criteria.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- The score threshold or rank threshold may be too high.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- Try increasing &#39;num_results&#39; or lowering &#39;score_threshold&#39; in the settings.&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- The files are not accessible for download or are corrupted.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Ask the user how they would like to summarize the papers</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">How would you like to summarize the papers?&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. &#39;all&#39;: Summarize all papers in the organized folder.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2. &#39;select&#39;: Choose specific papers by their ranks to summarize.&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">summary_option</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Choose an option (&#39;all&#39; or &#39;select&#39;): &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">summary_option</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;all&quot;</span><span class="p">,</span> <span class="s2">&quot;select&quot;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid option. Please try again.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">summary_option</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
+        <span class="n">target_files</span> <span class="o">=</span> <span class="n">pdf_files</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summarizing all papers in the organized folder.&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">summary_option</span> <span class="o">==</span> <span class="s2">&quot;select&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Available papers with their ranks:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">custom_ranks</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Enter the ranks of the papers you want to summarize, separated by commas &quot;</span>
+                <span class="s2">&quot;(e.g., 1,3,5): &quot;</span>
+            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">selected_ranks</span> <span class="o">=</span> <span class="p">[</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">custom_ranks</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="p">]</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">rank</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">)</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">):</span>
+                    <span class="n">target_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">pdf_files</span><span class="p">[</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">]</span>
+                    <span class="nb">print</span><span class="p">(</span>
+                        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summarizing the following papers:&quot;</span><span class="p">,</span>
+                        <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">target_files</span><span class="p">],</span>
+                    <span class="p">)</span>
+                    <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please enter ranks between 1 and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input. Please enter valid integers separated by commas.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Summarize the selected papers and accumulate the cost</span>
+    <span class="n">summary_cost</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">target_files</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Processing file: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">auto_survey_instance</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span>
+            <span class="n">key</span><span class="p">,</span>
+            <span class="n">model</span><span class="p">,</span>
+            <span class="n">file_path</span><span class="p">,</span>
+            <span class="kc">False</span><span class="p">,</span>
+            <span class="s2">&quot;summarize_computer_science&quot;</span><span class="p">,</span>
+            <span class="n">storage_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">destination_folder</span><span class="p">,</span> <span class="s2">&quot;summaries.json&quot;</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">auto_survey_instance</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+        <span class="n">summary_cost</span> <span class="o">+=</span> <span class="n">auto_survey_instance</span><span class="o">.</span><span class="n">cost_accumulation</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total cost for summarizing all files: </span><span class="si">{</span><span class="n">summary_cost</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The summaries for all selected files are printed below:&quot;</span><span class="p">)</span>
+    <span class="n">print_summaries</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">destination_folder</span><span class="p">,</span> <span class="s2">&quot;summaries.json&quot;</span><span class="p">))</span>
+
+    <span class="c1"># Ask the user if they want to check the code availability of the articles</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">check_code</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Would you like to check the code availability of the articles? (yes/no): &quot;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">check_code</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;no&quot;</span><span class="p">]:</span>
+            <span class="k">break</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input. Please enter &#39;yes&#39; or &#39;no&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Check code availability for the summarized articles and accumulate the cost</span>
+    <span class="n">code_check_cost</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">check_code</span> <span class="o">==</span> <span class="s2">&quot;yes&quot;</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Checking code availability for the summarized articles...&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">target_files</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Checking code availability for: </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">auto_survey_instance</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span>
+                <span class="n">key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;information_retrieval&quot;</span>
+            <span class="p">)</span>
+            <span class="n">prompt</span> <span class="o">=</span> <span class="n">base_prompt_formatted</span><span class="p">()</span>
+
+            <span class="c1"># Call `test_github_link` and pass its result as a list</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">auto_survey_instance</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">test_github_link</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The traceback is:&quot;</span><span class="p">)</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">print_exc</span><span class="p">()</span>
+
+            <span class="n">code_check_cost</span> <span class="o">+=</span> <span class="n">auto_survey_instance</span><span class="o">.</span><span class="n">cost_accumulation</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total cost for checking code availability: </span><span class="si">{</span><span class="n">code_check_cost</span><span class="si">}</span><span class="s2"> USD&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;Total cost for the entire process (summaries + code availability check): &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">summary_cost</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">code_check_cost</span><span class="si">}</span><span class="s2"> USD&quot;</span>
+    <span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
