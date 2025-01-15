@@ -3,34 +3,27 @@ AutoResearch: A General Framework for Academic Research Automation
 
 *AutoResearch* is a framework designed to simplify and accelerate academic research tasks. It offers a **modular and extensible architecture** to help researchers, developers, and academics efficiently search, organize, summarize, and analyze academic papers.
 
+
 Key Features
 ------------
 
-- :doc:`Automated Paper Search <_examples_gallery/explain_a_paper>`
-  - Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv.
+- :doc:`Automated Paper Search <_examples_gallery/search_papers>`
+  - Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv. Organize results by relevance or date, apply filters, and save articles to a specified folder.
 
-- :doc:`Paper Organization and Filtering <tutorial/02_configuration>`
-  - Organize and filter papers based on combined scores (citation count and recency).
+- :doc:`Paper Summarization <_examples_gallery/summarize_a_paper>`
+  - Summarize individual papers or all papers in a folder. Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models. Track and display the total cost of summarization.
 
-- :doc:`Paper Summarization <tutorial/03_optimization_algorithms>`
-  - Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models.
-,
-- :doc:`Code Availability Check <tutorial/04_parallelization>`
+- :doc:`Explain a Paper with LLMs <_examples_gallery/explain_a_paper>`
+  - Interactively explain concepts, methodologies, or results from a selected paper using LLMs. Supports user queries and detailed explanations of specific sections.
+
+- :doc:`Code Availability Check <_examples_gallery/get_github_link>`
   - Check for GitHub links in papers and validate their availability.
 
-- :doc:`Cost Tracking <tutorial/05_visualization>`
-  - Track API usage costs for summarization and code availability checks.
+- :doc:`Topic-to-Survey Automation <_examples_gallery/top_to_survey>`
+  - Convert a topic or research question into a comprehensive survey of relevant papers. Generate keywords, retrieve articles, summarize content, and optionally check code availability. Organize and zip results for easy access.
 
-Basic Concepts
+Basic Example
 --------------
-
-Here are some basic terms used in *AutoResearch*:
-
-- **Combined Score**: A metric to rank papers based on citation count and recency.
-- **Threshold Filtering**: Filter papers based on rank (top N papers) or score (minimum combined score).
-- **Metadata Management**: Store and retrieve metadata (e.g., paper details, summaries) in JSON files.
-
-Below is a sample code to demonstrate how *AutoResearch* can be used:
 
 .. code-block:: python
 
@@ -45,30 +38,8 @@ Below is a sample code to demonstrate how *AutoResearch* can be used:
     survey = AutoSurvey(api_key="your-api-key", model="gpt-4", paper_path="path/to/paper.pdf")
     survey.run()
 
-Examples
---------
 
-Here are some examples of how *AutoResearch* can be used in practice:
-
-1. **Searching and Downloading Papers**:
-   - Search for papers on "machine learning" and download the top 10 results.
-   - Filter papers based on a combined score threshold.
-
-2. **Summarizing Papers**:
-   - Extract and summarize key sections (abstract, introduction, discussion, conclusion) from a paper.
-   - Store summaries for future reference.
-
-3. **Checking Code Availability**:
-   - Check if a paper includes a GitHub link for code implementation.
-   - Validate the GitHub link and ensure it is functional.
-
-4. **Visualizing Paper Scores**:
-   - Plot combined scores vs. rank to visualize the impact and recency of papers.
-   - Highlight downloaded papers in the plot.
-
-.. TIP::
-
-   Please check out the `Getting Started <https://example.com/getting-started>`__ section of the documentation.
+See :doc:`Examples <_examples_gallery/index>` for more advanced usages
 
 Communication
 -------------

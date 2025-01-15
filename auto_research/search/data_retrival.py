@@ -12,7 +12,7 @@ from requests.exceptions import Timeout
 from auto_research.search.files_management import is_pdf_uncorrupted
 
 
-def download_pdf(url: str, filename: str, folder: Optional[str] = None, timeout: int = 30) -> bool:
+def download_pdf(url: str, filename: str, folder: Optional[str] = None, timeout: int = 10) -> bool:
     """
     Downloads a PDF file from the specified URL and saves it to the given filename and folder.
 
@@ -21,7 +21,7 @@ def download_pdf(url: str, filename: str, folder: Optional[str] = None, timeout:
         filename (str): The name of the file to save the PDF as.
         folder (Optional[str]): The folder to save the PDF in. If None, saves in the current
          directory.
-        timeout (int): The timeout for the request in seconds. Defaults to 30.
+        timeout (int): The timeout for the request in seconds. Defaults to 10.
 
     Returns:
         bool: True if the download was successful and the file is not corrupted, False otherwise.

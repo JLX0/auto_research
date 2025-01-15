@@ -21,8 +21,6 @@ For users who are highly familiar with Git, pip, and the command line, here's a 
    $ cd auto_research
    $ pip install .
 
----
-
 Detailed Installation Guide
 ---------------------------
 
@@ -37,8 +35,6 @@ Before installing, ensure your system meets the following requirements:
 - **Python Version**: Python 3.10 or higher.
 
 If you're unsure whether Python is installed or which version you have, follow the steps below to check.
-
----
 
 Step 1: Check Python Installation
 ---------------------------------
@@ -55,8 +51,6 @@ Step 1: Check Python Installation
 
    - If Python is installed, you'll see something like `Python 3.10.12`. If the version is **3.10 or higher**, you're good to go.
    - If Python is not installed or the version is too old, follow the official Python installation guide: https://www.python.org/downloads/.
-
----
 
 Step 2: Install Git (if needed)
 -------------------------------
@@ -85,8 +79,6 @@ Git is a tool used to download the *AutoResearch* code from GitHub. If you don't
 
    - You should see something like `git version 2.25.1`. If not, revisit the installation steps.
 
----
-
 Step 3: Download the *AutoResearch* Code
 ----------------------------------------
 
@@ -105,8 +97,6 @@ Step 3: Download the *AutoResearch* Code
      .. code-block:: console
 
         $ cd auto_research
-
----
 
 Step 4: Install the Package Using pip
 -------------------------------------
@@ -129,8 +119,6 @@ Step 4: Install the Package Using pip
 
    - This will install the package and all its dependencies.
 
----
-
 Step 5: Verify the Installation
 -------------------------------
 
@@ -142,8 +130,6 @@ To confirm that *AutoResearch* was installed successfully, run the following com
 
 If the installation was successful, this will print the version of *AutoResearch* (e.g., `1.0.0`).
 
-
----
 
 .. _setting_up_api_keys:
 
@@ -172,9 +158,6 @@ in the `get_api_key` function, such as `default_key="your_key_here"`. This metho
 check and uses the provided key directly. Choose the option that best fits your workflow that
 best fits your workflow.
 
-
----
-
 Troubleshooting
 ---------------
 
@@ -200,8 +183,6 @@ If you encounter any issues during installation, here are some common solutions:
 
 4. **Still Stuck?**:
    - Visit `Discussions <https://github.com/JLX0/auto_research/discussions>`_ for more help or open an issue on the `GitHub repository <https://github.com/JLX0/auto_research/issues>`_.
-
----
 
 Next Steps
 ----------

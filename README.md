@@ -1,11 +1,14 @@
 # Currently under active development
 
-- Documentations and more examples will be added soon.
 - Currently, mainly targets computer science research, especially machine learning research.
-- Example usage is available.
+- More functionalities will be added soon.
+- Example usage and API documentation are available.
 
-# Auto-Research
-Automatically assisting academic research with LLMs etc.
+# Introduction
+
+Auto-Research is a framework designed to simplify and accelerate academic research tasks. It offers a **modular and extensible architecture** to help researchers, developers, and academics efficiently search, organize, summarize, and analyze academic papers.
+
+See [home page](https://jlx0.github.io/auto_research/index.html#) for API documentation and examples
 
 # Requirements
 
@@ -21,16 +24,15 @@ Python: >= 3.10
 
 `pip install .`
 
-# Usage
+# Quick Start
 
-First, fill in your API keys for LLMs with your actual keys in `key.json`. You only need to fill in at least one type of key. 
+First, fill in your API keys for LLMs with your actual keys in `key.json`. See [Setting up API keys for LLMs](https://jlx0.github.io/auto_research/installation.html#setting-up-api-keys-for-llms) for more information. You only need to fill in at least one type of key. 
 
-Then, see `examples`.
+Then, check `examples`.
 
 For example, `python examples/topic_to_survey` converts your research topic or 
 question of interests to a survey over relevant papers.
 
 If you want to use DeepSeek models, change the argument `target_key` in `get_api_key` and the argument `model` in various instance initiations accordingly.
-
 
 

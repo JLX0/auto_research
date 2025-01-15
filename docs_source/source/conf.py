@@ -59,10 +59,10 @@ extensions = [
 ]
 
 mathjax_config = {
-    'tex2jax': {
-        'inlineMath': [['$', '$'], ['\\(', '\\)']],
-        'displayMath': [['$$', '$$'], ['\\[', '\\]']],
-        'processEscapes': True,
+    "tex2jax": {
+        "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+        "displayMath": [["$$", "$$"], ["\\[", "\\]"]],
+        "processEscapes": True,
     },
 }
 
