@@ -1,4 +1,4 @@
-Project Visualization Examples
+Examples
 ==============================
 
 This module provides utility functions for creating visualizations to analyze and understand the features of the project. These visualizations use various plotting libraries, such as Plotly and Matplotlib, and typically require a data object and optional parameters.

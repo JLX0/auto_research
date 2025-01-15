@@ -1,0 +1,7 @@
+auto\_research.search.files\_management module
+==============================================
+
+.. automodule:: auto_research.search.files_management
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -58,6 +58,14 @@ extensions = [
     "sphinx_gallery.gen_gallery",  # Generate gallery from Python scripts
 ]
 
+mathjax_config = {
+    'tex2jax': {
+        'inlineMath': [['$', '$'], ['\\(', '\\)']],
+        'displayMath': [['$$', '$$'], ['\\[', '\\]']],
+        'processEscapes': True,
+    },
+}
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 templates_path = ["_templates"]

@@ -19,14 +19,13 @@ from auto_research.search.information import save_meta_data
 
 
 class AutoSearch:
-    r"""
+    """
     A class to search for academic papers by keyword(s), retrieve their details, and optionally
     download them.
 
     Attributes:
         keywords (str | list[str]): The keyword(s) to search for. If a string, performs a single
-        search.
-            If a list, performs multiple searches.
+            search. If a list, performs multiple searches.
         num_results (int): The number of results to retrieve.
         delay (int): Added delay (in seconds) between requests to avoid rate limiting.
         sort_by (str): Sorting criteria for the Google Scholar search engine ("date" or
@@ -34,20 +33,25 @@ class AutoSearch:
         date_cutoff (str): The cutoff date for papers when sorting by date (format: "YYYY-MM-DD").
         score_threshold (float): The minimum combined score for papers to be displayed/downloaded.
             The combined score is calculated differently based on the sorting criteria:
+
             - If sorting by "date":
-              \[
-              \text{combined\_score} = \frac{\text{citation\_count}}{\left(\frac{365 +
-              \text{days\_ago}}{365}\right)^{\text{recency\_weight}}}
-              \]
-              where `days_ago` is the number of days since the paper was published.
+
+              .. math::
+                 \\text{combined_score} = \\frac{\\text{citation_count}}{\\left(\\frac{365 +
+                  \\text{days_ago}}{365}\\right)^{\\text{recency_weight}}}
+
+              where :math:`\\text{days_ago}` is the number of days since the paper was published.
+
             - If sorting by "relevance":
-              \[
-              \text{combined\_score} = \frac{\text{citation\_count}}{\text{recency}
-              ^{\text{recency\_weight}}}
-              \]
-              where `recency` is the number of years since the paper was published.
-            The `recency_weight` parameter controls how much weight is given to the recency
-             of the paper.
+
+              .. math::
+                 \\text{combined_score} = \\frac{\\text{citation_count}}{\\text{recency}^
+                 {\\text{recency_weight}}}
+
+              where :math:`\\text{recency}` is the number of years since the paper was published.
+
+            The :math:`\\text{recency_weight}` parameter controls how much weight is given to
+             the recency of the paper.
         recency_weight (float): The weight given to recency when calculating the combined score.
         auto_destination (bool): Whether to automatically generate the destination folder name.
         destination_folder (str): The folder where downloaded papers will be saved.

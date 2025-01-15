@@ -1,0 +1,7 @@
+auto\_research.search.data\_retrival module
+===========================================
+
+.. automodule:: auto_research.search.data_retrival
+   :members:
+   :undoc-members:
+   :show-inheritance:

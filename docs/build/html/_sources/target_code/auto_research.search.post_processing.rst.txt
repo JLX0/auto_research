@@ -1,0 +1,7 @@
+auto\_research.search.post\_processing module
+=============================================
+
+.. automodule:: auto_research.search.post_processing
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.search.post_processing &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">auto_research.search.post_processing</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for auto_research.search.post_processing</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.files_management</span><span class="w"> </span><span class="kn">import</span> <span class="n">sanitize_filename</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.information</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_meta_data</span>
+
+
+<div class="viewcode-block" id="ArticleOrganizer">
+<a class="viewcode-back" href="../../../target_code/auto_research.search.post_processing.html#auto_research.search.post_processing.ArticleOrganizer">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ArticleOrganizer</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to organize, filter, and visualize academic papers based on their combined scores.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        source_folder (str): The folder where the original papers and metadata are stored.</span>
+<span class="sd">        target_folder (str): The folder where organized papers will be saved.</span>
+<span class="sd">        threshold_type (str): The filtering method (&quot;rank&quot; or &quot;score&quot;).</span>
+<span class="sd">        score_threshold (float): The minimum combined score for filtering when threshold_type is</span>
+<span class="sd">        &quot;score&quot;.</span>
+<span class="sd">        rank_threshold (int): The number of top papers to filter when threshold_type is &quot;rank&quot;.</span>
+<span class="sd">        organize_files (bool): Whether to organize files into the target folder.</span>
+<span class="sd">        order_by_score (bool): Whether to rename files with their combined score.</span>
+<span class="sd">        zip_folder (bool): Whether to zip the target folder and source folder.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="ArticleOrganizer.__init__">
+<a class="viewcode-back" href="../../../target_code/auto_research.search.post_processing.html#auto_research.search.post_processing.ArticleOrganizer.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">source_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">target_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;top_articles&quot;</span><span class="p">,</span>
+        <span class="n">threshold_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rank&quot;</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">rank_threshold</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span>
+        <span class="n">organize_files</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">order_by_score</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">zip_folder</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the ArticleOrganizer class with the given parameters.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            source_folder (str): The folder where the original papers and metadata are stored.</span>
+<span class="sd">            target_folder (str): The folder where organized papers will be saved. Defaults to</span>
+<span class="sd">            &quot;top_articles&quot;.</span>
+<span class="sd">            threshold_type (str): The filtering method (&quot;rank&quot; or &quot;score&quot;). Defaults to &quot;rank&quot;.</span>
+<span class="sd">            score_threshold (float): The minimum combined score for filtering when threshold_type</span>
+<span class="sd">            is &quot;score&quot;.</span>
+<span class="sd">                                     Defaults to 0.5.</span>
+<span class="sd">            rank_threshold (int): The number of top papers to filter when threshold_type is &quot;rank&quot;.</span>
+<span class="sd">                                  Defaults to 30.</span>
+<span class="sd">            organize_files (bool): Whether to organize files into the target folder. Defaults to</span>
+<span class="sd">            True.</span>
+<span class="sd">            order_by_score (bool): Whether to rename files with their combined score. Defaults to</span>
+<span class="sd">            True.</span>
+<span class="sd">            zip_folder (bool): Whether to zip the target folder and source folder. Defaults to</span>
+<span class="sd">            True.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span> <span class="o">=</span> <span class="n">source_folder</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">source_folder</span><span class="p">,</span> <span class="n">target_folder</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold_type</span> <span class="o">=</span> <span class="n">threshold_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score_threshold</span> <span class="o">=</span> <span class="n">score_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank_threshold</span> <span class="o">=</span> <span class="n">rank_threshold</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">organize_files</span> <span class="o">=</span> <span class="n">organize_files</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">order_by_score</span> <span class="o">=</span> <span class="n">order_by_score</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">zip_folder</span> <span class="o">=</span> <span class="n">zip_folder</span>
+
+        <span class="c1"># Create the target folder if it doesn&#39;t exist</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleOrganizer.draw">
+<a class="viewcode-back" href="../../../target_code/auto_research.search.post_processing.html#auto_research.search.post_processing.ArticleOrganizer.draw">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Plot the combined scores of papers and save the plot as an image.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            paper_list (List[Dict]): A list of dictionaries containing paper details.</span>
+<span class="sd">            title (str): The title of the plot.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">boolean_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">paper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;downloaded&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">paper_list</span><span class="p">]</span>
+        <span class="n">x_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">paper_list</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">y_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">paper</span><span class="p">[</span><span class="s2">&quot;combined_score&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">paper_list</span><span class="p">]</span>
+
+        <span class="c1"># Create the plot</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_values</span><span class="p">,</span> <span class="n">y_values</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Highlight downloaded papers in green</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">is_true</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boolean_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">is_true</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+                    <span class="n">x_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">y_values</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                    <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span>
+                    <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span>
+                    <span class="n">label</span><span class="o">=</span><span class="s2">&quot;downloaded&quot;</span><span class="p">,</span>
+                <span class="p">)</span>
+
+        <span class="c1"># Set plot labels and title</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Rank&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Combined Score&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">)</span>  <span class="c1"># Set y-axis to logarithmic scale</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1"># Handle legend to avoid duplicate labels</span>
+        <span class="n">handles</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()</span>
+        <span class="n">by_label</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">handles</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">by_label</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">by_label</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="c1"># Save the plot as an image</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plot of score vs rank saved to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ArticleOrganizer.organize_and_visualize">
+<a class="viewcode-back" href="../../../target_code/auto_research.search.post_processing.html#auto_research.search.post_processing.ArticleOrganizer.organize_and_visualize">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">organize_and_visualize</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Organize, filter, and visualize the papers based on the initialized parameters.</span>
+
+<span class="sd">        Steps:</span>
+<span class="sd">        1. Read metadata from the source folder.</span>
+<span class="sd">        2. Sort papers by combined score in descending order.</span>
+<span class="sd">        3. Draw a plot of the unfiltered papers.</span>
+<span class="sd">        4. Filter papers based on the selected threshold type (&quot;rank&quot; or &quot;score&quot;).</span>
+<span class="sd">        5. Draw a plot of the filtered papers.</span>
+<span class="sd">        6. Organize files into the target folder if required.</span>
+<span class="sd">        7. Zip the target folder and source folder if required.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Read metadata</span>
+        <span class="n">meta_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">,</span> <span class="s2">&quot;metadata.json&quot;</span><span class="p">)</span>
+        <span class="n">meta_data</span> <span class="o">=</span> <span class="n">read_meta_data</span><span class="p">(</span><span class="n">meta_data_path</span><span class="p">)</span>
+
+        <span class="c1"># Sort papers by combined score in descending order</span>
+        <span class="n">original_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">paper</span> <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">meta_data</span> <span class="k">if</span> <span class="s2">&quot;combined_score&quot;</span> <span class="ow">in</span> <span class="n">paper</span><span class="p">],</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;combined_score&quot;</span><span class="p">],</span>
+            <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Draw the unfiltered plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">original_list</span><span class="p">,</span> <span class="s2">&quot;Unfiltered&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Filter papers based on the selected method</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold_type</span> <span class="o">==</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span>
+            <span class="n">filtered_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">paper</span>
+                    <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">meta_data</span>
+                    <span class="k">if</span> <span class="s2">&quot;combined_score&quot;</span> <span class="ow">in</span> <span class="n">paper</span> <span class="ow">and</span> <span class="n">paper</span><span class="p">[</span><span class="s2">&quot;combined_score&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">score_threshold</span>
+                <span class="p">],</span>
+                <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;combined_score&quot;</span><span class="p">],</span>
+                <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># &quot;rank&quot;</span>
+            <span class="n">filtered_list</span> <span class="o">=</span> <span class="n">original_list</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank_threshold</span><span class="p">]</span>
+
+        <span class="c1"># Draw the filtered plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">filtered_list</span><span class="p">,</span> <span class="s2">&quot;Filtered&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Organize files if required</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">organize_files</span><span class="p">:</span>
+            <span class="n">num_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">filtered_list</span><span class="p">)</span>
+            <span class="n">num_digits</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">num_files</span><span class="p">))</span>
+            <span class="n">prefixes_list</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="n">num_digits</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_files</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">paper</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">filtered_list</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">title</span> <span class="o">=</span> <span class="n">paper</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span>
+                    <span class="n">score</span> <span class="o">=</span> <span class="n">paper</span><span class="p">[</span><span class="s2">&quot;combined_score&quot;</span><span class="p">]</span>
+                    <span class="n">downloaded</span> <span class="o">=</span> <span class="n">paper</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;downloaded&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">downloaded</span><span class="p">:</span>
+                        <span class="n">sanitized_title</span> <span class="o">=</span> <span class="n">sanitize_filename</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+                        <span class="n">filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sanitized_title</span><span class="si">}</span><span class="s2">.pdf&quot;</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">order_by_score</span><span class="p">:</span>
+                            <span class="n">new_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">prefixes_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.3g</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">new_filename</span> <span class="o">=</span> <span class="n">filename</span>
+                        <span class="n">shutil</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span>
+                            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span>
+                            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="p">,</span> <span class="n">new_filename</span><span class="p">),</span>
+                        <span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error organizing file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Files organized in </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Zip folders if required</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">zip_folder</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Target folder saved to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target_folder</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="p">)</span>
+
+                <span class="n">shutil</span><span class="o">.</span><span class="n">make_archive</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">,</span> <span class="s2">&quot;zip&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The entire source folder saved to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">source_folder</span><span class="si">}</span><span class="s2">.zip&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error zipping folders: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

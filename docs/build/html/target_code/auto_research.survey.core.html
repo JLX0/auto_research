@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.survey.core module &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">auto_research.survey.core module</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-auto_research.survey.core">
+<span id="auto-research-survey-core-module"></span><h1>auto_research.survey.core module<a class="headerlink" href="#module-auto_research.survey.core" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AutoSurvey</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summarize_computer_science'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'load'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'papers.json'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class for automating the process of surveying research papers.</p>
+<p>This class integrates and streamlines functionalities for analyzing research papers,
+including text extraction, summarization, algorithm analysis, and explanation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The API key for GPT model access.</p></li>
+<li><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The GPT model identifier to use.</p></li>
+<li><p><strong>paper_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to the research paper PDF file.</p></li>
+<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – Enable debug mode for detailed logging. Defaults to False.</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Analysis mode to use. Supports “summarize_computer_science”,
+“explain_computer_science”, “explain_algorithm”, and “information_retrieval”.
+Defaults to “summarize_computer_science”.</p></li>
+<li><p><strong>approach</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Approach to use for extraction. Supports “load” and “new_trial”.
+Defaults to “load”.</p></li>
+<li><p><strong>storage_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Path to the storage file for saving extracted information.
+Defaults to “papers.json”.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.OpenAI_instance">
+<span class="sig-name descname"><span class="pre">OpenAI_instance</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.OpenAI_instance" title="Link to this definition"></a></dt>
+<dd><p>Instance of GPT handler for text processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>OpenAI_interface</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.paper_path">
+<span class="sig-name descname"><span class="pre">paper_path</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.paper_path" title="Link to this definition"></a></dt>
+<dd><p>Path to the research paper being analyzed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.paper_name">
+<span class="sig-name descname"><span class="pre">paper_name</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.paper_name" title="Link to this definition"></a></dt>
+<dd><p>Name of the research paper file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.paper_instance">
+<span class="sig-name descname"><span class="pre">paper_instance</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.paper_instance" title="Link to this definition"></a></dt>
+<dd><p>Instance of Paper class for PDF processing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper" title="auto_research.survey.paper_reader.Paper">Paper</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.prompt_instance">
+<span class="sig-name descname"><span class="pre">prompt_instance</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.prompt_instance" title="Link to this definition"></a></dt>
+<dd><p>Instance for generating prompts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="auto_research.survey.prompts.html#auto_research.survey.prompts.SurveyPrompt" title="auto_research.survey.prompts.SurveyPrompt">SurveyPrompt</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.mode">
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.mode" title="Link to this definition"></a></dt>
+<dd><p>Current analysis mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.approach">
+<span class="sig-name descname"><span class="pre">approach</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.approach" title="Link to this definition"></a></dt>
+<dd><p>Current extraction approach.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.output">
+<span class="sig-name descname"><span class="pre">output</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.output" title="Link to this definition"></a></dt>
+<dd><p>Storage for analysis results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.ending_pages">
+<span class="sig-name descname"><span class="pre">ending_pages</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.ending_pages" title="Link to this definition"></a></dt>
+<dd><p>Content of the paper’s final pages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.storage_instance">
+<span class="sig-name descname"><span class="pre">storage_instance</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.storage_instance" title="Link to this definition"></a></dt>
+<dd><p>Instance for storing and retrieving extracted information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage" title="auto_research.utils.stored_info.Storage">Storage</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.cost_accumulation">
+<span class="sig-name descname"><span class="pre">cost_accumulation</span></span><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.cost_accumulation" title="Link to this definition"></a></dt>
+<dd><p>Accumulated cost of API usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">api_key</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">,</span> <span class="n">paper_path</span><span class="o">=</span><span class="s2">&quot;path/to/paper.pdf&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">debug</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'summarize_computer_science'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approach</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'load'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">storage_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'papers.json'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_key</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>paper_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>debug</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>)</p></li>
+<li><p><strong>mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>approach</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>storage_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_information</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.run" title="Link to this definition"></a></dt>
+<dd><p>Execute the paper analysis based on the selected mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_information</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – Specific information to retrieve when mode is</p></li>
+<li><p><strong>&quot;information_retrieval&quot;.</strong></p></li>
+<li><p><strong>tests</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>]</em>) – List of tests to run when sending inquiries.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.send_inquiry">
+<span class="sig-name descname"><span class="pre">send_inquiry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.send_inquiry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.send_inquiry" title="Link to this definition"></a></dt>
+<dd><p>Send an inquiry to the GPT model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tests</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>]</em>) – List of tests to run when sending inquiries.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The response from the GPT model.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.information_retrieval">
+<span class="sig-name descname"><span class="pre">information_retrieval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_information</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.information_retrieval"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.information_retrieval" title="Link to this definition"></a></dt>
+<dd><p>Retrieve specific information from the paper.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>target_information</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The specific information to retrieve.</p></li>
+<li><p><strong>tests</strong> (<em>Optional</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>]</em>) – List of tests to run when sending inquiries.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extract_algorithm">
+<span class="sig-name descname"><span class="pre">extract_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extract_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extract_algorithm" title="Link to this definition"></a></dt>
+<dd><p>Extract algorithm descriptions from the paper.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extract_algorithm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.explain_algorithm">
+<span class="sig-name descname"><span class="pre">explain_algorithm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.explain_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.explain_algorithm" title="Link to this definition"></a></dt>
+<dd><p>Generate explanations for extracted algorithms.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">explain_algorithm</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.review">
+<span class="sig-name descname"><span class="pre">review</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.review"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.review" title="Link to this definition"></a></dt>
+<dd><p>Review the paper content (placeholder for future implementation).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extraction_key_information">
+<span class="sig-name descname"><span class="pre">extraction_key_information</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extraction_key_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extraction_key_information" title="Link to this definition"></a></dt>
+<dd><p>Extract key information from the paper, including abstract, introduction, discussion,
+and conclusion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extraction">
+<span class="sig-name descname"><span class="pre">extraction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extraction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extraction" title="Link to this definition"></a></dt>
+<dd><p>Extract main sections from the paper.</p>
+<p>This method coordinates the extraction of abstract, introduction,
+discussion, and conclusion sections.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extraction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extract_abstract">
+<span class="sig-name descname"><span class="pre">extract_abstract</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extract_abstract"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extract_abstract" title="Link to this definition"></a></dt>
+<dd><p>Extract the abstract section from the paper.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extract_abstract</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extract_introduction">
+<span class="sig-name descname"><span class="pre">extract_introduction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extract_introduction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extract_introduction" title="Link to this definition"></a></dt>
+<dd><p>Extract the introduction section from the paper.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extract_introduction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extract_discussion">
+<span class="sig-name descname"><span class="pre">extract_discussion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extract_discussion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extract_discussion" title="Link to this definition"></a></dt>
+<dd><p>Extract the discussion section from the paper.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extract_discussion</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.extract_conclusion">
+<span class="sig-name descname"><span class="pre">extract_conclusion</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.extract_conclusion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.extract_conclusion" title="Link to this definition"></a></dt>
+<dd><p>Extract the conclusion section from the paper.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">extract_conclusion</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.summarize_computer_science">
+<span class="sig-name descname"><span class="pre">summarize_computer_science</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.summarize_computer_science"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.summarize_computer_science" title="Link to this definition"></a></dt>
+<dd><p>Generate a summary of computer science papers.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">summarize_computer_science</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.explain_computer_science">
+<span class="sig-name descname"><span class="pre">explain_computer_science</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.explain_computer_science"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.explain_computer_science" title="Link to this definition"></a></dt>
+<dd><p>Generate explanations for computer science papers.</p>
+<p>This method allows the user to input questions about the paper, then sends
+the paper content and the question to the LLM for an answer. The process
+loops until the user cancels it.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">survey</span><span class="o">.</span><span class="n">explain_computer_science</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.core.AutoSurvey.findings">
+<span class="sig-name descname"><span class="pre">findings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/core.html#AutoSurvey.findings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.core.AutoSurvey.findings" title="Link to this definition"></a></dt>
+<dd><p>Extract key findings from the paper (placeholder for future implementation).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

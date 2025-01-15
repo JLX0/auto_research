@@ -1,0 +1,20 @@
+auto\_research.search package
+=============================
+
+.. automodule:: auto_research.search
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   auto_research.search.core
+   auto_research.search.data_retrival
+   auto_research.search.files_management
+   auto_research.search.information
+   auto_research.search.keywords
+   auto_research.search.post_processing
