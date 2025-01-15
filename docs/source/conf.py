@@ -9,10 +9,9 @@
 # -- Settings -------------------------------------------------
 
 package_name = "auto_research"
-copyright = "copyright_info"
-author = "authors"
+author = "Jinglue XU"
 
-github_username = "useranme"
+github_username = "JXL0"
 
 version = "0.1.0"
 release = "0.1.0"
