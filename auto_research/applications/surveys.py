@@ -236,8 +236,7 @@ def topic_to_survey(
 
             # Call `test_github_link` and pass its result as a list
             try:
-                test_result = test_github_link(prompt)
-                auto_survey_instance.run(prompt, [test_result])
+                auto_survey_instance.run(prompt, test_github_link)
             except Exception as exception:
                 print(exception)
                 print("The traceback is:")

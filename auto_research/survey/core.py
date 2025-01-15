@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from typing import Callable
 from typing import Optional
 
 from LLM_utils.inquiry import OpenAI_interface
@@ -80,14 +81,16 @@ class AutoSurvey:
         self.storage_instance = Storage(storage_path)
         self.cost_accumulation = 0
 
-    def run(self, target_information: Optional[str] = None, tests: Optional[list] = None) -> None:
+    def run(
+        self, target_information: Optional[str] = None, tests: Optional[Callable] = None
+    ) -> None:
         """
         Execute the paper analysis based on the selected mode.
 
         Args:
             target_information (Optional[str]): Specific information to retrieve when mode is
             "information_retrieval".
-            tests (Optional[list]): List of tests to run when sending inquiries.
+        tests (Optional[Callable]): A callable function for testing the response sequence.
 
         Example:
             >>> survey = AutoSurvey(api_key, model, paper_path)
@@ -119,12 +122,12 @@ class AutoSurvey:
 
         print(f"The total cost is {self.cost_accumulation} USD")
 
-    def send_inquiry(self, tests: Optional[list] = None) -> str:
+    def send_inquiry(self, tests: Optional[Callable] = None) -> str:
         """
         Send an inquiry to the GPT model.
 
         Args:
-            tests (Optional[list]): List of tests to run when sending inquiries.
+            tests (Optional[Callable]): A callable function for testing the response sequence.
 
         Returns:
             str: The response from the GPT model.
@@ -136,13 +139,15 @@ class AutoSurvey:
         self.cost_accumulation += cost
         return response
 
-    def information_retrieval(self, target_information: str, tests: Optional[list] = None) -> None:
+    def information_retrieval(
+        self, target_information: str, tests: Optional[Callable] = None
+    ) -> None:
         """
         Retrieve specific information from the paper.
 
         Args:
             target_information (str): The specific information to retrieve.
-            tests (Optional[list]): List of tests to run when sending inquiries.
+            tests (Optional[Callable]): A callable function for testing the response sequence.
         """
         if target_information is None:
             raise ValueError("target_information cannot be None")
