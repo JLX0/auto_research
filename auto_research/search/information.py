@@ -36,6 +36,29 @@ def extract_exact_date(result: dict) -> Optional[datetime.date]:
     return None
 
 
+def extract_score(file_path: str) -> float:
+    """
+    Extracts the score from the filename of a PDF file.
+
+    Args:
+        file_path (str): The file path of the PDF file.
+
+    Returns:
+        float: The extracted score from the filename. Returns 0.0 if the extraction fails.
+
+    Example:
+        >>> extract_score("rank_0.85_title.pdf")
+        0.85
+    """
+    filename = os.path.basename(file_path)
+    try:
+        # Extract the score from the filename (assuming the format is "rank_score_title.pdf").
+        score_str = filename.split("_")[1]
+        return float(score_str)
+    except (IndexError, ValueError):
+        return 0.0  # Default score if extraction fails.
+
+
 def save_meta_data(meta_data_path: str, papers_info: list[dict]) -> None:
     """
     Saves paper metadata to a JSON file, ensuring no duplicate entries based on paper titles.

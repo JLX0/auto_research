@@ -8,6 +8,7 @@ from LLM_utils.inquiry import get_api_key
 from auto_research.reimplementation.code_availability_check import base_prompt_formatted
 from auto_research.reimplementation.code_availability_check import test_github_link
 from auto_research.search.core import AutoSearch
+from auto_research.search.information import extract_score
 from auto_research.search.keywords import suggest_keywords
 from auto_research.search.post_processing import ArticleOrganizer
 from auto_research.survey.core import AutoSurvey
@@ -154,6 +155,8 @@ def topic_to_survey(
         print("- The files are not accessible for download or are corrupted.")
         return
 
+    pdf_files_sorted = sorted(pdf_files, key=extract_score, reverse=True)
+
     # Ask the user how they would like to summarize the papers
     print("\nHow would you like to summarize the papers?")
     print("1. 'all': Summarize all papers in the organized folder.")
@@ -166,11 +169,11 @@ def topic_to_survey(
         print("Invalid option. Please try again.")
 
     if summary_option == "all":
-        target_files = pdf_files
+        target_files = pdf_files_sorted
         print("\nSummarizing all papers in the organized folder.")
     elif summary_option == "select":
         print("\nAvailable papers with their ranks:")
-        for i, file_path in enumerate(pdf_files, 1):
+        for i, file_path in enumerate(pdf_files_sorted, 1):
             print(f"{i}. {os.path.basename(file_path)}")
         while True:
             custom_ranks = input(
@@ -181,15 +184,15 @@ def topic_to_survey(
                 selected_ranks = [
                     int(rank.strip()) for rank in custom_ranks.split(",") if rank.strip()
                 ]
-                if all(1 <= rank <= len(pdf_files) for rank in selected_ranks):
-                    target_files = [pdf_files[rank - 1] for rank in selected_ranks]
+                if all(1 <= rank <= len(pdf_files_sorted) for rank in selected_ranks):
+                    target_files = [pdf_files_sorted[rank - 1] for rank in selected_ranks]
                     print(
                         "\nSummarizing the following papers:",
                         [os.path.basename(file) for file in target_files],
                     )
                     break
                 else:
-                    print(f"Please enter ranks between 1 and {len(pdf_files)}.")
+                    print(f"Please enter ranks between 1 and {len(pdf_files_sorted)}.")
             except ValueError:
                 print("Invalid input. Please enter valid integers separated by commas.")
 
