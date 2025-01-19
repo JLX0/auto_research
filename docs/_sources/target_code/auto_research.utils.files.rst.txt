@@ -1,0 +1,7 @@
+auto\_research.utils.files module
+=================================
+
+.. automodule:: auto_research.utils.files
+   :members:
+   :undoc-members:
+   :show-inheritance:

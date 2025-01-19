@@ -1,0 +1,845 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatically converts a topic or question of interests into a survey over relevant papers &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Summarize All Papers in a Folder" href="summarize_all_papers.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="explain_a_paper.html">Explain a Paper with LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="get_github_link.html">Code Availability Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_papers.html">Automatically Search and Download Papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_a_paper.html">Summarize a Paper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_all_papers.html">Summarize All Papers in a Folder</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Automatically converts a topic or question of interests into a survey over relevant papers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Automatically converts a topic or question of interests into a survey over relevant papers</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-top-to-survey-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="automatically-converts-a-topic-or-question-of-interests-into-a-survey-over-relevant-papers">
+<span id="top-to-survey-page"></span><span id="sphx-glr-examples-gallery-top-to-survey-py"></span><h1>Automatically converts a topic or question of interests into a survey over relevant papers<a class="headerlink" href="#automatically-converts-a-topic-or-question-of-interests-into-a-survey-over-relevant-papers" title="Link to this heading"></a></h1>
+<p>When searching for research papers, the results from a search engine can vary significantly
+depending on the specific keywords used, even if those keywords are conceptually similar.
+For instance, searching for “LLMs” versus “Large Language Models” may yield different sets
+of papers. Additionally, when experimenting with new keywords, it can be challenging to
+remember whether a particular paper has already been checked. Furthermore, the process
+of downloading papers and organizing them with appropriate filenames can be tedious and
+time-consuming.</p>
+<p>The function <a class="reference internal" href="../target_code/auto_research.applications.surveys.html#auto_research.applications.surveys.topic_to_survey" title="auto_research.applications.surveys.topic_to_survey"><code class="xref any py py-func docutils literal notranslate"><span class="pre">topic_to_survey</span></code></a> streamlines the entire process by automating several key tasks.
+It suggests multiple related keywords to ensure comprehensive coverage of the topic,
+merges duplicate results to avoid redundancy, automatically names downloaded files
+using the paper titles for easy reference, and automatically rank the paper based their impacts
+(see <a class="reference internal" href="../target_code/auto_research.search.core.html#auto_research.search.core.AutoSearch.score_threshold" title="auto_research.search.core.AutoSearch.score_threshold"><code class="xref py py-mod docutils literal notranslate"><span class="pre">auto_research.search.core.AutoSearch.score_threshold</span></code></a>). Moreover, it leverages LLMs
+to generate summaries of each paper, saving researchers valuable time and effort.</p>
+<p>This script demonstrates the usage of the <a class="reference internal" href="../target_code/auto_research.applications.surveys.html#auto_research.applications.surveys.topic_to_survey" title="auto_research.applications.surveys.topic_to_survey"><code class="xref any py py-func docutils literal notranslate"><span class="pre">topic_to_survey</span></code></a> function from the <a class="reference internal" href="../target_code/auto_research.applications.surveys.html#module-auto_research.applications.surveys" title="auto_research.applications.surveys"><code class="xref py py-mod docutils literal notranslate"><span class="pre">auto_research.applications.surveys</span></code></a> module to:</p>
+<ul class="simple">
+<li><p>Conduct an automated research process based on a user-provided topic.</p></li>
+<li><p>Generate and refine a list of keywords for searching research articles.</p></li>
+<li><p>Retrieve and download articles based on the specified search criteria.</p></li>
+<li><p>Rank, organize and summarize the downloaded articles.</p></li>
+<li><p>Check the code availability of the summarized articles (optional).</p></li>
+</ul>
+<p>To get started with the package, you need to set up API keys. For detailed instructions, see <a class="reference internal" href="../installation.html#setting-up-api-keys"><span class="std std-ref">Setting up API keys for LLMs</span></a>.</p>
+<p>This script assumes that:</p>
+<ul class="simple">
+<li><p>A valid <code class="xref any docutils literal notranslate"><span class="pre">key.json</span></code> file is available (located at the current working directory (“”))</p></li>
+</ul>
+<p>The process involves user interaction, including selecting keywords, summarizing articles, and optionally checking code availability.</p>
+<p>Below is an example output from the following input:</p>
+<ul class="simple">
+<li><p>generate code with LLMs</p></li>
+<li><p>select</p></li>
+<li><p>1,3</p></li>
+<li><p>select</p></li>
+<li><p>2,3</p></li>
+<li><p>yes</p></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Please enter your research topic or question (e.g., &#39;Applications of AI in healthcare&#39;): Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+
+Suggested keywords for searching articles based on your input:
+1. generate code with LLMs
+2. code generation with large language models
+3. automated code generation
+4. large language models for coding
+5. program synthesis with LLMs
+6. code synthesis using large language models
+7. neural network based code generation
+8. language model based programming
+9. artificial intelligence in software development
+10. machine learning for code generation
+
+How would you like to proceed with the suggested keywords?
+1. &#39;all&#39;: Use all the suggested keywords for searching.
+2. &#39;select&#39;: Choose specific keywords by their ranks.
+3. &#39;custom&#39;: Enter your own list of keywords manually.
+
+Choose an option (&#39;all&#39;, &#39;select&#39;, or &#39;custom&#39;):
+Available keywords with their ranks:
+1. generate code with LLMs
+2. code generation with large language models
+3. automated code generation
+4. large language models for coding
+5. program synthesis with LLMs
+6. code synthesis using large language models
+7. neural network based code generation
+8. language model based programming
+9. artificial intelligence in software development
+10. machine learning for code generation
+
+Enter the ranks of the keywords you want to use, separated by commas (e.g., 1,3,5):
+Using the following keywords: [&#39;generate code with LLMs&#39;, &#39;automated code generation&#39;]
+
+Final keywords to search: [&#39;generate code with LLMs&#39;, &#39;automated code generation&#39;]
+------Searching for the 1th keyword &#39;generate code with LLMs&#39;------
+
+Searching papers:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+Searching papers:  20%|██        | 1/5 [00:06&lt;00:24,  6.23s/it]
+Searching papers:  40%|████      | 2/5 [00:12&lt;00:19,  6.46s/it]
+Searching papers:  60%|██████    | 3/5 [00:18&lt;00:12,  6.17s/it]
+Searching papers:  80%|████████  | 4/5 [00:23&lt;00:05,  5.48s/it]
+Searching papers: 100%|██████████| 5/5 [00:26&lt;00:00,  4.71s/it]
+Searching papers: 100%|██████████| 5/5 [00:26&lt;00:00,  5.29s/it]
+
+
+Paper 1:
+Title: Is your code generated by chatgpt really correct? rigorous evaluation of large language models for code generation
+Abstract:
+
+Program synthesis has been long studied with recent approaches focused on
+directly using the power of Large Language Models (LLMs) to generate code.
+Programming benchmarks, with curated synthesis problems and test-cases, are
+used to measure the performance of various LLMs on code synthesis. However,
+these test-cases can be limited in both quantity and quality for fully
+assessing the functional correctness of the generated code. Such limitation in
+the existing benchmarks begs the following question: In the era of LLMs, is the
+code generated really correct? To answer this, we propose EvalPlus -- a code
+synthesis evaluation framework to rigorously benchmark the functional
+correctness of LLM-synthesized code. EvalPlus augments a given evaluation
+dataset with large amounts of test-cases newly produced by an automatic test
+input generator, powered by both LLM- and mutation-based strategies. While
+EvalPlus is general, we extend the test-cases of the popular HumanEval
+benchmark by 80x to build HumanEval+. Our extensive evaluation across 26
+popular LLMs (e.g., GPT-4 and ChatGPT) demonstrates that HumanEval+ is able to
+catch significant amounts of previously undetected wrong code synthesized by
+LLMs, reducing the pass@k by up-to 19.3-28.9%. We also surprisingly found that
+test insufficiency can lead to mis-ranking. For example, both
+WizardCoder-CodeLlama and Phind-CodeLlama now outperform ChatGPT on HumanEval+,
+while none of them could on HumanEval. Our work not only indicates that prior
+popular code synthesis evaluation results do not accurately reflect the true
+performance of LLMs for code synthesis, but also opens up a new direction to
+improve such programming benchmarks through automated testing. We have
+open-sourced our tools, enhanced datasets as well as all LLM-generated code at
+https://github.com/evalplus/evalplus to facilitate and accelerate future
+LLM-for-code research.
+Combined Score: 61.25312492028468
+Citation count: 693
+Year of publication: 2024
+Publication venue: Neural Information Processing Systems
+Authors: J Liu, CS Xia, Y Wang, L Zhang
+
+
+Link: https://proceedings.neurips.cc/paper_files/paper/2023/file/43e9d647ccd3e4b7b5baab53f0368686-Paper-Conference.pdf
+ArXiv Link: http://arxiv.org/pdf/2305.01210v3
+Downloading Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf... with upper time limit: 10 seconds
+Downloaded: Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf.
+
+
+Paper 2:
+Title: Codeplan: Repository-level coding using llms and planning
+Abstract:
+
+Large Language Models (LLMs) demonstrate strong abilities in common-sense
+reasoning and interactive decision-making, but often struggle with complex,
+long-horizon planning tasks. Recent techniques have sought to structure LLM
+outputs using control flow and other code-adjacent techniques to improve
+planning performance. These techniques include using variables (to track
+important information) and functions (to divide complex tasks into smaller
+re-usable sub-tasks). However, purely code-based approaches can be error-prone
+and insufficient for handling ambiguous or unstructured data. To address these
+challenges, we propose REPL-Plan, an LLM planning approach that is fully
+code-expressive (it can utilize all the benefits of code) while also being
+dynamic (it can flexibly adapt from errors and use the LLM for fuzzy
+situations). In REPL-Plan, an LLM solves tasks by interacting with a
+Read-Eval-Print Loop (REPL), which iteratively executes and evaluates code,
+similar to language shells or interactive code notebooks, allowing the model to
+flexibly correct errors and handle tasks dynamically. We demonstrate that
+REPL-Plan achieves strong results across various planning domains compared to
+previous methods.
+Combined Score: 5.480077554195743
+Citation count: 62
+Year of publication: 2024
+Publication venue: Proc. ACM Softw. Eng.
+Authors: R Bairi, A Sonwane, A Kanade, A Iyer
+
+
+Link: https://dl.acm.org/doi/pdf/10.1145/3643757
+ArXiv Link: http://arxiv.org/pdf/2411.13826v1
+Downloading Codeplan Repository-level coding using llms and planning.pdf... with upper time limit: 10 seconds
+Downloaded: Codeplan Repository-level coding using llms and planning.pdf.
+
+
+Paper 3:
+Title: Llms for science: Usage for code generation and data analysis
+Abstract:
+
+Large Language Models (LLMs) have shown great potential in code generation.
+However, current LLMs still cannot reliably generate correct code. Moreover, it
+is unclear what kinds of code generation errors LLMs can make. To address this,
+we conducted an empirical study to analyze incorrect code snippets generated by
+six popular LLMs on the HumanEval dataset. We analyzed these errors alongside
+two dimensions of error characteristics -- semantic characteristics and
+syntactic characteristics -- to derive a comprehensive code generation error
+taxonomy for LLMs through open coding and thematic analysis. We then labeled
+all 557 incorrect code snippets based on this taxonomy. Our results showed that
+the six LLMs exhibited similar distributions of syntactic characteristics while
+different distributions of semantic characteristics. Furthermore, we analyzed
+the correlation between different error characteristics and factors such as
+task complexity, code length, and test-pass rate. Finally, we highlight the
+challenges that LLMs may encounter when generating code and propose
+implications for future research on reliable code generation with LLMs.
+Combined Score: 0.8553337321327789
+Citation count: 40
+Year of publication: 2023
+Publication venue: Journal of Software: Evolution and Process
+Authors: M Nejjar, L Zacharias, F Stiehle
+
+
+Link: https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723
+ArXiv Link: http://arxiv.org/pdf/2406.08731v2
+Downloading Llms for science Usage for code generation and data analysis.pdf... with upper time limit: 10 seconds
+Failed to download Llms for science Usage for code generation and data analysis.pdf from https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723: 403 Client Error: Forbidden for url: https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723
+Trying to download from ArXiv link: http://arxiv.org/pdf/2406.08731v2
+Downloading Llms for science Usage for code generation and data analysis.pdf... with upper time limit: 10 seconds
+Downloaded: Llms for science Usage for code generation and data analysis.pdf.
+
+
+Paper 4:
+Title: Generate and pray: Using sallms to evaluate the security of llm generated code
+Abstract:
+
+With the growing popularity of Large Language Models (LLMs) in software
+engineers&#39; daily practices, it is important to ensure that the code generated
+by these tools is not only functionally correct but also free of
+vulnerabilities. Although LLMs can help developers to be more productive, prior
+empirical studies have shown that LLMs can generate insecure code. There are
+two contributing factors to the insecure code generation. First, existing
+datasets used to evaluate LLMs do not adequately represent genuine software
+engineering tasks sensitive to security. Instead, they are often based on
+competitive programming challenges or classroom-type coding tasks. In
+real-world applications, the code produced is integrated into larger codebases,
+introducing potential security risks. Second, existing evaluation metrics
+primarily focus on the functional correctness of the generated code while
+ignoring security considerations. Therefore, in this paper, we described SALLM,
+a framework to benchmark LLMs&#39; abilities to generate secure code
+systematically. This framework has three major components: a novel dataset of
+security-centric Python prompts, configurable assessment techniques to evaluate
+the generated code, and novel metrics to evaluate the models&#39; performance from
+the perspective of secure code generation.
+Combined Score: 0.49181689597634787
+Citation count: 23
+Year of publication: 2023
+Publication venue: arXiv preprint arXiv:2311.00889
+Authors: ML Siddiq, JCS Santos
+
+
+Link: https://lsiddiqsunny.github.io/public/2311.00889.pdf
+ArXiv Link: http://arxiv.org/pdf/2311.00889v3
+Downloading Generate and pray Using sallms to evaluate the security of llm generated code.pdf... with upper time limit: 10 seconds
+Downloaded: Generate and pray Using sallms to evaluate the security of llm generated code.pdf.
+
+
+Paper 5:
+Title: A Review on Code Generation with LLMs: Application and Evaluation
+Abstract:
+
+Code review is a standard practice for ensuring the quality of software
+projects, and recent research has focused extensively on automated code review.
+While significant advancements have been made in generating code reviews, the
+automated assessment of these reviews remains less explored, with existing
+approaches and metrics often proving inaccurate. Current metrics, such as BLEU,
+primarily rely on lexical similarity between generated and reference reviews.
+However, such metrics tend to underestimate reviews that articulate the
+expected issues in ways different from the references. In this paper, we
+explore how semantic similarity between generated and reference reviews can
+enhance the automated assessment of code reviews. We first present a benchmark
+called \textit{GradedReviews}, which is constructed by collecting real-world
+code reviews from open-source projects, generating reviews using
+state-of-the-art approaches, and manually assessing their quality. We then
+evaluate existing metrics for code review assessment using this benchmark,
+revealing their limitations. To address these limitations, we propose two novel
+semantic-based approaches for assessing code reviews. The first approach
+involves converting both the generated review and its reference into digital
+vectors using a deep learning model and then measuring their semantic
+similarity through Cosine similarity. The second approach generates a prompt
+based on the generated review and its reference, submits this prompt to
+ChatGPT, and requests ChatGPT to rate the generated review according to
+explicitly defined criteria. Our evaluation on the \textit{GradedReviews}
+benchmark indicates that the proposed semantic-based approaches significantly
+outperform existing state-of-the-art metrics in assessing generated code
+review, improving the correlation coefficient between the resulting scores and
+human scores from 0.22 to 0.47.
+Combined Score: 0.4704335526730284
+Citation count: 22
+Year of publication: 2023
+Publication venue: 2023 IEEE International Conference on Medical Artificial Intelligence (MedAI)
+Authors: J Wang, Y Chen
+
+
+Link: https://ieeexplore.ieee.org/abstract/document/10403378/
+ArXiv Link: http://arxiv.org/pdf/2501.05176v1
+Downloading A Review on Code Generation with LLMs Application and Evaluation.pdf... with upper time limit: 10 seconds
+Failed to download A Review on Code Generation with LLMs Application and Evaluation.pdf from https://ieeexplore.ieee.org/abstract/document/10403378/: 418 Client Error: Unknown Code for url: https://ieeexplore.ieee.org/abstract/document/10403378/
+Trying to download from ArXiv link: http://arxiv.org/pdf/2501.05176v1
+Downloading A Review on Code Generation with LLMs Application and Evaluation.pdf... with upper time limit: 10 seconds
+Downloaded: A Review on Code Generation with LLMs Application and Evaluation.pdf.
+
+The above displays all paper with a combined score no less than 0
+Metadata saved to papers/metadata.json
+
+Folder saved to papers.zip
+------Searching for the 2th keyword &#39;automated code generation&#39;------
+
+Searching papers:   0%|          | 0/5 [00:00&lt;?, ?it/s]
+Searching papers:  20%|██        | 1/5 [00:04&lt;00:19,  4.80s/it]
+Searching papers:  40%|████      | 2/5 [00:13&lt;00:21,  7.31s/it]
+Searching papers:  60%|██████    | 3/5 [00:17&lt;00:11,  5.70s/it]
+Searching papers:  80%|████████  | 4/5 [00:22&lt;00:05,  5.28s/it]
+Searching papers: 100%|██████████| 5/5 [00:26&lt;00:00,  4.98s/it]
+Searching papers: 100%|██████████| 5/5 [00:26&lt;00:00,  5.35s/it]
+
+
+Paper 1:
+Title: Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation
+Abstract:
+
+This paper presents a comprehensive evaluation of the code generation
+capabilities of ChatGPT, a prominent large language model, compared to human
+programmers. A novel dataset of 131 code-generation prompts across 5 categories
+was curated to enable robust analysis. Code solutions were generated by both
+ChatGPT and humans for all prompts, resulting in 262 code samples. A meticulous
+manual assessment methodology prioritized evaluating correctness,
+comprehensibility, and security using 14 established code quality metrics. The
+key findings reveal ChatGPT&#39;s strengths in crafting concise, efficient code
+with advanced constructs, showcasing strengths in data analysis tasks (93.1%
+accuracy) but limitations in visual-graphical challenges. Comparative analysis
+with human code highlights ChatGPT&#39;s inclination towards modular design and
+superior error handling. Additionally, machine learning models effectively
+distinguished ChatGPT from human code with up to 88% accuracy, suggesting
+detectable coding style disparities. By providing profound insights into
+ChatGPT&#39;s code generation capabilities and limitations through quantitative
+metrics and qualitative analysis, this study makes valuable contributions
+toward advancing AI-based programming assistants. The curated dataset and
+methodology offer a robust foundation for future research in this nascent
+domain. All data and codes are available on
+https://github.com/DSAatUSU/ChatGPT-promises-and-pitfalls.
+Combined Score: 0.17106674642655578
+Citation count: 8
+Year of publication: 2023
+Publication venue: arXiv.org
+Authors: MFA Khan, M Ramsdell, E Falor, H Karimi
+
+
+Link: https://arxiv.org/pdf/2311.02640
+ArXiv Link: http://arxiv.org/pdf/2311.02640v1
+Downloading Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf... with upper time limit: 10 seconds
+Downloaded: Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf.
+
+
+Paper 2:
+Title: Auto-icon: An automated code generation tool for icon designs assisting in ui development
+Abstract:
+
+Approximately 50% of development resources are devoted to UI development
+tasks [9]. Occupying a large proportion of development resources, developing
+icons can be a time-consuming task, because developers need to consider not
+only effective implementation methods but also easy-to-understand descriptions.
+In this paper, we present Auto-Icon+, an approach for automatically generating
+readable and efficient code for icons from design artifacts. According to our
+interviews to understand the gap between designers (icons are assembled from
+multiple components) and developers (icons as single images), we apply a
+heuristic clustering algorithm to compose the components into an icon image. We
+then propose an approach based on a deep learning model and computer vision
+methods to convert the composed icon image to fonts with descriptive labels,
+thereby reducing the laborious manual effort for developers and facilitating UI
+development. We quantitatively evaluate the quality of our method in the real
+world UI development environment and demonstrate that our method offers
+developers accurate, efficient, readable, and usable code for icon designs, in
+terms of saving 65.2% implementing time.
+Combined Score: 0.1073312629199899
+Citation count: 30
+Year of publication: 2021
+Publication venue: International Conference on Intelligent User Interfaces
+Authors: S Feng, S Ma, J Yu, C Chen, T Zhou
+
+
+Link: https://chunyang-chen.github.io/publication/icon_IUI21.pdf
+ArXiv Link: http://arxiv.org/pdf/2204.08676v1
+Downloading Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf... with upper time limit: 10 seconds
+Downloaded: Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf.
+
+
+Paper 3:
+Title: A parallel corpus of python functions and documentation strings for automated code documentation and code generation
+Abstract:
+
+Automated documentation of programming source code and automated code
+generation from natural language are challenging tasks of both practical and
+scientific interest. Progress in these areas has been limited by the low
+availability of parallel corpora of code and natural language descriptions,
+which tend to be small and constrained to specific domains.
+  In this work we introduce a large and diverse parallel corpus of a hundred
+thousands Python functions with their documentation strings (&quot;docstrings&quot;)
+generated by scraping open source repositories on GitHub. We describe baseline
+results for the code documentation and code generation tasks obtained by neural
+machine translation. We also experiment with data augmentation techniques to
+further increase the amount of training data.
+  We release our datasets and processing scripts in order to stimulate research
+in these areas.
+Combined Score: 0.09190672153635117
+Citation count: 201
+Year of publication: 2017
+Publication venue: International Joint Conference on Natural Language Processing
+Authors: AVM Barone, R Sennrich
+
+
+Link: https://arxiv.org/pdf/1707.02275
+ArXiv Link: http://arxiv.org/pdf/1707.02275v1
+Downloading A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf... with upper time limit: 10 seconds
+Downloaded: A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf.
+
+
+Paper 4:
+Title: Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques.
+Abstract:
+
+Recent progress on deep learning has made it possible to automatically
+transform the screenshot of Graphic User Interface (GUI) into code by using the
+encoder-decoder framework. While the commonly adopted image encoder (e.g., CNN
+network), might be capable of extracting image features to the desired level,
+interpreting these abstract image features into hundreds of tokens of code puts
+a particular challenge on the decoding power of the RNN-based code generator.
+Considering the code used for describing GUI is usually hierarchically
+structured, we propose a new attention-based hierarchical code generation
+model, which can describe GUI images in a finer level of details, while also
+being able to generate hierarchically structured code in consistency with the
+hierarchical layout of the graphic elements in the GUI. Our model follows the
+encoder-decoder framework, all the components of which can be trained jointly
+in an end-to-end manner. The experimental results show that our method
+outperforms other current state-of-the-art methods on both a publicly available
+GUI-code dataset as well as a dataset established by our own.
+Combined Score: 0.03591072925376573
+Citation count: 19
+Year of publication: 2020
+Publication venue: Journal of universal computer science (Online)
+Authors: D de Souza Baulé
+
+
+Link: https://pdfs.semanticscholar.org/1d21/d4b398a19fbe94fb6881cf437571871a792e.pdf
+ArXiv Link: http://arxiv.org/pdf/1810.11536v1
+Downloading Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf... with upper time limit: 10 seconds
+Downloaded: Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf.
+
+
+Paper 5:
+Title: Automated code generation for discontinuous Galerkin methods
+Abstract:
+
+A compiler approach for generating low-level computer code from high-level
+input for discontinuous Galerkin finite element forms is presented. The input
+language mirrors conventional mathematical notation, and the compiler generates
+efficient code in a standard programming language. This facilitates the rapid
+generation of efficient code for general equations in varying spatial
+dimensions. Key concepts underlying the compiler approach and the automated
+generation of computer code are elaborated. The approach is demonstrated for a
+range of common problems, including the Poisson, biharmonic,
+advection--diffusion and Stokes equations.
+Combined Score: 0.0035543588444160337
+Citation count: 72
+Year of publication: 2009
+Publication venue: SIAM Journal on Scientific Computing
+Authors: KB Ølgaard, A Logg, GN Wells
+
+
+Link: https://arxiv.org/pdf/1104.0628
+ArXiv Link: http://arxiv.org/pdf/1104.0628v1
+Downloading Automated code generation for discontinuous Galerkin methods.pdf... with upper time limit: 10 seconds
+Downloaded: Automated code generation for discontinuous Galerkin methods.pdf.
+
+The above displays all paper with a combined score no less than 0
+Metadata saved to papers/metadata.json
+
+Folder saved to papers.zip
+Files organized in papers/papers_organized
+Target folder saved to papers/papers_organized.zip
+The entire source folder saved to papers.zip
+
+How would you like to summarize the papers?
+1. &#39;all&#39;: Summarize all papers in the organized folder.
+2. &#39;select&#39;: Choose specific papers by their ranks to summarize.
+
+Choose an option (&#39;all&#39; or &#39;select&#39;):
+Available papers with their ranks:
+1. 01_61.3_Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf
+2. 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+3. 03_0.855_Llms for science Usage for code generation and data analysis.pdf
+4. 04_0.492_Generate and pray Using sallms to evaluate the security of llm generated code.pdf
+5. 05_0.47_A Review on Code Generation with LLMs Application and Evaluation.pdf
+6. 06_0.171_Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf
+7. 07_0.107_Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf
+8. 08_0.0919_A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf
+9. 09_0.0359_Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf
+10. 10_0.00355_Automated code generation for discontinuous Galerkin methods.pdf
+
+Enter the ranks of the papers you want to summarize, separated by commas (e.g., 1,3,5):
+Summarizing the following papers: [&#39;02_5.48_Codeplan Repository-level coding using llms and planning.pdf&#39;, &#39;03_0.855_Llms for science Usage for code generation and data analysis.pdf&#39;]
+
+Processing file: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+Begin analyzing the article located at papers/papers_organized/02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+Summary information not found in storage
+Extracting from paper.
+---extracting abstract---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting introduction---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting discussion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting conclusion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---summarizing---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+The summary is:
+
+1. The main topic: The paper presents CodePlan, a neuro-symbolic framework designed to automate complex repository-level coding tasks in software engineering, allowing for multi-step code edits across interdependent files in large codebases.
+
+2. Existing problems: Traditional coding tools powered by Large Language Models (LLMs) primarily focus on localized code edits, failing to handle tasks that require extensive changes across an entire repository with interdependencies between files. This leaves a gap in the automation of more complex coding tasks, resulting in manual effort and potential errors.
+
+3. The main contributions: CodePlan is the first systematic approach that formalizes repository-level coding as a planning problem. It integrates incremental dependency analysis, change may-impact analysis, and adaptive planning with LLMs to generate a chain of code edits automatically, addressing the challenges of dependencies and extensive edits that previous methods did not tackle.
+
+4. Experimental results: CodePlan was evaluated on complex tasks such as package migration in C# and temporal code edits in Python across multiple repositories (2–97 files per repository). It outperformed baseline methods, achieving valid builds in 5 out of 7 repositories, while the baseline approaches failed to validate any, showcasing substantial improvements in accuracy and effectiveness.
+
+5. Conclusions: The findings indicate that CodePlan effectively automates repository-level coding tasks, promising significant implications for software engineering. Future directions include expanding its capabilities for more programming languages, optimizing its editing strategies, and conducting large-scale experiments to ascertain its effectiveness across a broader range of coding challenges.
+The total cost is 0.0037180499999999997 USD
+
+Processing file: 03_0.855_Llms for science Usage for code generation and data analysis.pdf
+Begin analyzing the article located at papers/papers_organized/03_0.855_Llms for science Usage for code generation and data analysis.pdf
+Summary information not found in storage
+Extracting from paper.
+---extracting abstract---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting introduction---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting discussion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---extracting conclusion---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+---summarizing---
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+The summary is:
+
+1. The main topic: The paper focuses on analyzing the code generation errors produced by Large Language Models (LLMs) through an empirical study using the HumanEval dataset to develop a comprehensive taxonomy of these errors.
+
+2. Existing problems: Despite advancements in LLMs for code generation, there is a lack of understanding regarding the types and causes of errors these models produce. Prior research has not effectively analyzed the reliability of LLM-generated code and has overlooked the differences in error characteristics across various models.
+
+3. The main contributions: The authors established a taxonomy categorizing code generation errors based on syntactic and semantic characteristics, enhancing understanding of LLM limitations. They also compared error distributions among different LLMs, discussed bug-fixing efforts, and established a website for interactive analysis of code generation errors.
+
+4. Experimental results: The study involved six LLMs that generated 557 incorrect code snippets across 164 tasks in the HumanEval dataset. It was found that while the syntactic errors were similar across models, the semantic errors varied significantly, indicating differences in how well each LLM interprets task requirements.
+
+5. Conclusions: The study revealed that most incorrect code is compilable but erroneous in logic, indicating that while LLMs have learned the syntactic rules, they struggle with interpreting complex natural language and generating nuanced code. The paper suggests further research into improving LLMs for more reliable code generation and highlights the need for robust testing and code reviews to detect subtle logical errors.
+The total cost is 0.0038998499999999994 USD
+
+Total cost for summarizing all files: 0.007617899999999999
+
+The summaries for all selected files are printed below:
+------Paper title: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf------
+
+1. The main topic: The paper presents CodePlan, a neuro-symbolic framework designed to automate complex repository-level coding tasks in software engineering, allowing for multi-step code edits across interdependent files in large codebases.
+
+2. Existing problems: Traditional coding tools powered by Large Language Models (LLMs) primarily focus on localized code edits, failing to handle tasks that require extensive changes across an entire repository with interdependencies between files. This leaves a gap in the automation of more complex coding tasks, resulting in manual effort and potential errors.
+
+3. The main contributions: CodePlan is the first systematic approach that formalizes repository-level coding as a planning problem. It integrates incremental dependency analysis, change may-impact analysis, and adaptive planning with LLMs to generate a chain of code edits automatically, addressing the challenges of dependencies and extensive edits that previous methods did not tackle.
+
+4. Experimental results: CodePlan was evaluated on complex tasks such as package migration in C# and temporal code edits in Python across multiple repositories (2–97 files per repository). It outperformed baseline methods, achieving valid builds in 5 out of 7 repositories, while the baseline approaches failed to validate any, showcasing substantial improvements in accuracy and effectiveness.
+
+5. Conclusions: The findings indicate that CodePlan effectively automates repository-level coding tasks, promising significant implications for software engineering. Future directions include expanding its capabilities for more programming languages, optimizing its editing strategies, and conducting large-scale experiments to ascertain its effectiveness across a broader range of coding challenges.
+
+
+
+------Paper title: 03_0.855_Llms for science Usage for code generation and data analysis.pdf------
+
+1. The main topic: The paper focuses on analyzing the code generation errors produced by Large Language Models (LLMs) through an empirical study using the HumanEval dataset to develop a comprehensive taxonomy of these errors.
+
+2. Existing problems: Despite advancements in LLMs for code generation, there is a lack of understanding regarding the types and causes of errors these models produce. Prior research has not effectively analyzed the reliability of LLM-generated code and has overlooked the differences in error characteristics across various models.
+
+3. The main contributions: The authors established a taxonomy categorizing code generation errors based on syntactic and semantic characteristics, enhancing understanding of LLM limitations. They also compared error distributions among different LLMs, discussed bug-fixing efforts, and established a website for interactive analysis of code generation errors.
+
+4. Experimental results: The study involved six LLMs that generated 557 incorrect code snippets across 164 tasks in the HumanEval dataset. It was found that while the syntactic errors were similar across models, the semantic errors varied significantly, indicating differences in how well each LLM interprets task requirements.
+
+5. Conclusions: The study revealed that most incorrect code is compilable but erroneous in logic, indicating that while LLMs have learned the syntactic rules, they struggle with interpreting complex natural language and generating nuanced code. The paper suggests further research into improving LLMs for more reliable code generation and highlights the need for robust testing and code reviews to detect subtle logical errors.
+
+
+
+
+Would you like to check the code availability of the articles? (yes/no):
+Checking code availability for the summarized articles...
+
+Checking code availability for: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+The retrieved information is:
+
+https://github.com/microsoft/codeplan
+The total cost is 0.00414465 USD
+
+Checking code availability for: 03_0.855_Llms for science Usage for code generation and data analysis.pdf
+Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+The retrieved information is:
+
+not available
+The total cost is 0.0033426 USD
+
+Total cost for checking code availability: 0.007487249999999999 USD
+Total cost for the entire process (summaries + code availability check): 0.015105149999999998 USD
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.applications.surveys</span><span class="w"> </span><span class="kn">import</span> <span class="n">topic_to_survey</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main execution block for the `topic_to_survey` function.</span>
+
+<span class="sd">    This block initializes the `topic_to_survey` function with the specified parameters and runs the automated research process.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        # Sample usage:</span>
+<span class="sd">        topic_to_survey(</span>
+<span class="sd">            num_results=5,</span>
+<span class="sd">            sort_by=&quot;relevance&quot;,</span>
+<span class="sd">            date_cutoff=&quot;2024-12-01&quot;,</span>
+<span class="sd">            score_threshold=0,</span>
+<span class="sd">            destination_folder=&quot;papers&quot;,</span>
+<span class="sd">            model=&quot;gpt-4o-mini&quot;,</span>
+<span class="sd">            api_key_path=&quot;&quot;,</span>
+<span class="sd">            api_key_type=&quot;OpenAI&quot;,</span>
+<span class="sd">            organize_files=True,</span>
+<span class="sd">            order_by_score=True,</span>
+<span class="sd">            zip_folder=True,</span>
+<span class="sd">            api_key=None,  # Directly provide the API key as a string. If None, the key will be retrieved from the file.</span>
+<span class="sd">        )</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    num_results : int, optional</span>
+<span class="sd">        Number of search results to retrieve. Defaults to 30.</span>
+<span class="sd">    sort_by : str, optional</span>
+<span class="sd">        Sorting criteria for search results. Options: &quot;relevance&quot;, &quot;date&quot;. Defaults to &quot;relevance&quot;.</span>
+<span class="sd">    date_cutoff : str, optional</span>
+<span class="sd">        Cutoff date for search results. Only articles published before this date will be included. Defaults to &quot;2024-12-01&quot;. Only relevant when `sort_by` is set as &quot;date&quot;.</span>
+<span class="sd">    score_threshold : float, optional</span>
+<span class="sd">        Minimum score threshold for articles. Articles with a score below this will be excluded. Defaults to 0.5.</span>
+<span class="sd">    destination_folder : str, optional</span>
+<span class="sd">        Folder to store downloaded articles. Defaults to &quot;papers&quot;.</span>
+<span class="sd">    model : str, optional</span>
+<span class="sd">        Model to use for summarization and keyword suggestions. Defaults to &quot;gpt-4o-mini&quot;.</span>
+<span class="sd">    api_key_path : str, optional</span>
+<span class="sd">        Path to the directory containing the API key. Defaults to &quot;../&quot;. Set it as &quot;&quot; if the file is located at the current directory.</span>
+<span class="sd">    api_key_type : str, optional</span>
+<span class="sd">        Type of API key to retrieve. Options: &quot;OpenAI&quot;, &quot;DeepSeek&quot;. Defaults to &quot;OpenAI&quot;.</span>
+<span class="sd">    organize_files : bool, optional</span>
+<span class="sd">        Whether to organize the downloaded articles into subfolders based on their rank and score. Defaults to True.</span>
+<span class="sd">    order_by_score : bool, optional</span>
+<span class="sd">        Whether to order articles by their score when organizing. Defaults to True.</span>
+<span class="sd">    zip_folder : bool, optional</span>
+<span class="sd">        Whether to zip the organized folder after processing. Defaults to True.</span>
+<span class="sd">    api_key : str, optional</span>
+<span class="sd">        Directly provide the API key as a string. If None, the key will be retrieved from the file. Defaults to None.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">topic_to_survey</span><span class="p">(</span>
+        <span class="n">num_results</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">sort_by</span><span class="o">=</span><span class="s2">&quot;relevance&quot;</span><span class="p">,</span>
+        <span class="n">date_cutoff</span><span class="o">=</span><span class="s2">&quot;2024-12-01&quot;</span><span class="p">,</span>
+        <span class="n">score_threshold</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="n">destination_folder</span><span class="o">=</span><span class="s2">&quot;papers&quot;</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">api_key_path</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="n">api_key_type</span><span class="o">=</span><span class="s2">&quot;OpenAI&quot;</span><span class="p">,</span>
+        <span class="n">organize_files</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">order_by_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">zip_folder</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (4 minutes 23.364 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-top-to-survey-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/644d8df530e3104a4d1286e1c2c345c2/top_to_survey.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">top_to_survey.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/13bc742be66adfd2c069ff7bb129495c/top_to_survey.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">top_to_survey.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/6b4286711a3f521178a0a586bf82a27f/top_to_survey.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">top_to_survey.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="summarize_all_papers.html" class="btn btn-neutral float-left" title="Summarize All Papers in a Folder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.survey.paper_reader module &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">auto_research.survey.paper_reader module</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-auto_research.survey.paper_reader">
+<span id="auto-research-survey-paper-reader-module"></span><h1>auto_research.survey.paper_reader module<a class="headerlink" href="#module-auto_research.survey.paper_reader" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpt-4o-mini'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A class for reading and extracting information from research articles in PDF format.</p>
+<p>This class provides functionality to read PDF files using different libraries (PyPDF2 and
+PyMuPDF), extract specific sections, and analyze the content of research papers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paper_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to the PDF file containing the research paper.</p></li>
+<li><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Name of the GPT model to use for token counting. Defaults to ‘gpt-4o-mini’.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.paper_path">
+<span class="sig-name descname"><span class="pre">paper_path</span></span><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.paper_path" title="Link to this definition"></a></dt>
+<dd><p>Path to the PDF file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.whole_paper">
+<span class="sig-name descname"><span class="pre">whole_paper</span></span><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.whole_paper" title="Link to this definition"></a></dt>
+<dd><p>List containing the text content of each page.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.paper_length">
+<span class="sig-name descname"><span class="pre">paper_length</span></span><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.paper_length" title="Link to this definition"></a></dt>
+<dd><p>Total number of tokens in the paper based on the specified model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.model">
+<span class="sig-name descname"><span class="pre">model</span></span><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.model" title="Link to this definition"></a></dt>
+<dd><p>Name of the GPT model used for token counting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.extracted_information">
+<span class="sig-name descname"><span class="pre">extracted_information</span></span><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.extracted_information" title="Link to this definition"></a></dt>
+<dd><p>Dictionary containing extracted sections of the</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">paper.</span></span></dt>
+<dd></dd></dl>
+
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">calculate_token_length</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">paper</span><span class="o">.</span><span class="n">paper_length</span><span class="p">)</span>
+<span class="go">1234</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-notes admonition">
+<p class="admonition-title">Notes</p>
+<p>The class supports both PyPDF2 and PyMuPDF (fitz) for PDF processing,
+allowing flexibility in PDF parsing approaches.</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paper_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gpt-4o-mini'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.__init__" title="Link to this definition"></a></dt>
+<dd><p>Initialize the Paper instance with the given PDF path and model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>paper_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+<li><p><strong>model</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.read_pypdf2">
+<span class="sig-name descname"><span class="pre">read_pypdf2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.read_pypdf2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.read_pypdf2" title="Link to this definition"></a></dt>
+<dd><p>Read PDF content using PyPDF2 library.</p>
+<p>This method extracts text from each page of the PDF using PyPDF2 and stores
+it in the whole_paper list.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pypdf2</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.read_pymupdf">
+<span class="sig-name descname"><span class="pre">read_pymupdf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.read_pymupdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.read_pymupdf" title="Link to this definition"></a></dt>
+<dd><p>Read PDF content using PyMuPDF library.</p>
+<p>This method extracts text from each page of the PDF using PyMuPDF (fitz)
+and stores it in the whole_paper list.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.first_n_pages">
+<span class="sig-name descname"><span class="pre">first_n_pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.first_n_pages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.first_n_pages" title="Link to this definition"></a></dt>
+<dd><p>Return the concatenated text of the first n pages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of pages to include.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated text of the first n pages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first_three</span> <span class="o">=</span> <span class="n">paper</span><span class="o">.</span><span class="n">first_n_pages</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.get_whole_paper">
+<span class="sig-name descname"><span class="pre">get_whole_paper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">print_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.get_whole_paper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.get_whole_paper" title="Link to this definition"></a></dt>
+<dd><p>Print the entire paper content with page markers or return it as a formatted string.</p>
+<p>This method either prints the content of each page with clear beginning and
+ending markers for better visualization or returns the entire content as a
+single string in the same format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>print_mode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – If True, print the content. If False, return the content as a formatted</p></li>
+<li><p><strong>string.</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If print_mode is False, returns the formatted string. Otherwise,
+returns None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">get_whole_paper</span><span class="p">(</span><span class="n">print_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># Prints the content</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">full_text</span> <span class="o">=</span> <span class="n">paper</span><span class="o">.</span><span class="n">get_whole_paper</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">print_mode</span><span class="o">=</span><span class="kc">False</span>
+<span class="gp">... </span><span class="p">)</span>  <span class="c1"># Returns the content as a string</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.extract_up_to_first_match_exclude_list">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extract_up_to_first_match_exclude_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.extract_up_to_first_match_exclude_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.extract_up_to_first_match_exclude_list" title="Link to this definition"></a></dt>
+<dd><p>Extract content up to the first occurrence of any marker in the exclude list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – List of strings to concatenate and search within.</p></li>
+<li><p><strong>b_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – List of substrings to search for.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of strings from input up to but not including the first
+occurrence of any substring in b_list.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>]</p>
+</dd>
+</dl>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">text_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Page 1&quot;</span><span class="p">,</span> <span class="s2">&quot;Page 2&quot;</span><span class="p">,</span> <span class="s2">&quot;References&quot;</span><span class="p">,</span> <span class="s2">&quot;Page 3&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">Paper</span><span class="o">.</span><span class="n">extract_up_to_first_match_exclude_list</span><span class="p">(</span><span class="n">text_list</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;references&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.extract_ending_pages">
+<span class="sig-name descname"><span class="pre">extract_ending_pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page_number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.extract_ending_pages"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.extract_ending_pages" title="Link to this definition"></a></dt>
+<dd><p>Extract the specified number of ending pages before references section.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>page_number</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of pages to extract from the end. Defaults to 3.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Concatenated text of the specified number of ending pages.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ending_pages</span> <span class="o">=</span> <span class="n">paper</span><span class="o">.</span><span class="n">extract_ending_pages</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="auto_research.survey.paper_reader.Paper.calculate_token_length">
+<span class="sig-name descname"><span class="pre">calculate_token_length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/auto_research/survey/paper_reader.html#Paper.calculate_token_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#auto_research.survey.paper_reader.Paper.calculate_token_length" title="Link to this definition"></a></dt>
+<dd><p>Calculate the total number of tokens in the paper using the specified model.</p>
+<p>This method uses the tiktoken library to encode and count tokens according
+to the specified model’s tokenization scheme.</p>
+<div class="admonition-example admonition">
+<p class="admonition-title">Example</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span> <span class="o">=</span> <span class="n">Paper</span><span class="p">(</span><span class="s2">&quot;example.pdf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">read_pymupdf</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">paper</span><span class="o">.</span><span class="n">calculate_token_length</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
