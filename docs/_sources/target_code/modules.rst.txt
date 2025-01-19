@@ -1,7 +1,0 @@
-auto_research
-=============
-
-.. toctree::
-   :maxdepth: 4
-
-   auto_research

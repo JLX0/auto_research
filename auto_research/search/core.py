@@ -49,8 +49,7 @@ class AutoSearch:
 
               where :math:`\\text{recency}` is the number of years since the paper was published.
 
-            The :math:`\\text{recency_weight}` parameter controls how much weight is given to
-             the recency of the paper.
+            The :math:`\\text{recency_weight}` parameter controls how much weight is given to the recency of the paper.
         recency_weight (float): The weight given to recency when calculating the combined score.
         auto_destination (bool): Whether to automatically generate the destination folder name.
         destination_folder (str): The folder where downloaded papers will be saved.

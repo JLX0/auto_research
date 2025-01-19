@@ -1,7 +1,0 @@
-auto\_research.search.keywords module
-=====================================
-
-.. automodule:: auto_research.search.keywords
-   :members:
-   :undoc-members:
-   :show-inheritance:

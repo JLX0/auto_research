@@ -14,16 +14,17 @@ time-consuming.
 
 The function `topic_to_survey` streamlines the entire process by automating several key tasks.
 It suggests multiple related keywords to ensure comprehensive coverage of the topic,
-merges duplicate results to avoid redundancy, and automatically names downloaded files
-using the paper titles for easy reference. Moreover, it leverages LLMs to generate summaries
-of each paper, saving researchers valuable time and effort.
+merges duplicate results to avoid redundancy, automatically names downloaded files
+using the paper titles for easy reference, and automatically rank the paper based their impacts
+(see :mod:`auto_research.search.core.AutoSearch.score_threshold`). Moreover, it leverages LLMs
+to generate summaries of each paper, saving researchers valuable time and effort.
 
 This script demonstrates the usage of the `topic_to_survey` function from the :mod:`auto_research.applications.surveys` module to:
 
 - Conduct an automated research process based on a user-provided topic.
 - Generate and refine a list of keywords for searching research articles.
 - Retrieve and download articles based on the specified search criteria.
-- Organize and summarize the downloaded articles.
+- Rank, organize and summarize the downloaded articles.
 - Check the code availability of the summarized articles (optional).
 
 To get started with the package, you need to set up API keys. For detailed instructions, see :ref:`setting_up_api_keys`.
