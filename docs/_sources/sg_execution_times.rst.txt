@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**10:35.838** total execution time for 6 files **from all galleries**:
+**04:37.687** total execution time for 6 files **from all galleries**:
 
 .. container::
 
@@ -33,20 +33,20 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr__examples_gallery_top_to_survey.py` (``examples/top_to_survey.py``)
-     - 04:42.881
-     - 0.0
-   * - :ref:`sphx_glr__examples_gallery_summarize_all_papers.py` (``examples/summarize_all_papers.py``)
-     - 02:25.760
+     - 04:37.687
      - 0.0
    * - :ref:`sphx_glr__examples_gallery_explain_a_paper.py` (``examples/explain_a_paper.py``)
-     - 01:35.397
-     - 0.0
-   * - :ref:`sphx_glr__examples_gallery_summarize_a_paper.py` (``examples/summarize_a_paper.py``)
-     - 00:49.242
+     - 00:00.000
      - 0.0
    * - :ref:`sphx_glr__examples_gallery_get_github_link.py` (``examples/get_github_link.py``)
-     - 00:31.762
+     - 00:00.000
      - 0.0
    * - :ref:`sphx_glr__examples_gallery_search_papers.py` (``examples/search_papers.py``)
-     - 00:30.797
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr__examples_gallery_summarize_a_paper.py` (``examples/summarize_a_paper.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr__examples_gallery_summarize_all_papers.py` (``examples/summarize_all_papers.py``)
+     - 00:00.000
      - 0.0

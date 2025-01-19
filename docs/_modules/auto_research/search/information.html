@@ -142,6 +142,32 @@
 
 
 
+<div class="viewcode-block" id="extract_score">
+<a class="viewcode-back" href="../../../target_code/auto_research.search.information.html#auto_research.search.information.extract_score">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_score</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extracts the score from the filename of a PDF file.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        file_path (str): The file path of the PDF file.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float: The extracted score from the filename. Returns 0.0 if the extraction fails.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; extract_score(&quot;rank_0.85_title.pdf&quot;)</span>
+<span class="sd">        0.85</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Extract the score from the filename (assuming the format is &quot;rank_score_title.pdf&quot;).</span>
+        <span class="n">score_str</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">score_str</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mf">0.0</span>  <span class="c1"># Default score if extraction fails.</span></div>
+
+
+
 <div class="viewcode-block" id="save_meta_data">
 <a class="viewcode-back" href="../../../target_code/auto_research.search.information.html#auto_research.search.information.save_meta_data">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">save_meta_data</span><span class="p">(</span><span class="n">meta_data_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">papers_info</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

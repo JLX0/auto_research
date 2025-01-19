@@ -98,7 +98,7 @@ Examples
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This script demonstrates the usage of the topic_to_survey function from the auto_research.applications.surveys module to:">
+    <div class="sphx-glr-thumbcontainer" tooltip="When searching for research papers, the results from a search engine can vary significantly depending on the specific keywords used, even if those keywords are conceptually similar. For instance, searching for &quot;LLMs&quot; versus &quot;Large Language Models&quot; may yield different sets of papers. Additionally, when experimenting with new keywords, it can be challenging to remember whether a particular paper has already been checked. Furthermore, the process of downloading papers and organizing them with appropriate filenames can be tedious and time-consuming.">
 
 .. only:: html
 

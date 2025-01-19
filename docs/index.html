@@ -105,19 +105,16 @@
 <h1>AutoResearch: A General Framework for Academic Research Automation<a class="headerlink" href="#autoresearch-a-general-framework-for-academic-research-automation" title="Link to this heading"></a></h1>
 <p><em>AutoResearch</em> is a framework designed to simplify and accelerate academic research tasks. It offers a <strong>modular and extensible architecture</strong> to help researchers, developers, and academics efficiently search, organize, summarize, and analyze academic papers.</p>
 <p>See this <a class="reference external" href="https://colab.research.google.com/drive/1Xj0xTpHvpnPfmK9tYnI8Ep7oRKrQ9gn7?usp=sharing">Google Colab notebook</a> for an installation-free quick demo.</p>
-<section id="key-features">
-<h2>Key Features<a class="headerlink" href="#key-features" title="Link to this heading"></a></h2>
+<section id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Link to this heading"></a></h2>
+<p>While there are many existing tools for research automation. But here are the key distinctions and advantages of the AutoResearch:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="_examples_gallery/search_papers.html"><span class="doc">Automated Paper Search</span></a>
-- Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv. Organize results by relevance or date, apply filters, and save articles to a specified folder.</p></li>
-<li><p><a class="reference internal" href="_examples_gallery/summarize_a_paper.html"><span class="doc">Paper Summarization</span></a>
-- Summarize individual papers or all papers in a folder. Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models. Track and display the total cost of summarization.</p></li>
-<li><p><a class="reference internal" href="_examples_gallery/explain_a_paper.html"><span class="doc">Explain a Paper with LLMs</span></a>
-- Interactively explain concepts, methodologies, or results from a selected paper using LLMs. Supports user queries and detailed explanations of specific sections.</p></li>
-<li><p><a class="reference internal" href="_examples_gallery/get_github_link.html"><span class="doc">Code Availability Check</span></a>
-- Check for GitHub links in papers and validate their availability.</p></li>
-<li><p><a class="reference internal" href="_examples_gallery/top_to_survey.html"><span class="doc">Topic-to-Survey Automation</span></a>
-- Convert a topic or research question into a comprehensive survey of relevant papers. Generate keywords, retrieve articles, summarize content, and optionally check code availability. Organize and zip results for easy access.</p></li>
+<li><p>No additional API keys besides LLM API keys are required (No API keys, such as Semantic Scholar keys, are needed for literature search and downloading papers)</p></li>
+<li><p>Support multiple search keywords for one inquiry.</p></li>
+<li><p>Rank the papers based on their impacts, and consider the most important papers first.</p></li>
+<li><p>Fast literature search process. It only takes about 3 seconds to automatically download a paper.</p></li>
+<li><p>Python code-base, which enables convenient deployment, such as Google Colab notebook, as well as efficient integration with other ML-based tools, such as other LLM agents</p></li>
+<li><p>API documentation are available</p></li>
 </ul>
 </section>
 <section id="basic-example">
@@ -134,7 +131,21 @@
 <span class="n">survey</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>See <a class="reference internal" href="_examples_gallery/index.html"><span class="doc">Examples</span></a> for more advanced usages</p>
+</section>
+<section id="more-examples">
+<h2>More examples<a class="headerlink" href="#more-examples" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="_examples_gallery/search_papers.html"><span class="doc">Automated Paper Search</span></a>
+- Search for academic papers using keywords and retrieve metadata from Google Scholar, Semantic Scholar, and arXiv. Organize results by relevance or date, apply filters, and save articles to a specified folder.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/summarize_a_paper.html"><span class="doc">Paper Summarization</span></a>
+- Summarize individual papers or all papers in a folder. Extract key sections (abstract, introduction, discussion, conclusion) and generate summaries using GPT models. Track and display the total cost of summarization.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/explain_a_paper.html"><span class="doc">Explain a Paper with LLMs</span></a>
+- Interactively explain concepts, methodologies, or results from a selected paper using LLMs. Supports user queries and detailed explanations of specific sections.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/get_github_link.html"><span class="doc">Code Availability Check</span></a>
+- Check for GitHub links in papers and validate their availability.</p></li>
+<li><p><a class="reference internal" href="_examples_gallery/top_to_survey.html"><span class="doc">Topic-to-Survey Automation</span></a>
+- Convert a topic or research question into a comprehensive survey of relevant papers. Generate keywords, retrieve articles, summarize content, and optionally check code availability. Organize and zip results for easy access.</p></li>
+</ul>
 </section>
 <section id="communication">
 <h2>Communication<a class="headerlink" href="#communication" title="Link to this heading"></a></h2>

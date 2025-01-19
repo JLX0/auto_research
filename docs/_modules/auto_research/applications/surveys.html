@@ -111,6 +111,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">base_prompt_formatted</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_github_link</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSearch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.information</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_score</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.keywords</span><span class="w"> </span><span class="kn">import</span> <span class="n">suggest_keywords</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.search.post_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArticleOrganizer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.survey.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSurvey</span>
@@ -259,6 +260,8 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- The files are not accessible for download or are corrupted.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
 
+    <span class="n">pdf_files_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">extract_score</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
     <span class="c1"># Ask the user how they would like to summarize the papers</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">How would you like to summarize the papers?&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1. &#39;all&#39;: Summarize all papers in the organized folder.&quot;</span><span class="p">)</span>
@@ -271,11 +274,11 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid option. Please try again.&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">summary_option</span> <span class="o">==</span> <span class="s2">&quot;all&quot;</span><span class="p">:</span>
-        <span class="n">target_files</span> <span class="o">=</span> <span class="n">pdf_files</span>
+        <span class="n">target_files</span> <span class="o">=</span> <span class="n">pdf_files_sorted</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summarizing all papers in the organized folder.&quot;</span><span class="p">)</span>
     <span class="k">elif</span> <span class="n">summary_option</span> <span class="o">==</span> <span class="s2">&quot;select&quot;</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Available papers with their ranks:&quot;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pdf_files_sorted</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">custom_ranks</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span>
@@ -286,15 +289,15 @@
                 <span class="n">selected_ranks</span> <span class="o">=</span> <span class="p">[</span>
                     <span class="nb">int</span><span class="p">(</span><span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">custom_ranks</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="k">if</span> <span class="n">rank</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
                 <span class="p">]</span>
-                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">rank</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">)</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">):</span>
-                    <span class="n">target_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">pdf_files</span><span class="p">[</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">rank</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pdf_files_sorted</span><span class="p">)</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">):</span>
+                    <span class="n">target_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">pdf_files_sorted</span><span class="p">[</span><span class="n">rank</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="n">selected_ranks</span><span class="p">]</span>
                     <span class="nb">print</span><span class="p">(</span>
                         <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Summarizing the following papers:&quot;</span><span class="p">,</span>
                         <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">target_files</span><span class="p">],</span>
                     <span class="p">)</span>
                     <span class="k">break</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please enter ranks between 1 and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf_files</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Please enter ranks between 1 and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pdf_files_sorted</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input. Please enter valid integers separated by commas.&quot;</span><span class="p">)</span>
 
