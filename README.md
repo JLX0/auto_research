@@ -12,7 +12,7 @@ See [home page](https://jlx0.github.io/auto_research/index.html#) for API docume
 
 See this [Google Colab notebook](https://colab.research.google.com/drive/1Xj0xTpHvpnPfmK9tYnI8Ep7oRKrQ9gn7?usp=sharing) for an installation-free quick demo
 
-While there are many existing tools for research automation. But here are the key distinctions and advantages of the AutoResearch:
+While there are many existing tools for research automation. But here are the key distinctions and advantages of AutoResearch:
 
 - No additional API keys besides LLM API keys are required (No API keys, such as Semantic Scholar keys, are needed for literature search and downloading papers)
 
@@ -24,7 +24,7 @@ While there are many existing tools for research automation. But here are the ke
 
 - Python code-base, which enables convenient deployment, such as Google Colab notebook, as well as efficient integration with other ML-based tools, such as other LLM agents
 
-- API documentation are available
+- API documentation is available
 
 # Requirements
 
