@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Availability Check &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Automatically Search and Download Papers" href="search_papers.html" />
+    <link rel="prev" title="Explain a Paper with LLMs" href="explain_a_paper.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="explain_a_paper.html">Explain a Paper with LLMs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Code Availability Check</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_papers.html">Automatically Search and Download Papers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_a_paper.html">Summarize a Paper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="summarize_all_papers.html">Summarize All Papers in a Folder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="top_to_survey.html">Automatically converts a topic or question of interests into a survey over relevant papers</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Code Availability Check</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-gallery-get-github-link-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="code-availability-check">
+<span id="get-github-link-page"></span><span id="sphx-glr-examples-gallery-get-github-link-py"></span><h1>Code Availability Check<a class="headerlink" href="#code-availability-check" title="Link to this heading"></a></h1>
+<p>This script demonstrates the usage of <a class="reference internal" href="../target_code/auto_research.survey.core.html#auto_research.survey.core.AutoSurvey" title="auto_research.survey.core.AutoSurvey"><code class="xref any py py-class docutils literal notranslate"><span class="pre">AutoSurvey</span></code></a> in the <a class="reference internal" href="../target_code/auto_research.survey.core.html#module-auto_research.survey.core" title="auto_research.survey.core"><code class="xref py py-mod docutils literal notranslate"><span class="pre">auto_research.survey.core</span></code></a> module to:</p>
+<ul class="simple">
+<li><p>Select a PDF file from a specified folder.</p></li>
+<li><p>Retrieve an API key for the LLM (Large Language Model).</p></li>
+<li><p>Format a base prompt for code availability checks.</p></li>
+<li><p>Test the availability of code on GitHub.</p></li>
+</ul>
+<p>To get started with the package, you need to set up API keys. For detailed instructions, see <a class="reference internal" href="../installation.html#setting-up-api-keys"><span class="std std-ref">Setting up API keys for LLMs</span></a>.</p>
+<p>This script assumes that:</p>
+<ul class="simple">
+<li><p>At least one valid PDF file of the article is available. (located at “sample_articles/”)</p></li>
+<li><p>A valid <code class="xref any docutils literal notranslate"><span class="pre">key.json</span></code> file is available (located at the current working directory (“”))</p></li>
+</ul>
+<p>The process involves user interaction, including selecting a PDF file.</p>
+<p>Below is an example output from the following input:</p>
+<ul class="simple">
+<li><p>3</p></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Available PDF files:
+0: BOHB Robust and Efficient Hyperparameter Optimization at Scale.pdf
+1: A survey on evaluation of large language models.pdf
+2: The AI Scientist Towards Fully Automated Open-Ended Scientific Discovery.pdf
+3: Large Language Models Synergize with Automated Machine Learning.pdf
+4: Active Learning for Distributionally Robust Level-Set Estimation.pdf
+Enter the index of the file you want to process: Sequence generation under testing: attempt 1 of 3
+Operation under time limit: attempt 1 of 3
+The operation finishes in time
+Test passed
+The retrieved information is:
+
+https://github.com/JLX0/llm-automl
+The total cost is 0.004786649999999999 USD
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">LLM_utils.inquiry</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_api_key</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">base_prompt_formatted</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.reimplementation.code_availability_check</span><span class="w"> </span><span class="kn">import</span> <span class="n">test_github_link</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.survey.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoSurvey</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">auto_research.utils.files</span><span class="w"> </span><span class="kn">import</span> <span class="n">select_pdf_file</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Main function to execute the code availability check and survey analysis.</span>
+
+<span class="sd">    This function:</span>
+<span class="sd">    - Selects a PDF file from the specified folder.</span>
+<span class="sd">    - Retrieves the API key for the LLM.</span>
+<span class="sd">    - Formats the base prompt for code availability checks.</span>
+<span class="sd">    - Initializes the AutoSurvey instance.</span>
+<span class="sd">    - Checks whether GitHub link is available</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Specify the folder containing the target PDF files</span>
+    <span class="n">sample_folder</span> <span class="o">=</span> <span class="s2">&quot;sample_articles/&quot;</span>
+
+    <span class="c1"># Select a PDF file from the specified folder</span>
+    <span class="n">selected_file</span><span class="p">,</span> <span class="n">file_path</span> <span class="o">=</span> <span class="n">select_pdf_file</span><span class="p">(</span><span class="n">sample_folder</span><span class="p">)</span>
+
+    <span class="c1"># Retrieve the API key for the LLM</span>
+    <span class="c1"># This script assumes a valid key.json file is located at the current working directory (&quot;&quot;)</span>
+    <span class="c1"># Modify the path to key.json (&quot;&quot;) and the value for LLMs category (&quot;OpenAI&quot;) if needed</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="n">get_api_key</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;OpenAI&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Initialize the AutoSurvey instance</span>
+    <span class="n">auto_survey_instance</span> <span class="o">=</span> <span class="n">AutoSurvey</span><span class="p">(</span>
+        <span class="n">key</span><span class="p">,</span>
+        <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+        <span class="n">file_path</span><span class="p">,</span>
+        <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;information_retrieval&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Format the base prompt for code availability checks</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">base_prompt_formatted</span><span class="p">()</span>
+
+    <span class="c1"># Check whether GitHub link is available</span>
+    <span class="n">auto_survey_instance</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">test_github_link</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 31.762 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-gallery-get-github-link-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/7d6bfe9004589548aa19dc70068ff49c/get_github_link.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">get_github_link.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/88ee55421d170cdb16d18c882a440b57/get_github_link.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">get_github_link.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/3652c05d4a0ac9126120b3d68282628a/get_github_link.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">get_github_link.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="explain_a_paper.html" class="btn btn-neutral float-left" title="Explain a Paper with LLMs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="search_papers.html" class="btn btn-neutral float-right" title="Automatically Search and Download Papers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

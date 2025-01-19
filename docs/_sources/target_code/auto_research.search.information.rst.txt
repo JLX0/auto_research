@@ -1,0 +1,7 @@
+auto\_research.search.information module
+========================================
+
+.. automodule:: auto_research.search.information
+   :members:
+   :undoc-members:
+   :show-inheritance:

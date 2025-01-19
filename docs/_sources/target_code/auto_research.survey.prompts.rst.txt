@@ -1,0 +1,7 @@
+auto\_research.survey.prompts module
+====================================
+
+.. automodule:: auto_research.survey.prompts
+   :members:
+   :undoc-members:
+   :show-inheritance:
