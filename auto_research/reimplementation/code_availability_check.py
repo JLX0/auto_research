@@ -56,8 +56,8 @@ def test_github_link(response: str) -> str:
 
 def base_prompt_formatted() -> str:
     """
-    Generate a formatted prompt string requesting information about the availability of a GitHub
-     link.
+    Generate a formatted prompt string requesting information about the availability of a
+    GitHub link.
 
     Returns:
         str: A string containing the formatted prompt instructions.

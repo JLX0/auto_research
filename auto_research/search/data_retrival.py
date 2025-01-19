@@ -20,7 +20,7 @@ def download_pdf(url: str, filename: str, folder: Optional[str] = None, timeout:
         url (str): The URL of the PDF file to download.
         filename (str): The name of the file to save the PDF as.
         folder (Optional[str]): The folder to save the PDF in. If None, saves in the current
-         directory.
+        directory.
         timeout (int): The timeout for the request in seconds. Defaults to 10.
 
     Returns:
@@ -75,7 +75,7 @@ def get_paper_details_from_semantic_scholar(
 
     Returns:
         Optional[Tuple[str, str]]: A tuple containing the abstract and venue of the paper.
-            Returns None if no data is found or if an error occurs.
+        Returns None if no data is found or if an error occurs.
 
     Example:
         >>> get_paper_details_from_semantic_scholar("Attention is All You Need")
@@ -100,14 +100,14 @@ def get_paper_details_from_semantic_scholar(
 def get_arxiv_paper_details(title: str) -> Optional[Tuple[str, str, str, str]]:
     """
     Retrieves paper details (title, abstract, PDF link, and venue) from arXiv based on the paper
-     title.
+    title.
 
     Args:
         title (str): The title of the paper to search for.
 
     Returns:
         Optional[Tuple[str, str, str, str]]: A tuple containing the paper title, abstract, PDF
-         link,and venue. Returns None if no data is found.
+        link,and venue. Returns None if no data is found.
 
     Example:
         >>> get_arxiv_paper_details("Attention is All You Need")

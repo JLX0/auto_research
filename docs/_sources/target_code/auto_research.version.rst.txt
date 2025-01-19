@@ -1,7 +1,0 @@
-auto\_research.version module
-=============================
-
-.. automodule:: auto_research.version
-   :members:
-   :undoc-members:
-   :show-inheritance:

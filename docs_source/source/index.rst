@@ -5,6 +5,8 @@ AutoResearch: A General Framework for Academic Research Automation
 
 See this `Google Colab notebook <https://colab.research.google.com/drive/1Xj0xTpHvpnPfmK9tYnI8Ep7oRKrQ9gn7?usp=sharing>`__ for an installation-free quick demo.
 
+Here is `the official GitHub repository of AutoResearch <https://github.com/JLX0/auto_research/>`__.
+
 Advantages
 --------------
 
@@ -61,17 +63,17 @@ Communication
 
 - `GitHub Discussions <https://github.com/JLX0/auto_research/discussions>`__: For general questions and community support.
 
-- `GitHub Issues <https://github.com/JLX0/auto_github/issues>`__: For bug reports and feature requests.
+- `GitHub Issues <https://github.com/JLX0/auto_research/issues>`__: For bug reports and feature requests.
 
 Contribution
 ------------
 
-We welcome contributions! Please see the `Contribution Guide <https://github.com/JLX0/auto_github/blob/main/CONTRIBUTING.md>`__ for details.
+We welcome contributions! Please see the `Contribution Guide <https://github.com/JLX0/auto_research/blob/main/CONTRIBUTING.md>`__ for details.
 
 License
 -------
 
-MIT License. See `LICENSE <https://github.com/JLX0/auto_github/blob/main/LICENSE>`__ for details.
+MIT License. See `LICENSE <https://github.com/JLX0/auto_research/blob/main/LICENSE>`__ for details.
 
 .. toctree::
    :maxdepth: 2

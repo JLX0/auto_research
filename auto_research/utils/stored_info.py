@@ -53,8 +53,7 @@ class Storage(Storage_base):
         Add the file names of all papers in a provided list as keys to the info dictionary.
 
         Args:
-            list_of_papers (list[str]): A list of paper file names to be added to the info
-            dictionary.
+            list_of_papers (list[str]): A list of paper file names to be added to the info dictionary.
 
         Returns:
             None
@@ -62,7 +61,7 @@ class Storage(Storage_base):
         Example:
             >>> storage = Storage()
             >>> storage.add_papers_by_name(["paper1.pdf", "paper2.pdf"])
-        """
+        """  # noqa: E501
         for paper in list_of_papers:
             self.information[paper] = {}
 

@@ -128,7 +128,7 @@ To confirm that *AutoResearch* was installed successfully, run the following com
 
    $ python3 -c "import auto_research; print(auto_research.__version__)"
 
-If the installation was successful, this will print the version of *AutoResearch* (e.g., `1.0.0`).
+If the installation was successful, this will print the version of *AutoResearch* (e.g., `0.1.0`).
 
 
 .. _setting_up_api_keys:

@@ -1,7 +1,0 @@
-auto\_research.survey.paper\_reader module
-==========================================
-
-.. automodule:: auto_research.survey.paper_reader
-   :members:
-   :undoc-members:
-   :show-inheritance:

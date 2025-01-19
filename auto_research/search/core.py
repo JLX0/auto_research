@@ -28,8 +28,7 @@ class AutoSearch:
             search. If a list, performs multiple searches.
         num_results (int): The number of results to retrieve.
         delay (int): Added delay (in seconds) between requests to avoid rate limiting.
-        sort_by (str): Sorting criteria for the Google Scholar search engine ("date" or
-        "relevance").
+        sort_by (str): Sorting criteria for the Google Scholar search engine ("date" or "relevance").
         date_cutoff (str): The cutoff date for papers when sorting by date (format: "YYYY-MM-DD").
         score_threshold (float): The minimum combined score for papers to be displayed/downloaded.
             The combined score is calculated differently based on the sorting criteria:
@@ -60,7 +59,7 @@ class AutoSearch:
     Example:
         >>> search = AutoSearch("machine learning", num_results=10)
         >>> search.run()
-    """
+    """  # noqa: E501
 
     def __init__(
         self,

@@ -1,7 +1,0 @@
-auto\_research.survey.core module
-=================================
-
-.. automodule:: auto_research.survey.core
-   :members:
-   :undoc-members:
-   :show-inheritance:

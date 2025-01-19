@@ -19,14 +19,13 @@ class ArticleOrganizer:
         source_folder (str): The folder where the original papers and metadata are stored.
         target_folder (str): The folder where organized papers will be saved.
         threshold_type (str): The filtering method ("rank" or "score").
-        score_threshold (float): The minimum combined score for filtering when threshold_type is
-        "score".
+        score_threshold (float): The minimum combined score for filtering when threshold_type is "score".
         rank_threshold (int): The number of top papers to filter when threshold_type is "rank".
         organize_files (bool): Whether to organize files into the target folder.
         order_by_score (bool): Whether to rename files with their combined score.
         zip_folder (bool): Whether to zip the target folder and source folder.
         plotting (bool): Whether to plot the combined scores of papers.
-    """
+    """  # noqa: E501
 
     def __init__(
         self,

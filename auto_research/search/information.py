@@ -112,8 +112,8 @@ def read_meta_data(meta_data_path: str) -> list[dict]:
         meta_data_path (str): The file path from which to read the metadata.
 
     Returns:
-        list[dict]: A list of dictionaries containing paper metadata. Returns an empty list if
-                   the file does not exist.
+        list[dict]: A list of dictionaries containing paper metadata. Returns an empty list if the
+        file does not exist.
 
     Example:
         >>> read_meta_data("metadata.json")

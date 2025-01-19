@@ -14,7 +14,7 @@ def sanitize_filename(filename: str) -> str:
 
     Returns:
         str: The sanitized filename with illegal characters removed and leading/trailing spaces
-         stripped.
+        stripped.
 
     Example:
         >>> sanitize_filename("my/file:name?.txt")
@@ -44,9 +44,8 @@ def is_pdf_uncorrupted(file_path: str) -> bool:
         False
 
     Notes:
-        This function uses the `fitz` library (PyMuPDF) to open the PDF file. If the file cannot
-         be opened,
-        it is assumed to be corrupted, and the function returns False.
+        This function uses the `fitz` library (PyMuPDF) to open the PDF file. If the file cannot be
+        opened, it is assumed to be corrupted, and the function returns False.
     """
     try:
         doc = fitz.open(file_path)
