@@ -1,0 +1,27 @@
+auto\_research package
+======================
+
+.. automodule:: auto_research
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Subpackages
+-----------
+
+.. toctree::
+   :maxdepth: 4
+
+   auto_research.applications
+   auto_research.reimplementation
+   auto_research.search
+   auto_research.survey
+   auto_research.utils
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   auto_research.version

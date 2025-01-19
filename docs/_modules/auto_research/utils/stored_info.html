@@ -1,0 +1,430 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.utils.stored_info &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">auto_research.utils.stored_info</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for auto_research.utils.stored_info</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">LLM_utils.storage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Storage_base</span>
+
+
+<div class="viewcode-block" id="Storage">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Storage</span><span class="p">(</span><span class="n">Storage_base</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for managing and storing information about papers in a structured format.</span>
+
+<span class="sd">    This class provides functionality to add, retrieve, and check information about</span>
+<span class="sd">    papers stored in a JSON-like structure. It supports adding papers by path or name,</span>
+<span class="sd">    adding information to specific papers, and retrieving or checking information</span>
+<span class="sd">    based on specified criteria.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        information (dict): A dictionary storing paper information, where keys are</span>
+<span class="sd">                            paper names and values are nested dictionaries containing</span>
+<span class="sd">                            information types and their corresponding trials.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">        &gt;&gt;&gt; storage.add_papers_by_name([&quot;paper1.pdf&quot;, &quot;paper2.pdf&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; storage.add_info_to_a_paper(&quot;paper1.pdf&quot;, &quot;summary&quot;, &quot;This is a summary.&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; storage.get_info(paper_list=[&quot;paper1.pdf&quot;], type_list=[&quot;summary&quot;])</span>
+<span class="sd">        ---Paper name: paper1.pdf, Info type: summary, Trial number: 1---</span>
+<span class="sd">        This is a summary.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Storage.add_papers_by_path">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.add_papers_by_path">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_papers_by_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_paper</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the file names of all papers in a specified directory as keys to the info dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_to_paper (str): The path to the directory containing the paper files.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_papers_by_path(&quot;/path/to/papers&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path_to_paper</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="Storage.add_papers_by_name">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.add_papers_by_name">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_papers_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_papers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add the file names of all papers in a provided list as keys to the info dictionary.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            list_of_papers (list[str]): A list of paper file names to be added to the info</span>
+<span class="sd">            dictionary.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_papers_by_name([&quot;paper1.pdf&quot;, &quot;paper2.pdf&quot;])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">list_of_papers</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+<div class="viewcode-block" id="Storage.add_info_to_a_paper">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.add_info_to_a_paper">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_info_to_a_paper</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">paper_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">info_type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">info_content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">info_trial</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add information to a specific paper in the info dictionary.</span>
+
+<span class="sd">        If the paper or info type does not exist, they are initialized. If a trial number</span>
+<span class="sd">        is not provided, the next available trial number is automatically assigned.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            paper_name (str): The name of the paper to which information will be added.</span>
+<span class="sd">            info_type (str): The type of information to be added (e.g., &#39;summary&#39;, &#39;analysis&#39;).</span>
+<span class="sd">            info_content (str): The content of the information to be stored.</span>
+<span class="sd">            info_trial (Optional[int]): The trial number for the information. If None, the</span>
+<span class="sd">                                        next available trial number is used.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: If the specified trial number already exists for the given paper</span>
+<span class="sd">                       and info type.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_papers_by_name([&quot;paper1.pdf&quot;])</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_info_to_a_paper(&quot;paper1.pdf&quot;, &quot;summary&quot;, &quot;This is a summary.&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">load_info</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">paper_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">info_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">]:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">info_trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">][</span><span class="n">info_type</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;This trial already exists for the paper </span><span class="si">{</span><span class="n">paper_name</span><span class="si">}</span><span class="s2"> and info type </span><span class="si">{</span><span class="n">info_type</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">info_trial</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">existing_trials</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="n">info_trial</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">existing_trials</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">existing_trials</span> <span class="k">else</span> <span class="mi">1</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper_name</span><span class="p">][</span><span class="n">info_type</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="n">info_trial</span><span class="p">)]</span> <span class="o">=</span> <span class="n">info_content</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">save_info</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Storage.get_info">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.get_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_info</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">paper_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">type_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">trial_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve information from the info dictionary based on the specified criteria.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            paper_list (Optional[list[str]]): List of paper names to retrieve info for.</span>
+<span class="sd">                                              If None, all papers are included.</span>
+<span class="sd">            type_list (Optional[list[str]]): List of info types to retrieve info for.</span>
+<span class="sd">                                             If None, all types are included.</span>
+<span class="sd">            trial_list (Optional[list[int]]): List of trial numbers to retrieve info for.</span>
+<span class="sd">                                              If None, all trials are included.</span>
+<span class="sd">            verbose (bool): If True, prints messages for missing data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_papers_by_name([&quot;paper1.pdf&quot;])</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_info_to_a_paper(&quot;paper1.pdf&quot;, &quot;summary&quot;, &quot;This is a summary.&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; storage.get_info(paper_list=[&quot;paper1.pdf&quot;], type_list=[&quot;summary&quot;])</span>
+<span class="sd">            ---Paper name: paper1.pdf, Info type: summary, Trial number: 1---</span>
+<span class="sd">            This is a summary.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">paper_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">paper_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">paper_list</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">paper</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Paper &quot;</span><span class="si">{</span><span class="n">paper</span><span class="si">}</span><span class="s1">&quot; not found in the info dictionary.&#39;</span><span class="p">)</span>
+
+            <span class="n">current_types</span> <span class="o">=</span> <span class="n">type_list</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+            <span class="k">for</span> <span class="n">info_type</span> <span class="ow">in</span> <span class="n">current_types</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">info_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No info type &quot;</span><span class="si">{</span><span class="n">info_type</span><span class="si">}</span><span class="s1">&quot; in paper &quot;</span><span class="si">{</span><span class="n">paper</span><span class="si">}</span><span class="s1">&quot;.&#39;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">current_trials</span> <span class="o">=</span> <span class="n">trial_list</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">current_trials</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">trial</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]:</span>
+                        <span class="nb">print</span><span class="p">(</span>
+                            <span class="sa">f</span><span class="s2">&quot;---Paper name: </span><span class="si">{</span><span class="n">paper</span><span class="si">}</span><span class="s2">, Info type: </span><span class="si">{</span><span class="n">info_type</span><span class="si">}</span><span class="s2">, Trial number: &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">trial</span><span class="si">}</span><span class="s2">&quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;---&quot;</span>
+                        <span class="p">)</span>
+                        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">][</span><span class="n">trial</span><span class="p">])</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+                            <span class="nb">print</span><span class="p">(</span>
+                                <span class="sa">f</span><span class="s1">&#39;No trial </span><span class="si">{</span><span class="n">trial</span><span class="si">}</span><span class="s1"> for info type &quot;</span><span class="si">{</span><span class="n">info_type</span><span class="si">}</span><span class="s1">&quot; in paper &quot;</span><span class="si">{</span><span class="n">paper</span><span class="si">}</span><span class="s1">&quot;.&#39;</span>
+                            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Storage.check_info">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.check_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_info</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">paper_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">type_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">trial_list</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the info dictionary contains the specified information.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            paper_list (Optional[list[str]]): List of paper names to check. If None, checks all</span>
+<span class="sd">            papers.</span>
+<span class="sd">            type_list (Optional[list[str]]): List of info types to check. If None, checks all</span>
+<span class="sd">            types.</span>
+<span class="sd">            trial_list (Optional[list[int]]): List of trial numbers to check. If None, checks all</span>
+<span class="sd">            trials.</span>
+<span class="sd">            verbose (bool): If True, returns a detailed results dictionary; if False, returns a</span>
+<span class="sd">            boolean.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Union[bool, dict]: If verbose=True, returns a nested dictionary with results of the</span>
+<span class="sd">            existence check.</span>
+<span class="sd">                               If verbose=False, returns a boolean indicating if all checks passed.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_papers_by_name([&quot;paper1.pdf&quot;])</span>
+<span class="sd">            &gt;&gt;&gt; storage.add_info_to_a_paper(&quot;paper1.pdf&quot;, &quot;summary&quot;, &quot;This is a summary.&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; storage.check_info(paper_list=[&quot;paper1.pdf&quot;], type_list=[&quot;summary&quot;])</span>
+<span class="sd">            True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">results</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">papers_to_check</span> <span class="o">=</span> <span class="n">paper_list</span> <span class="ow">or</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">paper</span> <span class="ow">in</span> <span class="n">papers_to_check</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">paper</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">continue</span>
+
+            <span class="k">if</span> <span class="n">type_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">continue</span>
+
+            <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">info_type</span> <span class="ow">in</span> <span class="n">type_list</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">info_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">]:</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="k">continue</span>
+
+                <span class="k">if</span> <span class="n">trial_list</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">continue</span>
+
+                <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="k">for</span> <span class="n">trial</span> <span class="ow">in</span> <span class="n">trial_list</span><span class="p">:</span>
+                    <span class="n">results</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">][</span><span class="n">trial</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="nb">str</span><span class="p">(</span><span class="n">trial</span><span class="p">)</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">information</span><span class="p">[</span><span class="n">paper</span><span class="p">][</span><span class="n">info_type</span><span class="p">]</span>
+                    <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">results</span>
+
+        <span class="k">for</span> <span class="n">paper</span><span class="p">,</span> <span class="n">paper_data</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">paper_data</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">paper_data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">paper_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">info_type</span><span class="p">,</span> <span class="n">type_data</span> <span class="ow">in</span> <span class="n">paper_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_data</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">type_data</span><span class="p">:</span>
+                        <span class="k">return</span> <span class="kc">False</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">type_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                        <span class="k">for</span> <span class="n">trial</span><span class="p">,</span> <span class="n">trial_result</span> <span class="ow">in</span> <span class="n">type_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                            <span class="k">if</span> <span class="ow">not</span> <span class="n">trial_result</span><span class="p">:</span>
+                                <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Storage.get_latest_trial">
+<a class="viewcode-back" href="../../../target_code/auto_research.utils.stored_info.html#auto_research.utils.stored_info.Storage.get_latest_trial">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_latest_trial</span><span class="p">(</span><span class="n">info_papers</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the latest trial information from a given dictionary of trials.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            info_papers (dict): A dictionary containing trial information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Optional[str]: The value corresponding to the latest trial. Returns None if the</span>
+<span class="sd">            dictionary is empty.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; storage = Storage()</span>
+<span class="sd">            &gt;&gt;&gt; storage.get_latest_trial({&quot;1&quot;: &quot;Trial 1&quot;, &quot;2&quot;: &quot;Trial 2&quot;})</span>
+<span class="sd">            &#39;Trial 2&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">info_papers</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">largest_key</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">info_papers</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">info_papers</span><span class="p">[</span><span class="n">largest_key</span><span class="p">]</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

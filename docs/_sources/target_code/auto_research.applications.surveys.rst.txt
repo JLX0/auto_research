@@ -1,0 +1,7 @@
+auto\_research.applications.surveys module
+==========================================
+
+.. automodule:: auto_research.applications.surveys
+   :members:
+   :undoc-members:
+   :show-inheritance:

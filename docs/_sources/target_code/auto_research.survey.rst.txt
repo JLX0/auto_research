@@ -1,0 +1,17 @@
+auto\_research.survey package
+=============================
+
+.. automodule:: auto_research.survey
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   auto_research.survey.core
+   auto_research.survey.paper_reader
+   auto_research.survey.prompts

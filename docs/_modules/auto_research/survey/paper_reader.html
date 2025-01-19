@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>auto_research.survey.paper_reader &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=38b66d78"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="../../../index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">auto_research.survey.paper_reader</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for auto_research.survey.paper_reader</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">fitz</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PyPDF2</span><span class="w"> </span><span class="kn">import</span> <span class="n">PdfReader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tiktoken</span>
+
+
+<div class="viewcode-block" id="Paper">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Paper</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for reading and extracting information from research articles in PDF format.</span>
+
+<span class="sd">    This class provides functionality to read PDF files using different libraries (PyPDF2 and</span>
+<span class="sd">    PyMuPDF), extract specific sections, and analyze the content of research papers.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        paper_path: Path to the PDF file containing the research paper.</span>
+<span class="sd">        model: Name of the GPT model to use for token counting. Defaults to &#39;gpt-4o-mini&#39;.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        paper_path (str): Path to the PDF file.</span>
+<span class="sd">        whole_paper (list[str]): List containing the text content of each page.</span>
+<span class="sd">        paper_length (int): Total number of tokens in the paper based on the specified model.</span>
+<span class="sd">        model (str): Name of the GPT model used for token counting.</span>
+<span class="sd">        extracted_information (dict[str, str]): Dictionary containing extracted sections of the</span>
+<span class="sd">        paper.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;, model=&quot;gpt-4&quot;)</span>
+<span class="sd">        &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">        &gt;&gt;&gt; paper.calculate_token_length()</span>
+<span class="sd">        &gt;&gt;&gt; print(paper.paper_length)</span>
+<span class="sd">        1234</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        The class supports both PyPDF2 and PyMuPDF (fitz) for PDF processing,</span>
+<span class="sd">        allowing flexibility in PDF parsing approaches.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Class-level constants for section markers</span>
+    <span class="n">_END_MARKERS</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;references&quot;</span><span class="p">,</span> <span class="s2">&quot;acknowledgement&quot;</span><span class="p">,</span> <span class="s2">&quot;bibliography&quot;</span><span class="p">]</span>
+
+<div class="viewcode-block" id="Paper.__init__">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paper_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the Paper instance with the given PDF path and model.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paper_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">paper_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paper_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extracted_information</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;abstract&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;introduction&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;discussion&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;conclusion&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;algorithm&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="Paper.read_pypdf2">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.read_pypdf2">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_pypdf2</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read PDF content using PyPDF2 library.</span>
+
+<span class="sd">        This method extracts text from each page of the PDF using PyPDF2 and stores</span>
+<span class="sd">        it in the whole_paper list.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pypdf2()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pdf_obj</span> <span class="o">=</span> <span class="n">PdfReader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">pdf_obj</span><span class="o">.</span><span class="n">pages</span><span class="p">:</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">extract_text</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Paper.read_pymupdf">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.read_pymupdf">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read_pymupdf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Read PDF content using PyMuPDF library.</span>
+
+<span class="sd">        This method extracts text from each page of the PDF using PyMuPDF (fitz)</span>
+<span class="sd">        and stores it in the whole_paper list.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pdf_document</span> <span class="o">=</span> <span class="n">fitz</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paper_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">page_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pdf_document</span><span class="o">.</span><span class="n">page_count</span><span class="p">):</span>
+            <span class="n">page</span> <span class="o">=</span> <span class="n">pdf_document</span><span class="p">[</span><span class="n">page_num</span><span class="p">]</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">page</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">text</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Paper.first_n_pages">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.first_n_pages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">first_n_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the concatenated text of the first n pages.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            n: Number of pages to include.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Concatenated text of the first n pages.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">            &gt;&gt;&gt; first_three = paper.first_n_pages(3)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="Paper.get_whole_paper">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.get_whole_paper">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_whole_paper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_mode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Print the entire paper content with page markers or return it as a formatted string.</span>
+
+<span class="sd">        This method either prints the content of each page with clear beginning and</span>
+<span class="sd">        ending markers for better visualization or returns the entire content as a</span>
+<span class="sd">        single string in the same format.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            print_mode: If True, print the content. If False, return the content as a formatted</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Optional[str]: If print_mode is False, returns the formatted string. Otherwise,</span>
+<span class="sd">            returns None.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">            &gt;&gt;&gt; paper.get_whole_paper(print_mode=True)  # Prints the content</span>
+<span class="sd">            &gt;&gt;&gt; full_text = paper.get_whole_paper(</span>
+<span class="sd">            ...     print_mode=False</span>
+<span class="sd">            ... )  # Returns the content as a string</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">text</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="p">):</span>
+            <span class="n">page_content</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;-----Page </span><span class="si">{</span><span class="n">idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> beginning marker-----</span><span class="se">\n</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;-----Page </span><span class="si">{</span><span class="n">idx</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> ending marker-----&quot;</span>
+            <span class="p">)</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">page_content</span><span class="p">)</span>
+
+        <span class="n">formatted_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">print_mode</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">formatted_string</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">formatted_string</span></div>
+
+
+<div class="viewcode-block" id="Paper.extract_up_to_first_match_exclude_list">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.extract_up_to_first_match_exclude_list">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_up_to_first_match_exclude_list</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">b_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract content up to the first occurrence of any marker in the exclude list.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            a: List of strings to concatenate and search within.</span>
+<span class="sd">            b_list: List of substrings to search for.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[str]: List of strings from input up to but not including the first</span>
+<span class="sd">            occurrence of any substring in b_list.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; text_list = [&quot;Page 1&quot;, &quot;Page 2&quot;, &quot;References&quot;, &quot;Page 3&quot;]</span>
+<span class="sd">            &gt;&gt;&gt; result = Paper.extract_up_to_first_match_exclude_list(text_list, [&quot;references&quot;])</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">concatenated_a</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+        <span class="n">first_three_pages</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">a</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+        <span class="n">lower_concatenated_a</span> <span class="o">=</span> <span class="n">concatenated_a</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="n">first_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">b_list</span><span class="p">:</span>
+            <span class="n">lower_b</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">lower_concatenated_a</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">lower_b</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span>
+                <span class="n">index</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">first_three_pages</span><span class="p">))</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">first_index</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">first_index</span><span class="p">)</span>
+            <span class="p">):</span>
+                <span class="n">first_index</span> <span class="o">=</span> <span class="n">index</span>
+
+        <span class="k">if</span> <span class="n">first_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extracted_string</span> <span class="o">=</span> <span class="n">concatenated_a</span><span class="p">[:</span><span class="n">first_index</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">extracted_string</span> <span class="o">=</span> <span class="n">concatenated_a</span>
+
+        <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">current_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">extracted_string</span><span class="p">:</span>
+            <span class="n">current_string</span> <span class="o">+=</span> <span class="n">char</span>
+            <span class="k">if</span> <span class="n">current_string</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_string</span><span class="p">)</span>
+                <span class="n">current_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">current_string</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_string</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="Paper.extract_ending_pages">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.extract_ending_pages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_ending_pages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">page_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Extract the specified number of ending pages before references section.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            page_number: Number of pages to extract from the end. Defaults to 3.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Concatenated text of the specified number of ending pages.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">            &gt;&gt;&gt; ending_pages = paper.extract_ending_pages(2)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ending_pages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_up_to_first_match_exclude_list</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_END_MARKERS</span>
+        <span class="p">)</span>
+        <span class="n">ending_pages</span> <span class="o">=</span> <span class="n">ending_pages</span><span class="p">[</span><span class="o">-</span><span class="n">page_number</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ending_pages</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Paper.calculate_token_length">
+<a class="viewcode-back" href="../../../target_code/auto_research.survey.paper_reader.html#auto_research.survey.paper_reader.Paper.calculate_token_length">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">calculate_token_length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the total number of tokens in the paper using the specified model.</span>
+
+<span class="sd">        This method uses the tiktoken library to encode and count tokens according</span>
+<span class="sd">        to the specified model&#39;s tokenization scheme.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            &gt;&gt;&gt; paper = Paper(&quot;example.pdf&quot;)</span>
+<span class="sd">            &gt;&gt;&gt; paper.read_pymupdf()</span>
+<span class="sd">            &gt;&gt;&gt; paper.calculate_token_length()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">encoder</span> <span class="o">=</span> <span class="n">tiktoken</span><span class="o">.</span><span class="n">encoding_for_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">paper_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">whole_paper</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">paper_length</span> <span class="o">+=</span> <span class="n">length</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="../../../privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

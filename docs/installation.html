@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Guide &mdash; auto_research 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=6b78fdcd" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=38b66d78"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=30646c52"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="AutoResearch: A General Framework for Academic Research Automation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+    <div class="navbar">
+        <div class="navbar ml-auto">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="https://yourproject.org/#features" class="header_link">Features</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#examples" class="header_link">Examples</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#installation" class="header_link">Installation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#docs" class="header_link">Documentation</a>
+                </li>
+                <li>
+                    <a href="https://yourproject.org/#community" class="header_link">Community</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+     
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #2980B9" >
+
+          
+          
+          <a href="index.html">
+            
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#quick-guide">Quick Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-installation-guide">Detailed Installation Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-1-check-python-installation">Step 1: Check Python Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2-install-git-if-needed">Step 2: Install Git (if needed)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3-download-the-autoresearch-code">Step 3: Download the <em>AutoResearch</em> Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4-install-the-package-using-pip">Step 4: Install the Package Using pip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5-verify-the-installation">Step 5: Verify the Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-api-keys-for-llms">Setting up API keys for LLMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_examples_gallery/index.html">Examples</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #2980B9" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">auto_research</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <!-- This file is necessary to remove "Edit on Github" button from readthedocs by following https://docs.readthedocs.io/en/stable/guides/remove-edit-buttons.html#remove-links-from-top-right-corner --><div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation Guide</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Link to this heading"></a></h1>
+<p>This guide provides step-by-step instructions for installing the <em>AutoResearch</em> package. Whether you’re a beginner or a professional, you’ll find the information you need here.</p>
+<section id="quick-guide">
+<h2>Quick Guide<a class="headerlink" href="#quick-guide" title="Link to this heading"></a></h2>
+<p>For users who are highly familiar with Git, pip, and the command line, here’s a quick installation guide:</p>
+<p><strong>Requirements</strong>:</p>
+<ul class="simple">
+<li><p>Linux-based OS</p></li>
+<li><p>Python &gt;= 3.10</p></li>
+</ul>
+<p><strong>Installation</strong>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JLX0/auto_research
+<span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>auto_research
+<span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</section>
+<section id="detailed-installation-guide">
+<h2>Detailed Installation Guide<a class="headerlink" href="#detailed-installation-guide" title="Link to this heading"></a></h2>
+<p>If you’re new to Python, Git, or the command line, follow the detailed steps below.</p>
+</section>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p>Before installing, ensure your system meets the following requirements:</p>
+<ul class="simple">
+<li><p><strong>Operating System</strong>: Linux-based (e.g., Ubuntu, Debian, CentOS).</p></li>
+<li><p><strong>Python Version</strong>: Python 3.10 or higher.</p></li>
+</ul>
+<p>If you’re unsure whether Python is installed or which version you have, follow the steps below to check.</p>
+</section>
+<section id="step-1-check-python-installation">
+<h2>Step 1: Check Python Installation<a class="headerlink" href="#step-1-check-python-installation" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Open a Terminal</strong>:
+- On Linux, you can open a terminal by pressing <code class="xref any docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Alt</span> <span class="pre">+</span> <span class="pre">T</span></code> or searching for “Terminal” in your applications menu.</p></li>
+<li><p><strong>Check Python Version</strong>:
+- Type the following command in the terminal and press <code class="xref any docutils literal notranslate"><span class="pre">Enter</span></code>:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>--version
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>If Python is installed, you’ll see something like <code class="xref any docutils literal notranslate"><span class="pre">Python</span> <span class="pre">3.10.12</span></code>. If the version is <strong>3.10 or higher</strong>, you’re good to go.</p></li>
+<li><p>If Python is not installed or the version is too old, follow the official Python installation guide: <a class="reference external" href="https://www.python.org/downloads/">https://www.python.org/downloads/</a>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-2-install-git-if-needed">
+<h2>Step 2: Install Git (if needed)<a class="headerlink" href="#step-2-install-git-if-needed" title="Link to this heading"></a></h2>
+<p>Git is a tool used to download the <em>AutoResearch</em> code from GitHub. If you don’t have Git installed, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Install Git</strong>:
+- On Ubuntu or Debian, run the following command in the terminal:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+</pre></div>
+</div>
+</div></blockquote>
+<ul>
+<li><p>On CentOS, run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>git
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Verify Git Installation</strong>:
+- After installation, check if Git is installed correctly:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>--version
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>You should see something like <code class="xref any docutils literal notranslate"><span class="pre">git</span> <span class="pre">version</span> <span class="pre">2.25.1</span></code>. If not, revisit the installation steps.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-3-download-the-autoresearch-code">
+<h2>Step 3: Download the <em>AutoResearch</em> Code<a class="headerlink" href="#step-3-download-the-autoresearch-code" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Clone the Repository</strong>:
+- Use Git to download the <em>AutoResearch</em> code from GitHub. Run the following command in the terminal:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/JLX0/auto_research
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>This will create a folder named <a class="reference internal" href="target_code/auto_research.html#module-auto_research" title="auto_research"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">auto_research</span></code></a> in your current directory.</p></li>
+</ul>
+</li>
+<li><p><strong>Navigate to the Project Folder</strong>:
+- Move into the <a class="reference internal" href="target_code/auto_research.html#module-auto_research" title="auto_research"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">auto_research</span></code></a> folder by running:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>auto_research
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</section>
+<section id="step-4-install-the-package-using-pip">
+<h2>Step 4: Install the Package Using pip<a class="headerlink" href="#step-4-install-the-package-using-pip" title="Link to this heading"></a></h2>
+<p><code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> is a tool used to install Python packages. If you don’t have <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> installed, follow these steps:</p>
+<ol class="arabic">
+<li><p><strong>Install pip</strong>:
+- Run the following command to install <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-pip
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Install *AutoResearch*</strong>:
+- Once <code class="xref any docutils literal notranslate"><span class="pre">pip</span></code> is installed, run the following command to install <em>AutoResearch</em>:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>This will install the package and all its dependencies.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="step-5-verify-the-installation">
+<h2>Step 5: Verify the Installation<a class="headerlink" href="#step-5-verify-the-installation" title="Link to this heading"></a></h2>
+<p>To confirm that <em>AutoResearch</em> was installed successfully, run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import auto_research; print(auto_research.__version__)&quot;</span>
+</pre></div>
+</div>
+<p>If the installation was successful, this will print the version of <em>AutoResearch</em> (e.g., <code class="xref any docutils literal notranslate"><span class="pre">1.0.0</span></code>).</p>
+</section>
+<section id="setting-up-api-keys-for-llms">
+<span id="setting-up-api-keys"></span><h2>Setting up API keys for LLMs<a class="headerlink" href="#setting-up-api-keys-for-llms" title="Link to this heading"></a></h2>
+<p>The package uses the <a class="reference external" href="https://github.com/JLX0/LLM_utilities/blob/main/LLM_utils/inquiry.py#L60">get_api_key</a> function from <a class="reference external" href="https://github.com/JLX0/LLM_utilities/">LLM_utilities</a> to process the keys for LLMs.</p>
+<p>To set the keys for your Python application, you have two options: using a JSON file or directly
+typing the key into the code. If you choose the JSON file method, create a file named <code class="xref any docutils literal notranslate"><span class="pre">key.json</span></code> in
+the specified directory (e.g., the same folder as your script or a custom path). Inside the file,
+format the content as a JSON object with key-value pairs, like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;OpenAI&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aa-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;DeepSeek&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;aa-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Replace the dummy keys (aa-aaaaaaaa…) with your actual API keys. Ensure the file is valid JSON
+and contains the target key you want to retrieve.</p>
+<p>Alternatively, you can directly type the key into the code by setting the <code class="xref any docutils literal notranslate"><span class="pre">default_key</span></code> parameter
+in the <code class="xref any docutils literal notranslate"><span class="pre">get_api_key</span></code> function, such as <code class="xref any docutils literal notranslate"><span class="pre">default_key=&quot;your_key_here&quot;</span></code>. This method skips the file
+check and uses the provided key directly. Choose the option that best fits your workflow that
+best fits your workflow.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p>If you encounter any issues during installation, here are some common solutions:</p>
+<ol class="arabic">
+<li><p><strong>Permission Errors</strong>:
+- If you see a permission error when running <code class="xref any docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code>, try adding <code class="xref any docutils literal notranslate"><span class="pre">--user</span></code> to the command:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>--user<span class="w"> </span>.
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Python or pip Not Found</strong>:
+- Ensure Python and pip are installed correctly. You can check their versions with:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3<span class="w"> </span>--version
+<span class="gp">$ </span>pip3<span class="w"> </span>--version
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p><strong>Git Not Found</strong>:
+- If the <code class="xref any docutils literal notranslate"><span class="pre">git</span></code> command is not recognized, ensure Git is installed by following <strong>Step 2</strong> above.</p></li>
+<li><p><strong>Still Stuck?</strong>:
+- Visit <a class="reference external" href="https://github.com/JLX0/auto_research/discussions">Discussions</a> for more help or open an issue on the <a class="reference external" href="https://github.com/JLX0/auto_research/issues">GitHub repository</a>.</p></li>
+</ol>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading"></a></h2>
+<p>Now that <em>AutoResearch</em> is installed, you can start using it! Check out the <a class="reference internal" href="_examples_gallery/index.html"><span class="doc">Examples</span></a> to learn how to use the package.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="AutoResearch: A General Framework for Academic Research Automation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright .</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+    <a href="privacy.html">Privacy Policy</a>.
+     
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
