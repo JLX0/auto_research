@@ -34,7 +34,7 @@ time-consuming.
 The function `topic_to_survey` streamlines the entire process by automating several key tasks.
 It suggests multiple related keywords to ensure comprehensive coverage of the topic,
 merges duplicate results to avoid redundancy, automatically names downloaded files
-using the paper titles for easy reference, and automatically rank the paper based their impacts
+using the paper titles for easy reference, and automatically ranks the papers based on their impacts
 (see :mod:`auto_research.search.core.AutoSearch.score_threshold`). Moreover, it leverages LLMs
 to generate summaries of each paper, saving researchers valuable time and effort.
 
@@ -43,7 +43,7 @@ This script demonstrates the usage of the `topic_to_survey` function from the :m
 - Conduct an automated research process based on a user-provided topic.
 - Generate and refine a list of keywords for searching research articles.
 - Retrieve and download articles based on the specified search criteria.
-- Rank, organize and summarize the downloaded articles.
+- Rank, organize, and summarize the downloaded articles.
 - Check the code availability of the summarized articles (optional).
 
 To get started with the package, you need to set up API keys. For detailed instructions, see :ref:`setting_up_api_keys`.
@@ -78,16 +78,16 @@ Below is an example output from the following input:
     Test passed
 
     Suggested keywords for searching articles based on your input:
-    1. generate code with LLMs
+    1. code generation with language models
     2. code generation with large language models
-    3. automated code generation
-    4. large language models for coding
-    5. program synthesis with LLMs
-    6. code synthesis using large language models
-    7. neural network based code generation
-    8. language model based programming
-    9. artificial intelligence in software development
-    10. machine learning for code generation
+    3. code synthesis using language models
+    4. automatic code generation
+    5. program synthesis with large language models
+    6. machine learning for code generation
+    7. deep learning for code generation
+    8. code completion using language models
+    9. program generation with LLMs
+    10. AI-assisted code generation
 
     How would you like to proceed with the suggested keywords?
     1. 'all': Use all the suggested keywords for searching.
@@ -96,23 +96,23 @@ Below is an example output from the following input:
 
     Choose an option ('all', 'select', or 'custom'): 
     Available keywords with their ranks:
-    1. generate code with LLMs
+    1. code generation with language models
     2. code generation with large language models
-    3. automated code generation
-    4. large language models for coding
-    5. program synthesis with LLMs
-    6. code synthesis using large language models
-    7. neural network based code generation
-    8. language model based programming
-    9. artificial intelligence in software development
-    10. machine learning for code generation
+    3. code synthesis using language models
+    4. automatic code generation
+    5. program synthesis with large language models
+    6. machine learning for code generation
+    7. deep learning for code generation
+    8. code completion using language models
+    9. program generation with LLMs
+    10. AI-assisted code generation
 
     Enter the ranks of the keywords you want to use, separated by commas (e.g., 1,3,5): 
-    Using the following keywords: ['generate code with LLMs', 'automated code generation']
+    Using the following keywords: ['code generation with language models', 'code synthesis using language models']
 
-    Final keywords to search: ['generate code with LLMs', 'automated code generation']
-    ------Searching for the 1th keyword 'generate code with LLMs'------
-    Searching papers:   0%|          | 0/5 [00:00<?, ?it/s]    Searching papers:  20%|██        | 1/5 [00:06<00:24,  6.23s/it]    Searching papers:  40%|████      | 2/5 [00:12<00:19,  6.46s/it]    Searching papers:  60%|██████    | 3/5 [00:18<00:12,  6.17s/it]    Searching papers:  80%|████████  | 4/5 [00:23<00:05,  5.48s/it]    Searching papers: 100%|██████████| 5/5 [00:26<00:00,  4.71s/it]    Searching papers: 100%|██████████| 5/5 [00:26<00:00,  5.29s/it]
+    Final keywords to search: ['code generation with language models', 'code synthesis using language models']
+    ------Searching for the 1th keyword 'code generation with language models'------
+    Searching papers:   0%|          | 0/5 [00:00<?, ?it/s]    Searching papers:  20%|██        | 1/5 [00:06<00:25,  6.44s/it]    Searching papers:  40%|████      | 2/5 [00:09<00:13,  4.64s/it]    Searching papers:  60%|██████    | 3/5 [00:15<00:10,  5.06s/it]    Searching papers:  80%|████████  | 4/5 [00:19<00:04,  4.52s/it]    Searching papers: 100%|██████████| 5/5 [00:24<00:00,  4.72s/it]    Searching papers: 100%|██████████| 5/5 [00:24<00:00,  4.83s/it]
 
 
     Paper 1:
@@ -145,10 +145,10 @@ Below is an example output from the following input:
     open-sourced our tools, enhanced datasets as well as all LLM-generated code at
     https://github.com/evalplus/evalplus to facilitate and accelerate future
     LLM-for-code research.
-    Combined Score: 61.25312492028468
-    Citation count: 693
-    Year of publication: 2024
-    Publication venue: Neural Information Processing Systems
+    Combined Score: 16.636241089982548
+    Citation count: 778
+    Year of publication: 2023
+    Publication venue: Advances in Neural …
     Authors: J Liu, CS Xia, Y Wang, L Zhang
 
 
@@ -159,326 +159,343 @@ Below is an example output from the following input:
 
 
     Paper 2:
-    Title: Codeplan: Repository-level coding using llms and planning
+    Title: Self-planning code generation with large language models
     Abstract:
 
-    Large Language Models (LLMs) demonstrate strong abilities in common-sense
-    reasoning and interactive decision-making, but often struggle with complex,
-    long-horizon planning tasks. Recent techniques have sought to structure LLM
-    outputs using control flow and other code-adjacent techniques to improve
-    planning performance. These techniques include using variables (to track
-    important information) and functions (to divide complex tasks into smaller
-    re-usable sub-tasks). However, purely code-based approaches can be error-prone
-    and insufficient for handling ambiguous or unstructured data. To address these
-    challenges, we propose REPL-Plan, an LLM planning approach that is fully
-    code-expressive (it can utilize all the benefits of code) while also being
-    dynamic (it can flexibly adapt from errors and use the LLM for fuzzy
-    situations). In REPL-Plan, an LLM solves tasks by interacting with a
-    Read-Eval-Print Loop (REPL), which iteratively executes and evaluates code,
-    similar to language shells or interactive code notebooks, allowing the model to
-    flexibly correct errors and handle tasks dynamically. We demonstrate that
-    REPL-Plan achieves strong results across various planning domains compared to
-    previous methods.
-    Combined Score: 5.480077554195743
-    Citation count: 62
+    Large language models have demonstrated the ability to generate both natural
+    language and programming language text. Such models open up the possibility of
+    multi-language code generation: could code generation models generalize
+    knowledge from one language to another? Although contemporary code generation
+    models can generate semantically correct Python code, little is known about
+    their abilities with other languages. We propose MultiPL-E, a system for
+    translating unit test-driven code generation benchmarks to new languages. We
+    create the first massively multilingual code generation benchmark by using
+    MultiPL-E to translate two popular Python code generation benchmarks to 18
+    additional programming languages.
+      We use MultiPL-E to extend the HumanEval benchmark and MBPP benchmark to 18
+    languages that encompass a range of programming paradigms and popularity. Using
+    these new parallel benchmarks, we evaluate the multi-language performance of
+    three state-of-the-art code generation models: Codex, CodeGen, and InCoder. We
+    find that Codex matches or even exceeds its performance on Python for several
+    other languages. The range of programming languages represented in MultiPL-E
+    allow us to explore the impact of language frequency and language features on
+    model performance. Finally, the MultiPL-E approach of compiling code generation
+    benchmarks to new programming languages is both scalable and extensible, making
+    it straightforward to evaluate new models, benchmarks, and languages.
+    Combined Score: 11.932426932522988
+    Citation count: 135
     Year of publication: 2024
-    Publication venue: Proc. ACM Softw. Eng.
-    Authors: R Bairi, A Sonwane, A Kanade, A Iyer
+    Publication venue: ACM Transactions on …
+    Authors: X Jiang, Y Dong, L Wang, Z Fang, Q Shang
 
 
-    Link: https://dl.acm.org/doi/pdf/10.1145/3643757
-    ArXiv Link: http://arxiv.org/pdf/2411.13826v1
-    Downloading Codeplan Repository-level coding using llms and planning.pdf... with upper time limit: 10 seconds
-    Downloaded: Codeplan Repository-level coding using llms and planning.pdf.
+    Link: https://dl.acm.org/doi/full/10.1145/3672456
+    ArXiv Link: http://arxiv.org/pdf/2208.08227v4
+    Downloading Self-planning code generation with large language models.pdf... with upper time limit: 10 seconds
+    Downloaded: Self-planning code generation with large language models.pdf.
+    /home/j/experiments/auto_research/auto_research/search/files_management.py:55: UserWarning: Error opening PDF: Failed to open file 'papers/Self-planning code generation with large language models.pdf'.
+      warnings.warn(f"Error opening PDF: {e}", UserWarning)
+    The downloaded PDF file 'Self-planning code generation with large language models.pdf' is corrupted.
+    File removed: Self-planning code generation with large language models.pdf
+    Trying to download from ArXiv link: http://arxiv.org/pdf/2208.08227v4
+    Downloading Self-planning code generation with large language models.pdf... with upper time limit: 10 seconds
+    Downloaded: Self-planning code generation with large language models.pdf.
 
 
     Paper 3:
-    Title: Llms for science: Usage for code generation and data analysis
+    Title: A survey on large language models for code generation
     Abstract:
 
-    Large Language Models (LLMs) have shown great potential in code generation.
-    However, current LLMs still cannot reliably generate correct code. Moreover, it
-    is unclear what kinds of code generation errors LLMs can make. To address this,
-    we conducted an empirical study to analyze incorrect code snippets generated by
-    six popular LLMs on the HumanEval dataset. We analyzed these errors alongside
-    two dimensions of error characteristics -- semantic characteristics and
-    syntactic characteristics -- to derive a comprehensive code generation error
-    taxonomy for LLMs through open coding and thematic analysis. We then labeled
-    all 557 incorrect code snippets based on this taxonomy. Our results showed that
-    the six LLMs exhibited similar distributions of syntactic characteristics while
-    different distributions of semantic characteristics. Furthermore, we analyzed
-    the correlation between different error characteristics and factors such as
-    task complexity, code length, and test-pass rate. Finally, we highlight the
-    challenges that LLMs may encounter when generating code and propose
-    implications for future research on reliable code generation with LLMs.
-    Combined Score: 0.8553337321327789
-    Citation count: 40
-    Year of publication: 2023
-    Publication venue: Journal of Software: Evolution and Process
-    Authors: M Nejjar, L Zacharias, F Stiehle
+    Large Language Models (LLMs) have garnered remarkable advancements across
+    diverse code-related tasks, known as Code LLMs, particularly in code generation
+    that generates source code with LLM from natural language descriptions. This
+    burgeoning field has captured significant interest from both academic
+    researchers and industry professionals due to its practical significance in
+    software development, e.g., GitHub Copilot. Despite the active exploration of
+    LLMs for a variety of code tasks, either from the perspective of natural
+    language processing (NLP) or software engineering (SE) or both, there is a
+    noticeable absence of a comprehensive and up-to-date literature review
+    dedicated to LLM for code generation. In this survey, we aim to bridge this gap
+    by providing a systematic literature review that serves as a valuable reference
+    for researchers investigating the cutting-edge progress in LLMs for code
+    generation. We introduce a taxonomy to categorize and discuss the recent
+    developments in LLMs for code generation, covering aspects such as data
+    curation, latest advances, performance evaluation, ethical implications,
+    environmental impact, and real-world applications. In addition, we present a
+    historical overview of the evolution of LLMs for code generation and offer an
+    empirical comparison using the HumanEval, MBPP, and BigCodeBench benchmarks
+    across various levels of difficulty and types of programming tasks to highlight
+    the progressive enhancements in LLM capabilities for code generation. We
+    identify critical challenges and promising opportunities regarding the gap
+    between academia and practical development. Furthermore, we have established a
+    dedicated resource GitHub page (https://github.com/juyongjiang/CodeLLMSurvey)
+    to continuously document and disseminate the most recent advances in the field.
+    Combined Score: 10.16465997955662
+    Citation count: 115
+    Year of publication: 2024
+    Publication venue: arXiv preprint arXiv:2406.00515
+    Authors: J Jiang, F Wang, J Shen, S Kim, S Kim
 
 
-    Link: https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723
-    ArXiv Link: http://arxiv.org/pdf/2406.08731v2
-    Downloading Llms for science Usage for code generation and data analysis.pdf... with upper time limit: 10 seconds
-    Failed to download Llms for science Usage for code generation and data analysis.pdf from https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723: 403 Client Error: Forbidden for url: https://onlinelibrary.wiley.com/doi/full/10.1002/smr.2723
-    Trying to download from ArXiv link: http://arxiv.org/pdf/2406.08731v2
-    Downloading Llms for science Usage for code generation and data analysis.pdf... with upper time limit: 10 seconds
-    Downloaded: Llms for science Usage for code generation and data analysis.pdf.
+    Link: https://arxiv.org/pdf/2406.00515
+    ArXiv Link: http://arxiv.org/pdf/2406.00515v2
+    Downloading A survey on large language models for code generation.pdf... with upper time limit: 10 seconds
+    Downloaded: A survey on large language models for code generation.pdf.
 
 
     Paper 4:
-    Title: Generate and pray: Using sallms to evaluate the security of llm generated code
+    Title: Planning with large language models for code generation
     Abstract:
 
-    With the growing popularity of Large Language Models (LLMs) in software
-    engineers' daily practices, it is important to ensure that the code generated
-    by these tools is not only functionally correct but also free of
-    vulnerabilities. Although LLMs can help developers to be more productive, prior
-    empirical studies have shown that LLMs can generate insecure code. There are
-    two contributing factors to the insecure code generation. First, existing
-    datasets used to evaluate LLMs do not adequately represent genuine software
-    engineering tasks sensitive to security. Instead, they are often based on
-    competitive programming challenges or classroom-type coding tasks. In
-    real-world applications, the code produced is integrated into larger codebases,
-    introducing potential security risks. Second, existing evaluation metrics
-    primarily focus on the functional correctness of the generated code while
-    ignoring security considerations. Therefore, in this paper, we described SALLM,
-    a framework to benchmark LLMs' abilities to generate secure code
-    systematically. This framework has three major components: a novel dataset of
-    security-centric Python prompts, configurable assessment techniques to evaluate
-    the generated code, and novel metrics to evaluate the models' performance from
-    the perspective of secure code generation.
-    Combined Score: 0.49181689597634787
-    Citation count: 23
+    Developing domain models is one of the few remaining places that require
+    manual human labor in AI planning. Thus, in order to make planning more
+    accessible, it is desirable to automate the process of domain model generation.
+    To this end, we investigate if large language models (LLMs) can be used to
+    generate planning domain models from simple textual descriptions. Specifically,
+    we introduce a framework for automated evaluation of LLM-generated domains by
+    comparing the sets of plans for domain instances. Finally, we perform an
+    empirical analysis of 7 large language models, including coding and chat models
+    across 9 different planning domains, and under three classes of natural
+    language domain descriptions. Our results indicate that LLMs, particularly
+    those with high parameter counts, exhibit a moderate level of proficiency in
+    generating correct planning domains from natural language descriptions. Our
+    code is available at https://github.com/IBM/NL2PDDL.
+    Combined Score: 3.2930348687111985
+    Citation count: 154
     Year of publication: 2023
-    Publication venue: arXiv preprint arXiv:2311.00889
-    Authors: ML Siddiq, JCS Santos
+    Publication venue: arXiv preprint arXiv …
+    Authors: S Zhang, Z Chen, Y Shen, M Ding
 
 
-    Link: https://lsiddiqsunny.github.io/public/2311.00889.pdf
-    ArXiv Link: http://arxiv.org/pdf/2311.00889v3
-    Downloading Generate and pray Using sallms to evaluate the security of llm generated code.pdf... with upper time limit: 10 seconds
-    Downloaded: Generate and pray Using sallms to evaluate the security of llm generated code.pdf.
+    Link: https://arxiv.org/pdf/2303.05510
+    ArXiv Link: http://arxiv.org/pdf/2405.06650v1
+    Downloading Planning with large language models for code generation.pdf... with upper time limit: 10 seconds
+    Downloaded: Planning with large language models for code generation.pdf.
 
 
     Paper 5:
-    Title: A Review on Code Generation with LLMs: Application and Evaluation
+    Title: A survey on evaluating large language models in code generation tasks
     Abstract:
 
-    Code review is a standard practice for ensuring the quality of software
-    projects, and recent research has focused extensively on automated code review.
-    While significant advancements have been made in generating code reviews, the
-    automated assessment of these reviews remains less explored, with existing
-    approaches and metrics often proving inaccurate. Current metrics, such as BLEU,
-    primarily rely on lexical similarity between generated and reference reviews.
-    However, such metrics tend to underestimate reviews that articulate the
-    expected issues in ways different from the references. In this paper, we
-    explore how semantic similarity between generated and reference reviews can
-    enhance the automated assessment of code reviews. We first present a benchmark
-    called \textit{GradedReviews}, which is constructed by collecting real-world
-    code reviews from open-source projects, generating reviews using
-    state-of-the-art approaches, and manually assessing their quality. We then
-    evaluate existing metrics for code review assessment using this benchmark,
-    revealing their limitations. To address these limitations, we propose two novel
-    semantic-based approaches for assessing code reviews. The first approach
-    involves converting both the generated review and its reference into digital
-    vectors using a deep learning model and then measuring their semantic
-    similarity through Cosine similarity. The second approach generates a prompt
-    based on the generated review and its reference, submits this prompt to
-    ChatGPT, and requests ChatGPT to rate the generated review according to
-    explicitly defined criteria. Our evaluation on the \textit{GradedReviews}
-    benchmark indicates that the proposed semantic-based approaches significantly
-    outperform existing state-of-the-art metrics in assessing generated code
-    review, improving the correlation coefficient between the resulting scores and
-    human scores from 0.22 to 0.47.
-    Combined Score: 0.4704335526730284
-    Citation count: 22
-    Year of publication: 2023
-    Publication venue: 2023 IEEE International Conference on Medical Artificial Intelligence (MedAI)
-    Authors: J Wang, Y Chen
+    This paper provides a comprehensive review of the current methods and metrics
+    used to evaluate the performance of Large Language Models (LLMs) in code
+    generation tasks. With the rapid growth in demand for automated software
+    development, LLMs have demonstrated significant potential in the field of code
+    generation. The paper begins by reviewing the historical development of LLMs
+    and their applications in code generation. Next, it details various methods and
+    metrics for assessing the code generation capabilities of LLMs, including code
+    correctness, efficiency, readability, and evaluation methods based on expert
+    review and user experience. The paper also evaluates the widely used benchmark
+    datasets, identifying their limitations and proposing directions for future
+    improvements. Specifically, the paper analyzes the performance of code
+    generation models across different tasks by combining multiple evaluation
+    metrics, such as code compilation/interpretation success rates, unit test pass
+    rates, and performance and efficiency metrics, to comprehensively assess the
+    practical application of LLMs in code generation. Finally, the paper discusses
+    the challenges faced in evaluating LLMs in code generation, particularly how to
+    ensure the comprehensiveness and accuracy of evaluation methods and how to
+    adapt to the evolving practices of software development. These analyses and
+    discussions provide valuable insights for further optimizing and improving the
+    application of LLMs in code generation tasks.
+    Combined Score: 0.795495128834866
+    Citation count: 9
+    Year of publication: 2024
+    Publication venue: arXiv.org
+    Authors: L Chen, Q Guo, H Jia, Z Zeng, X Wang, Y Xu
 
 
-    Link: https://ieeexplore.ieee.org/abstract/document/10403378/
-    ArXiv Link: http://arxiv.org/pdf/2501.05176v1
-    Downloading A Review on Code Generation with LLMs Application and Evaluation.pdf... with upper time limit: 10 seconds
-    Failed to download A Review on Code Generation with LLMs Application and Evaluation.pdf from https://ieeexplore.ieee.org/abstract/document/10403378/: 418 Client Error: Unknown Code for url: https://ieeexplore.ieee.org/abstract/document/10403378/
-    Trying to download from ArXiv link: http://arxiv.org/pdf/2501.05176v1
-    Downloading A Review on Code Generation with LLMs Application and Evaluation.pdf... with upper time limit: 10 seconds
-    Downloaded: A Review on Code Generation with LLMs Application and Evaluation.pdf.
+    Link: https://arxiv.org/pdf/2408.16498
+    ArXiv Link: http://arxiv.org/pdf/2408.16498v1
+    Downloading A survey on evaluating large language models in code generation tasks.pdf... with upper time limit: 10 seconds
+    Downloaded: A survey on evaluating large language models in code generation tasks.pdf.
 
     The above displays all paper with a combined score no less than 0
     Metadata saved to papers/metadata.json
 
     Folder saved to papers.zip
-    ------Searching for the 2th keyword 'automated code generation'------
-    Searching papers:   0%|          | 0/5 [00:00<?, ?it/s]    Searching papers:  20%|██        | 1/5 [00:04<00:19,  4.80s/it]    Searching papers:  40%|████      | 2/5 [00:13<00:21,  7.31s/it]    Searching papers:  60%|██████    | 3/5 [00:17<00:11,  5.70s/it]    Searching papers:  80%|████████  | 4/5 [00:22<00:05,  5.28s/it]    Searching papers: 100%|██████████| 5/5 [00:26<00:00,  4.98s/it]    Searching papers: 100%|██████████| 5/5 [00:26<00:00,  5.35s/it]
+    ------Searching for the 2th keyword 'code synthesis using language models'------
+    Searching papers:   0%|          | 0/5 [00:00<?, ?it/s]    Searching papers:  20%|██        | 1/5 [00:23<01:34, 23.58s/it]    Searching papers:  40%|████      | 2/5 [00:27<00:36, 12.25s/it]    Searching papers:  60%|██████    | 3/5 [00:30<00:15,  7.95s/it]    Searching papers:  80%|████████  | 4/5 [00:37<00:07,  7.58s/it]    Searching papers: 100%|██████████| 5/5 [00:41<00:00,  6.26s/it]    Searching papers: 100%|██████████| 5/5 [00:41<00:00,  8.34s/it]
 
 
     Paper 1:
-    Title: Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation
+    Title: Is your code generated by chatgpt really correct? rigorous evaluation of large language models for code generation
     Abstract:
 
-    This paper presents a comprehensive evaluation of the code generation
-    capabilities of ChatGPT, a prominent large language model, compared to human
-    programmers. A novel dataset of 131 code-generation prompts across 5 categories
-    was curated to enable robust analysis. Code solutions were generated by both
-    ChatGPT and humans for all prompts, resulting in 262 code samples. A meticulous
-    manual assessment methodology prioritized evaluating correctness,
-    comprehensibility, and security using 14 established code quality metrics. The
-    key findings reveal ChatGPT's strengths in crafting concise, efficient code
-    with advanced constructs, showcasing strengths in data analysis tasks (93.1%
-    accuracy) but limitations in visual-graphical challenges. Comparative analysis
-    with human code highlights ChatGPT's inclination towards modular design and
-    superior error handling. Additionally, machine learning models effectively
-    distinguished ChatGPT from human code with up to 88% accuracy, suggesting
-    detectable coding style disparities. By providing profound insights into
-    ChatGPT's code generation capabilities and limitations through quantitative
-    metrics and qualitative analysis, this study makes valuable contributions
-    toward advancing AI-based programming assistants. The curated dataset and
-    methodology offer a robust foundation for future research in this nascent
-    domain. All data and codes are available on
-    https://github.com/DSAatUSU/ChatGPT-promises-and-pitfalls.
-    Combined Score: 0.17106674642655578
-    Citation count: 8
+    Program synthesis has been long studied with recent approaches focused on
+    directly using the power of Large Language Models (LLMs) to generate code.
+    Programming benchmarks, with curated synthesis problems and test-cases, are
+    used to measure the performance of various LLMs on code synthesis. However,
+    these test-cases can be limited in both quantity and quality for fully
+    assessing the functional correctness of the generated code. Such limitation in
+    the existing benchmarks begs the following question: In the era of LLMs, is the
+    code generated really correct? To answer this, we propose EvalPlus -- a code
+    synthesis evaluation framework to rigorously benchmark the functional
+    correctness of LLM-synthesized code. EvalPlus augments a given evaluation
+    dataset with large amounts of test-cases newly produced by an automatic test
+    input generator, powered by both LLM- and mutation-based strategies. While
+    EvalPlus is general, we extend the test-cases of the popular HumanEval
+    benchmark by 80x to build HumanEval+. Our extensive evaluation across 26
+    popular LLMs (e.g., GPT-4 and ChatGPT) demonstrates that HumanEval+ is able to
+    catch significant amounts of previously undetected wrong code synthesized by
+    LLMs, reducing the pass@k by up-to 19.3-28.9%. We also surprisingly found that
+    test insufficiency can lead to mis-ranking. For example, both
+    WizardCoder-CodeLlama and Phind-CodeLlama now outperform ChatGPT on HumanEval+,
+    while none of them could on HumanEval. Our work not only indicates that prior
+    popular code synthesis evaluation results do not accurately reflect the true
+    performance of LLMs for code synthesis, but also opens up a new direction to
+    improve such programming benchmarks through automated testing. We have
+    open-sourced our tools, enhanced datasets as well as all LLM-generated code at
+    https://github.com/evalplus/evalplus to facilitate and accelerate future
+    LLM-for-code research.
+    Combined Score: 16.636241089982548
+    Citation count: 778
     Year of publication: 2023
-    Publication venue: arXiv.org
-    Authors: MFA Khan, M Ramsdell, E Falor, H Karimi
+    Publication venue: Advances in Neural …
+    Authors: J Liu, CS Xia, Y Wang, L Zhang
 
 
-    Link: https://arxiv.org/pdf/2311.02640
-    ArXiv Link: http://arxiv.org/pdf/2311.02640v1
-    Downloading Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf... with upper time limit: 10 seconds
-    Downloaded: Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf.
+    Link: https://proceedings.neurips.cc/paper_files/paper/2023/file/43e9d647ccd3e4b7b5baab53f0368686-Paper-Conference.pdf
+    ArXiv Link: http://arxiv.org/pdf/2305.01210v3
+    Downloading Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf... with upper time limit: 10 seconds
+    Downloaded: Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf.
 
 
     Paper 2:
-    Title: Auto-icon: An automated code generation tool for icon designs assisting in ui development
+    Title: A systematic evaluation of large language models of code
     Abstract:
 
-    Approximately 50% of development resources are devoted to UI development
-    tasks [9]. Occupying a large proportion of development resources, developing
-    icons can be a time-consuming task, because developers need to consider not
-    only effective implementation methods but also easy-to-understand descriptions.
-    In this paper, we present Auto-Icon+, an approach for automatically generating
-    readable and efficient code for icons from design artifacts. According to our
-    interviews to understand the gap between designers (icons are assembled from
-    multiple components) and developers (icons as single images), we apply a
-    heuristic clustering algorithm to compose the components into an icon image. We
-    then propose an approach based on a deep learning model and computer vision
-    methods to convert the composed icon image to fonts with descriptive labels,
-    thereby reducing the laborious manual effort for developers and facilitating UI
-    development. We quantitatively evaluate the quality of our method in the real
-    world UI development environment and demonstrate that our method offers
-    developers accurate, efficient, readable, and usable code for icon designs, in
-    terms of saving 65.2% implementing time.
-    Combined Score: 0.1073312629199899
-    Citation count: 30
-    Year of publication: 2021
-    Publication venue: International Conference on Intelligent User Interfaces
-    Authors: S Feng, S Ma, J Yu, C Chen, T Zhou
+    Language models (LMs) have exhibited impressive abilities in generating codes
+    from natural language requirements. In this work, we highlight the diversity of
+    code generated by LMs as a critical criterion for evaluating their code
+    generation capabilities, in addition to functional correctness. Despite its
+    practical implications, there is a lack of studies focused on assessing the
+    diversity of generated code, which overlooks its importance in the development
+    of code LMs. We propose a systematic approach to evaluate the diversity of
+    generated code, utilizing various metrics for inter-code similarity as well as
+    functional correctness. Specifically, we introduce a pairwise code similarity
+    measure that leverages large LMs' capabilities in code understanding and
+    reasoning, demonstrating the highest correlation with human judgment. We
+    extensively investigate the impact of various factors on the quality of
+    generated code, including model sizes, temperatures, training approaches,
+    prompting strategies, and the difficulty of input problems. Our consistent
+    observation of a positive correlation between the test pass score and the
+    inter-code similarity score indicates that current LMs tend to produce
+    functionally correct code with limited diversity.
+    Combined Score: 5.3984375
+    Citation count: 691
+    Year of publication: 2022
+    Publication venue: Proceedings of the 6th ACM …
+    Authors: FF Xu, U Alon, G Neubig, VJ Hellendoorn
 
 
-    Link: https://chunyang-chen.github.io/publication/icon_IUI21.pdf
-    ArXiv Link: http://arxiv.org/pdf/2204.08676v1
-    Downloading Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf... with upper time limit: 10 seconds
-    Downloaded: Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf.
+    Link: https://dl.acm.org/doi/pdf/10.1145/3520312.3534862
+    ArXiv Link: http://arxiv.org/pdf/2408.14504v1
+    Downloading A systematic evaluation of large language models of code.pdf... with upper time limit: 10 seconds
+    Downloaded: A systematic evaluation of large language models of code.pdf.
 
 
     Paper 3:
-    Title: A parallel corpus of python functions and documentation strings for automated code documentation and code generation
+    Title: Program synthesis with large language models
     Abstract:
 
-    Automated documentation of programming source code and automated code
-    generation from natural language are challenging tasks of both practical and
-    scientific interest. Progress in these areas has been limited by the low
-    availability of parallel corpora of code and natural language descriptions,
-    which tend to be small and constrained to specific domains.
-      In this work we introduce a large and diverse parallel corpus of a hundred
-    thousands Python functions with their documentation strings ("docstrings")
-    generated by scraping open source repositories on GitHub. We describe baseline
-    results for the code documentation and code generation tasks obtained by neural
-    machine translation. We also experiment with data augmentation techniques to
-    further increase the amount of training data.
-      We release our datasets and processing scripts in order to stimulate research
-    in these areas.
-    Combined Score: 0.09190672153635117
-    Citation count: 201
-    Year of publication: 2017
-    Publication venue: International Joint Conference on Natural Language Processing
-    Authors: AVM Barone, R Sennrich
+    GitHub Copilot, an extension for the Visual Studio Code development
+    environment powered by the large-scale language model Codex, makes automatic
+    program synthesis available for software developers. This model has been
+    extensively studied in the field of deep learning, however, a comparison to
+    genetic programming, which is also known for its performance in automatic
+    program synthesis, has not yet been carried out. In this paper, we evaluate
+    GitHub Copilot on standard program synthesis benchmark problems and compare the
+    achieved results with those from the genetic programming literature. In
+    addition, we discuss the performance of both approaches. We find that the
+    performance of the two approaches on the benchmark problems is quite similar,
+    however, in comparison to GitHub Copilot, the program synthesis approaches
+    based on genetic programming are not yet mature enough to support programmers
+    in practical software development. Genetic programming usually needs a huge
+    amount of expensive hand-labeled training cases and takes too much time to
+    generate solutions. Furthermore, source code generated by genetic programming
+    approaches is often bloated and difficult to understand. For future work on
+    program synthesis with genetic programming, we suggest researchers to focus on
+    improving the execution time, readability, and usability.
+    Combined Score: 5.219877086675509
+    Citation count: 1459
+    Year of publication: 2021
+    Publication venue: arXiv.org
+    Authors: J Austin, A Odena, M Nye, M Bosma
 
 
-    Link: https://arxiv.org/pdf/1707.02275
-    ArXiv Link: http://arxiv.org/pdf/1707.02275v1
-    Downloading A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf... with upper time limit: 10 seconds
-    Downloaded: A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf.
+    Link: https://arxiv.org/pdf/2108.07732
+    ArXiv Link: http://arxiv.org/pdf/2111.07875v1
+    Downloading Program synthesis with large language models.pdf... with upper time limit: 10 seconds
+    Downloaded: Program synthesis with large language models.pdf.
 
 
     Paper 4:
-    Title: Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques.
+    Title: Jigsaw: Large language models meet program synthesis
     Abstract:
 
-    Recent progress on deep learning has made it possible to automatically
-    transform the screenshot of Graphic User Interface (GUI) into code by using the
-    encoder-decoder framework. While the commonly adopted image encoder (e.g., CNN
-    network), might be capable of extracting image features to the desired level,
-    interpreting these abstract image features into hundreds of tokens of code puts
-    a particular challenge on the decoding power of the RNN-based code generator.
-    Considering the code used for describing GUI is usually hierarchically
-    structured, we propose a new attention-based hierarchical code generation
-    model, which can describe GUI images in a finer level of details, while also
-    being able to generate hierarchically structured code in consistency with the
-    hierarchical layout of the graphic elements in the GUI. Our model follows the
-    encoder-decoder framework, all the components of which can be trained jointly
-    in an end-to-end manner. The experimental results show that our method
-    outperforms other current state-of-the-art methods on both a publicly available
-    GUI-code dataset as well as a dataset established by our own.
-    Combined Score: 0.03591072925376573
-    Citation count: 19
-    Year of publication: 2020
-    Publication venue: Journal of universal computer science (Online)
-    Authors: D de Souza Baulé
+    Large pre-trained language models such as GPT-3, Codex, and Google's language
+    model are now capable of generating code from natural language specifications
+    of programmer intent. We view these developments with a mixture of optimism and
+    caution. On the optimistic side, such large language models have the potential
+    to improve productivity by providing an automated AI pair programmer for every
+    programmer in the world. On the cautionary side, since these large language
+    models do not understand program semantics, they offer no guarantees about
+    quality of the suggested code. In this paper, we present an approach to augment
+    these large language models with post-processing steps based on program
+    analysis and synthesis techniques, that understand the syntax and semantics of
+    programs. Further, we show that such techniques can make use of user feedback
+    and improve with usage. We present our experiences from building and evaluating
+    such a tool jigsaw, targeted at synthesizing code for using Python Pandas API
+    using multi-modal inputs. Our experience suggests that as these large language
+    models evolve for synthesizing code from intent, jigsaw has an important role
+    to play in improving the accuracy of the systems.
+    Combined Score: 1.7890625
+    Citation count: 229
+    Year of publication: 2022
+    Publication venue: International Conference on Software Engineering
+    Authors: N Jain, S Vaidyanath, A Iyer, N Natarajan
 
 
-    Link: https://pdfs.semanticscholar.org/1d21/d4b398a19fbe94fb6881cf437571871a792e.pdf
-    ArXiv Link: http://arxiv.org/pdf/1810.11536v1
-    Downloading Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf... with upper time limit: 10 seconds
-    Downloaded: Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf.
+    Link: https://arxiv.org/pdf/2112.02969
+    ArXiv Link: http://arxiv.org/pdf/2112.02969v1
+    Downloading Jigsaw Large language models meet program synthesis.pdf... with upper time limit: 10 seconds
+    Downloaded: Jigsaw Large language models meet program synthesis.pdf.
 
 
     Paper 5:
-    Title: Automated code generation for discontinuous Galerkin methods
+    Title: A hazard analysis framework for code synthesis large language models
     Abstract:
 
-    A compiler approach for generating low-level computer code from high-level
-    input for discontinuous Galerkin finite element forms is presented. The input
-    language mirrors conventional mathematical notation, and the compiler generates
-    efficient code in a standard programming language. This facilitates the rapid
-    generation of efficient code for general equations in varying spatial
-    dimensions. Key concepts underlying the compiler approach and the automated
-    generation of computer code are elaborated. The approach is demonstrated for a
-    range of common problems, including the Poisson, biharmonic,
-    advection--diffusion and Stokes equations.
-    Combined Score: 0.0035543588444160337
-    Citation count: 72
-    Year of publication: 2009
-    Publication venue: SIAM Journal on Scientific Computing
-    Authors: KB Ølgaard, A Logg, GN Wells
+    Codex, a large language model (LLM) trained on a variety of codebases,
+    exceeds the previous state of the art in its capacity to synthesize and
+    generate code. Although Codex provides a plethora of benefits, models that may
+    generate code on such scale have significant limitations, alignment problems,
+    the potential to be misused, and the possibility to increase the rate of
+    progress in technical fields that may themselves have destabilizing impacts or
+    have misuse potential. Yet such safety impacts are not yet known or remain to
+    be explored. In this paper, we outline a hazard analysis framework constructed
+    at OpenAI to uncover hazards or safety risks that the deployment of models like
+    Codex may impose technically, socially, politically, and economically. The
+    analysis is informed by a novel evaluation framework that determines the
+    capacity of advanced code generation techniques against the complexity and
+    expressivity of specification prompts, and their capability to understand and
+    execute them relative to human ability.
+    Combined Score: 0.2109375
+    Citation count: 27
+    Year of publication: 2022
+    Publication venue: arXiv.org
+    Authors: H Khlaaf, P Mishkin, J Achiam, G Krueger
 
 
-    Link: https://arxiv.org/pdf/1104.0628
-    ArXiv Link: http://arxiv.org/pdf/1104.0628v1
-    Downloading Automated code generation for discontinuous Galerkin methods.pdf... with upper time limit: 10 seconds
-    Downloaded: Automated code generation for discontinuous Galerkin methods.pdf.
+    Link: https://arxiv.org/pdf/2207.14157
+    ArXiv Link: http://arxiv.org/pdf/2207.14157v1
+    Downloading A hazard analysis framework for code synthesis large language models.pdf... with upper time limit: 10 seconds
+    Downloaded: A hazard analysis framework for code synthesis large language models.pdf.
 
     The above displays all paper with a combined score no less than 0
     Metadata saved to papers/metadata.json
 
     Folder saved to papers.zip
-    Files organized in papers/papers_organized
-    Target folder saved to papers/papers_organized.zip
-    The entire source folder saved to papers.zip
 
     How would you like to summarize the papers?
     1. 'all': Summarize all papers in the organized folder.
@@ -486,22 +503,21 @@ Below is an example output from the following input:
 
     Choose an option ('all' or 'select'): 
     Available papers with their ranks:
-    1. 01_61.3_Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf
-    2. 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
-    3. 03_0.855_Llms for science Usage for code generation and data analysis.pdf
-    4. 04_0.492_Generate and pray Using sallms to evaluate the security of llm generated code.pdf
-    5. 05_0.47_A Review on Code Generation with LLMs Application and Evaluation.pdf
-    6. 06_0.171_Assessing the Promise and Pitfalls of ChatGPT for Automated Code Generation.pdf
-    7. 07_0.107_Auto-icon An automated code generation tool for icon designs assisting in ui development.pdf
-    8. 08_0.0919_A parallel corpus of python functions and documentation strings for automated code documentation and code generation.pdf
-    9. 09_0.0359_Recent Progress in Automated Code Generation from GUI Images Using Machine Learning Techniques..pdf
-    10. 10_0.00355_Automated code generation for discontinuous Galerkin methods.pdf
+    1. 001_16.6_Is your code generated by chatgpt really correct rigorous evaluation of large language models for code generation.pdf
+    2. 002_11.9_Self-planning code generation with large language models.pdf
+    3. 003_10.2_A survey on large language models for code generation.pdf
+    4. 004_5.4_A systematic evaluation of large language models of code.pdf
+    5. 005_5.22_Program synthesis with large language models.pdf
+    6. 006_3.29_Planning with large language models for code generation.pdf
+    7. 007_1.79_Jigsaw Large language models meet program synthesis.pdf
+    8. 008_0.795_A survey on evaluating large language models in code generation tasks.pdf
+    9. 009_0.211_A hazard analysis framework for code synthesis large language models.pdf
 
     Enter the ranks of the papers you want to summarize, separated by commas (e.g., 1,3,5): 
-    Summarizing the following papers: ['02_5.48_Codeplan Repository-level coding using llms and planning.pdf', '03_0.855_Llms for science Usage for code generation and data analysis.pdf']
+    Summarizing the following papers: ['002_11.9_Self-planning code generation with large language models.pdf', '003_10.2_A survey on large language models for code generation.pdf']
 
-    Processing file: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
-    Begin analyzing the article located at papers/papers_organized/02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+    Processing file: 002_11.9_Self-planning code generation with large language models.pdf
+    Begin analyzing the article located at papers/papers_organized/002_11.9_Self-planning code generation with large language models.pdf
     Summary information not found in storage
     Extracting from paper.
     ---extracting abstract---
@@ -521,19 +537,19 @@ Below is an example output from the following input:
     The operation finishes in time
     The summary is:
 
-    1. The main topic: The paper presents CodePlan, a neuro-symbolic framework designed to automate complex repository-level coding tasks in software engineering, allowing for multi-step code edits across interdependent files in large codebases.
+    1. The main topic: The paper introduces MultiPL-E, the first massively parallel, multi-language benchmark system aimed at evaluating code generation models across multiple programming languages by translating established Python benchmarks.
 
-    2. Existing problems: Traditional coding tools powered by Large Language Models (LLMs) primarily focus on localized code edits, failing to handle tasks that require extensive changes across an entire repository with interdependencies between files. This leaves a gap in the automation of more complex coding tasks, resulting in manual effort and potential errors.
+    2. Existing problems: Previous studies predominantly focused on evaluating code generation models using Python, limiting generalizability and failing to consider the performance of models across a diverse set of programming languages. Additionally, existing benchmarks lacked the complexity and representativeness needed for real-world applications and varied programming environments.
 
-    3. The main contributions: CodePlan is the first systematic approach that formalizes repository-level coding as a planning problem. It integrates incremental dependency analysis, change may-impact analysis, and adaptive planning with LLMs to generate a chain of code edits automatically, addressing the challenges of dependencies and extensive edits that previous methods did not tackle.
+    3. The main contributions: The authors developed MultiPL-E to translate the unit test-driven code generation benchmarks HumanEval and MBPP into 18 different languages, facilitating a comparative analysis of code generation models such as Codex, CodeGen, and InCoder across diverse programming paradigms. This approach allows for scalable evaluation and is straightforward to extend for new languages and problems.
 
-    4. Experimental results: CodePlan was evaluated on complex tasks such as package migration in C# and temporal code edits in Python across multiple repositories (2–97 files per repository). It outperformed baseline methods, achieving valid builds in 5 out of 7 repositories, while the baseline approaches failed to validate any, showcasing substantial improvements in accuracy and effectiveness.
+    4. Experimental results: The study evaluates the performance of three state-of-the-art models on the new multilingual benchmarks. Results show that Codex performs comparably to its Python performance across several languages, particularly excelling in JavaScript. The evaluation also highlights the effects of language features and frequency on model performance.
 
-    5. Conclusions: The findings indicate that CodePlan effectively automates repository-level coding tasks, promising significant implications for software engineering. Future directions include expanding its capabilities for more programming languages, optimizing its editing strategies, and conducting large-scale experiments to ascertain its effectiveness across a broader range of coding challenges.
-    The total cost is 0.0037180499999999997 USD
+    5. Conclusions: The findings affirm that code generation models like Codex can effectively generalize across languages, exposing common error patterns in code generation that resemble those of human programmers. The paper emphasizes the importance of evaluating models with a diverse language set and offers a publicly available benchmark to aid future research in multi-language code generation models. Future work should focus on improving prompt designs and exploring the impact of specific programming language features on code generation performance.
+    The total cost is 0.0036958499999999997 USD
 
-    Processing file: 03_0.855_Llms for science Usage for code generation and data analysis.pdf
-    Begin analyzing the article located at papers/papers_organized/03_0.855_Llms for science Usage for code generation and data analysis.pdf
+    Processing file: 003_10.2_A survey on large language models for code generation.pdf
+    Begin analyzing the article located at papers/papers_organized/003_10.2_A survey on large language models for code generation.pdf
     Summary information not found in storage
     Extracting from paper.
     ---extracting abstract---
@@ -553,45 +569,45 @@ Below is an example output from the following input:
     The operation finishes in time
     The summary is:
 
-    1. The main topic: The paper focuses on analyzing the code generation errors produced by Large Language Models (LLMs) through an empirical study using the HumanEval dataset to develop a comprehensive taxonomy of these errors.
+    1. The main topic: The paper provides a systematic literature review focused on Large Language Models (LLMs) specifically for code generation, addressing the natural language-to-code (NL2Code) task and its advancements in software development.
 
-    2. Existing problems: Despite advancements in LLMs for code generation, there is a lack of understanding regarding the types and causes of errors these models produce. Prior research has not effectively analyzed the reliability of LLM-generated code and has overlooked the differences in error characteristics across various models.
+    2. Existing problems: Previous studies have often lacked a comprehensive, up-to-date review dedicated solely to code generation by LLMs, with many existing surveys covering a broad range of code-related tasks rather than delving deeply into advanced topics and contemporary models.
 
-    3. The main contributions: The authors established a taxonomy categorizing code generation errors based on syntactic and semantic characteristics, enhancing understanding of LLM limitations. They also compared error distributions among different LLMs, discussed bug-fixing efforts, and established a website for interactive analysis of code generation errors.
+    3. The main contributions: This paper introduces a taxonomy to categorize recent advances in LLMs for code generation, covering areas such as data curation, performance evaluation, and real-world applications. It also provides a historical overview of model development and identifies critical challenges and opportunities to bridge the gap between research and practical applications.
 
-    4. Experimental results: The study involved six LLMs that generated 557 incorrect code snippets across 164 tasks in the HumanEval dataset. It was found that while the syntactic errors were similar across models, the semantic errors varied significantly, indicating differences in how well each LLM interprets task requirements.
+    4. Experimental results: The paper presents empirical comparisons using benchmarks such as HumanEval, MBPP, and BigCodeBench, showcasing progress in LLM capabilities across various programming tasks. It highlights the dramatic improvements in metrics like Pass@1, marking the evolution of performance from earlier models to state-of-the-art implementations.
 
-    5. Conclusions: The study revealed that most incorrect code is compilable but erroneous in logic, indicating that while LLMs have learned the syntactic rules, they struggle with interpreting complex natural language and generating nuanced code. The paper suggests further research into improving LLMs for more reliable code generation and highlights the need for robust testing and code reviews to detect subtle logical errors.
-    The total cost is 0.0038998499999999994 USD
+    5. Conclusions: The findings indicate significant advancements in LLM capabilities for code generation, particularly in democratizing programming for non-experts. The survey suggests that continued exploration of challenging topics and practical applications is essential for bridging theoretical research and industry needs, advocating for ongoing documentation of advancements through a dedicated GitHub resource.
+    The total cost is 0.00307935 USD
 
-    Total cost for summarizing all files: 0.007617899999999999
+    Total cost for summarizing all files: 0.0067751999999999995
 
     The summaries for all selected files are printed below:
-    ------Paper title: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf------
+    ------Paper title: 002_11.9_Self-planning code generation with large language models.pdf------
 
-    1. The main topic: The paper presents CodePlan, a neuro-symbolic framework designed to automate complex repository-level coding tasks in software engineering, allowing for multi-step code edits across interdependent files in large codebases.
+    1. The main topic: The paper introduces MultiPL-E, the first massively parallel, multi-language benchmark system aimed at evaluating code generation models across multiple programming languages by translating established Python benchmarks.
 
-    2. Existing problems: Traditional coding tools powered by Large Language Models (LLMs) primarily focus on localized code edits, failing to handle tasks that require extensive changes across an entire repository with interdependencies between files. This leaves a gap in the automation of more complex coding tasks, resulting in manual effort and potential errors.
+    2. Existing problems: Previous studies predominantly focused on evaluating code generation models using Python, limiting generalizability and failing to consider the performance of models across a diverse set of programming languages. Additionally, existing benchmarks lacked the complexity and representativeness needed for real-world applications and varied programming environments.
 
-    3. The main contributions: CodePlan is the first systematic approach that formalizes repository-level coding as a planning problem. It integrates incremental dependency analysis, change may-impact analysis, and adaptive planning with LLMs to generate a chain of code edits automatically, addressing the challenges of dependencies and extensive edits that previous methods did not tackle.
+    3. The main contributions: The authors developed MultiPL-E to translate the unit test-driven code generation benchmarks HumanEval and MBPP into 18 different languages, facilitating a comparative analysis of code generation models such as Codex, CodeGen, and InCoder across diverse programming paradigms. This approach allows for scalable evaluation and is straightforward to extend for new languages and problems.
 
-    4. Experimental results: CodePlan was evaluated on complex tasks such as package migration in C# and temporal code edits in Python across multiple repositories (2–97 files per repository). It outperformed baseline methods, achieving valid builds in 5 out of 7 repositories, while the baseline approaches failed to validate any, showcasing substantial improvements in accuracy and effectiveness.
+    4. Experimental results: The study evaluates the performance of three state-of-the-art models on the new multilingual benchmarks. Results show that Codex performs comparably to its Python performance across several languages, particularly excelling in JavaScript. The evaluation also highlights the effects of language features and frequency on model performance.
 
-    5. Conclusions: The findings indicate that CodePlan effectively automates repository-level coding tasks, promising significant implications for software engineering. Future directions include expanding its capabilities for more programming languages, optimizing its editing strategies, and conducting large-scale experiments to ascertain its effectiveness across a broader range of coding challenges.
+    5. Conclusions: The findings affirm that code generation models like Codex can effectively generalize across languages, exposing common error patterns in code generation that resemble those of human programmers. The paper emphasizes the importance of evaluating models with a diverse language set and offers a publicly available benchmark to aid future research in multi-language code generation models. Future work should focus on improving prompt designs and exploring the impact of specific programming language features on code generation performance.
 
 
 
-    ------Paper title: 03_0.855_Llms for science Usage for code generation and data analysis.pdf------
+    ------Paper title: 003_10.2_A survey on large language models for code generation.pdf------
 
-    1. The main topic: The paper focuses on analyzing the code generation errors produced by Large Language Models (LLMs) through an empirical study using the HumanEval dataset to develop a comprehensive taxonomy of these errors.
+    1. The main topic: The paper provides a systematic literature review focused on Large Language Models (LLMs) specifically for code generation, addressing the natural language-to-code (NL2Code) task and its advancements in software development.
 
-    2. Existing problems: Despite advancements in LLMs for code generation, there is a lack of understanding regarding the types and causes of errors these models produce. Prior research has not effectively analyzed the reliability of LLM-generated code and has overlooked the differences in error characteristics across various models.
+    2. Existing problems: Previous studies have often lacked a comprehensive, up-to-date review dedicated solely to code generation by LLMs, with many existing surveys covering a broad range of code-related tasks rather than delving deeply into advanced topics and contemporary models.
 
-    3. The main contributions: The authors established a taxonomy categorizing code generation errors based on syntactic and semantic characteristics, enhancing understanding of LLM limitations. They also compared error distributions among different LLMs, discussed bug-fixing efforts, and established a website for interactive analysis of code generation errors.
+    3. The main contributions: This paper introduces a taxonomy to categorize recent advances in LLMs for code generation, covering areas such as data curation, performance evaluation, and real-world applications. It also provides a historical overview of model development and identifies critical challenges and opportunities to bridge the gap between research and practical applications.
 
-    4. Experimental results: The study involved six LLMs that generated 557 incorrect code snippets across 164 tasks in the HumanEval dataset. It was found that while the syntactic errors were similar across models, the semantic errors varied significantly, indicating differences in how well each LLM interprets task requirements.
+    4. Experimental results: The paper presents empirical comparisons using benchmarks such as HumanEval, MBPP, and BigCodeBench, showcasing progress in LLM capabilities across various programming tasks. It highlights the dramatic improvements in metrics like Pass@1, marking the evolution of performance from earlier models to state-of-the-art implementations.
 
-    5. Conclusions: The study revealed that most incorrect code is compilable but erroneous in logic, indicating that while LLMs have learned the syntactic rules, they struggle with interpreting complex natural language and generating nuanced code. The paper suggests further research into improving LLMs for more reliable code generation and highlights the need for robust testing and code reviews to detect subtle logical errors.
+    5. Conclusions: The findings indicate significant advancements in LLM capabilities for code generation, particularly in democratizing programming for non-experts. The survey suggests that continued exploration of challenging topics and practical applications is essential for bridging theoretical research and industry needs, advocating for ongoing documentation of advancements through a dedicated GitHub resource.
 
 
 
@@ -599,28 +615,28 @@ Below is an example output from the following input:
     Would you like to check the code availability of the articles? (yes/no): 
     Checking code availability for the summarized articles...
 
-    Checking code availability for: 02_5.48_Codeplan Repository-level coding using llms and planning.pdf
+    Checking code availability for: 002_11.9_Self-planning code generation with large language models.pdf
     Sequence generation under testing: attempt 1 of 3
     Operation under time limit: attempt 1 of 3
     The operation finishes in time
     Test passed
     The retrieved information is:
 
-    https://github.com/microsoft/codeplan
-    The total cost is 0.00414465 USD
+    https://github.com/nuprl/MultiPL-E
+    The total cost is 0.005967599999999999 USD
 
-    Checking code availability for: 03_0.855_Llms for science Usage for code generation and data analysis.pdf
+    Checking code availability for: 003_10.2_A survey on large language models for code generation.pdf
     Sequence generation under testing: attempt 1 of 3
     Operation under time limit: attempt 1 of 3
     The operation finishes in time
     Test passed
     The retrieved information is:
 
-    not available
-    The total cost is 0.0033426 USD
+    https://github.com/juyongjiang/CodeLLMSurvey
+    The total cost is 0.01090695 USD
 
-    Total cost for checking code availability: 0.007487249999999999 USD
-    Total cost for the entire process (summaries + code availability check): 0.015105149999999998 USD
+    Total cost for checking code availability: 0.01687455 USD
+    Total cost for the entire process (summaries + code availability check): 0.023649749999999997 USD
 
 
 
@@ -706,7 +722,7 @@ Below is an example output from the following input:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (4 minutes 23.364 seconds)
+   **Total running time of the script:** (3 minutes 53.159 seconds)
 
 
 .. _sphx_glr_download__examples_gallery_top_to_survey.py:

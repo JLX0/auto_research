@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**04:23.364** total execution time for 6 files **from all galleries**:
+**03:53.159** total execution time for 6 files **from all galleries**:
 
 .. container::
 
@@ -33,7 +33,7 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr__examples_gallery_top_to_survey.py` (``examples/top_to_survey.py``)
-     - 04:23.364
+     - 03:53.159
      - 0.0
    * - :ref:`sphx_glr__examples_gallery_explain_a_paper.py` (``examples/explain_a_paper.py``)
      - 00:00.000

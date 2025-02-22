@@ -2,8 +2,6 @@ from __future__ import annotations
 
 import os
 import shutil
-from typing import Dict
-from typing import List
 
 import matplotlib.pyplot as plt
 
@@ -15,17 +13,30 @@ class ArticleOrganizer:
     """
     A class to organize, filter, and visualize academic papers based on their combined scores.
 
+    This class provides functionality to filter papers by score or rank, organize files
+    into a target folder, and visualize the distribution of paper scores.
+
     Attributes:
         source_folder (str): The folder where the original papers and metadata are stored.
         target_folder (str): The folder where organized papers will be saved.
         threshold_type (str): The filtering method ("rank" or "score").
-        score_threshold (float): The minimum combined score for filtering when threshold_type is "score".
+        score_threshold (float): The minimum combined score for filtering when threshold_type
+            is "score".
         rank_threshold (int): The number of top papers to filter when threshold_type is "rank".
         organize_files (bool): Whether to organize files into the target folder.
         order_by_score (bool): Whether to rename files with their combined score.
         zip_folder (bool): Whether to zip the target folder and source folder.
         plotting (bool): Whether to plot the combined scores of papers.
-    """  # noqa: E501
+
+    Example:
+        >>> organizer = ArticleOrganizer(
+        ...     source_folder="papers",
+        ...     target_folder="top_papers",
+        ...     threshold_type="rank",
+        ...     rank_threshold=10,
+        ... )
+        >>> organizer.organize_and_visualize()
+    """
 
     def __init__(
         self,
@@ -44,21 +55,27 @@ class ArticleOrganizer:
 
         Args:
             source_folder (str): The folder where the original papers and metadata are stored.
-            target_folder (str): The folder where organized papers will be saved. Defaults to
-            "top_articles".
-            threshold_type (str): The filtering method ("rank" or "score"). Defaults to "rank".
+            target_folder (str): The folder where organized papers will be saved.
+                Defaults to "top_articles".
+            threshold_type (str): The filtering method ("rank" or "score").
+                Defaults to "rank".
             score_threshold (float): The minimum combined score for filtering when threshold_type
-            is "score".
-                                     Defaults to 0.5.
+                is "score". Defaults to 0.5.
             rank_threshold (int): The number of top papers to filter when threshold_type is "rank".
-                                  Defaults to 30.
-            organize_files (bool): Whether to organize files into the target folder. Defaults to
-            True.
-            order_by_score (bool): Whether to rename files with their combined score. Defaults to
-            True.
-            zip_folder (bool): Whether to zip the target folder and source folder. Defaults to
-            True.
-            plotting (bool): Whether to plot the combined scores of papers. Defaults to True.
+                Defaults to 30.
+            organize_files (bool): Whether to organize files into the target folder.
+                Defaults to True.
+            order_by_score (bool): Whether to rename files with their combined score.
+                Defaults to True.
+            zip_folder (bool): Whether to zip the target folder and source folder.
+                Defaults to True.
+            plotting (bool): Whether to plot the combined scores of papers.
+                Defaults to True.
+
+        Example:
+            >>> organizer = ArticleOrganizer("papers", "top_papers")
+            >>> isinstance(organizer, ArticleOrganizer)
+            True
         """
         self.source_folder = source_folder
         self.target_folder = os.path.join(source_folder, target_folder)
@@ -74,13 +91,18 @@ class ArticleOrganizer:
         if not os.path.exists(self.target_folder):
             os.makedirs(self.target_folder)
 
-    def draw(self, paper_list: List[Dict], title: str) -> None:
+    def draw(self, paper_list: list[dict], title: str) -> None:
         """
         Plot the combined scores of papers and save the plot as an image.
 
         Args:
-            paper_list (List[Dict]): A list of dictionaries containing paper details.
+            paper_list (list[dict]): A list of dictionaries containing paper details.
             title (str): The title of the plot.
+
+        Example:
+            >>> organizer = ArticleOrganizer("papers")
+            >>> papers = [{"title": "Paper 1", "combined_score": 0.9, "downloaded": True}]
+            >>> organizer.draw(papers, "Test Plot")
         """
         boolean_list = [paper.get("downloaded", False) for paper in paper_list]
         x_values = list(range(1, len(paper_list) + 1))
@@ -128,19 +150,37 @@ class ArticleOrganizer:
         3. Draw a plot of the unfiltered papers if plotting is True.
         4. Filter papers based on the selected threshold type ("rank" or "score").
         5. Draw a plot of the filtered papers if plotting is True.
-        6. Organize files into the target folder if required.
+        6. Organize files into the target folder if required, preventing duplicates.
         7. Zip the target folder and source folder if required.
+
+        Example:
+            >>> organizer = ArticleOrganizer("papers")
+            >>> organizer.organize_and_visualize()  # This would process all papers in "papers"
         """
         # Read metadata
         meta_data_path = os.path.join(self.source_folder, "metadata.json")
         meta_data = read_meta_data(meta_data_path)
 
-        # Sort papers by combined score in descending order
+        # Sort papers by combined score in descending order and remove duplicates
         original_list = sorted(
             [paper for paper in meta_data if "combined_score" in paper],
             key=lambda x: x["combined_score"],
             reverse=True,
         )
+
+        # Remove duplicates based on title while keeping the highest scoring version
+        seen_titles: dict[str, dict] = {}
+        unique_list = []
+        for paper in original_list:
+            title = paper.get("title", "").strip()
+            if title and (
+                title not in seen_titles
+                or paper["combined_score"] > seen_titles[title]["combined_score"]
+            ):
+                seen_titles[title] = paper
+                unique_list.append(paper)
+
+        original_list = unique_list
 
         # Draw the unfiltered plot if plotting is True
         if self.plotting:
@@ -148,15 +188,9 @@ class ArticleOrganizer:
 
         # Filter papers based on the selected method
         if self.threshold_type == "score":
-            filtered_list = sorted(
-                [
-                    paper
-                    for paper in meta_data
-                    if "combined_score" in paper and paper["combined_score"] > self.score_threshold
-                ],
-                key=lambda x: x["combined_score"],
-                reverse=True,
-            )
+            filtered_list = [
+                paper for paper in original_list if paper["combined_score"] > self.score_threshold
+            ]
         else:  # "rank"
             filtered_list = original_list[: self.rank_threshold]
 
@@ -166,10 +200,13 @@ class ArticleOrganizer:
 
         # Organize files if required
         if self.organize_files:
-            num_files = len(filtered_list)
-            num_digits = len(str(num_files))
-            prefixes_list = [str(i).zfill(num_digits) for i in range(1, num_files + 1)]
+            # Clear the target folder first
+            if os.path.exists(self.target_folder):
+                shutil.rmtree(self.target_folder)
+            os.makedirs(self.target_folder)
 
+            # Process each paper
+            processed_files = set()  # Track processed files to avoid duplicates
             for idx, paper in enumerate(filtered_list):
                 try:
                     title = paper["title"]
@@ -177,28 +214,27 @@ class ArticleOrganizer:
                     downloaded = paper.get("downloaded", False)
                     if downloaded:
                         sanitized_title = sanitize_filename(title)
-                        filename = f"{sanitized_title}.pdf"
+                        base_filename = f"{sanitized_title}.pdf"
+
+                        # Check if this file has already been processed
+                        if base_filename in processed_files:
+                            continue
+
+                        source_path = os.path.join(self.source_folder, base_filename)
+                        if not os.path.exists(source_path):
+                            continue
+
+                        # Create new filename with consistent ranking
                         if self.order_by_score:
-                            new_filename = f"{prefixes_list[idx]}_{score:.3g}_{filename}"
+                            rank = str(idx + 1).zfill(3)  # Use 3 digits for ranking
+                            new_filename = f"{rank}_{score:.3g}_{base_filename}"
                         else:
-                            new_filename = filename
-                        shutil.copy(
-                            os.path.join(self.source_folder, filename),
-                            os.path.join(self.target_folder, new_filename),
-                        )
+                            new_filename = base_filename
+
+                        # Copy file and mark as processed
+                        shutil.copy(source_path, os.path.join(self.target_folder, new_filename))
+                        processed_files.add(base_filename)
+
                 except Exception as e:
                     print(f"Error organizing file: {e}")
                     continue
-
-            print(f"Files organized in {self.target_folder}")
-
-        # Zip folders if required
-        if self.zip_folder:
-            try:
-                shutil.make_archive(self.target_folder, "zip", self.target_folder)
-                print(f"Target folder saved to {self.target_folder}.zip")
-
-                shutil.make_archive(self.source_folder, "zip", self.source_folder)
-                print(f"The entire source folder saved to {self.source_folder}.zip")
-            except Exception as e:
-                print(f"Error zipping folders: {e}")

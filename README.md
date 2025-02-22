@@ -46,7 +46,7 @@ First, fill in your API keys for LLMs with your actual keys in `key.json`. See [
 
 Then, check `examples`.
 
-For example, `python examples/topic_to_survey` converts your research topic or 
+For example, `python examples/topic_to_survey.py` converts your research topic or 
 question of interests to a survey over relevant papers. An explanation about the motivation behind
 this functionality and an example run of the script is available [here](https://jlx0.github.io/auto_research/_examples_gallery/top_to_survey).
 

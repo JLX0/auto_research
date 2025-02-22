@@ -10,7 +10,7 @@ Here is `the official GitHub repository of AutoResearch <https://github.com/JLX0
 Advantages
 --------------
 
-While there are many existing tools for research automation. But here are the key distinctions and advantages of the AutoResearch:
+While there are many existing tools for research automation. But here are the key distinctions and advantages of AutoResearch:
 
 - No additional API keys besides LLM API keys are required (No API keys, such as Semantic Scholar keys, are needed for literature search and downloading papers)
 
@@ -22,7 +22,7 @@ While there are many existing tools for research automation. But here are the ke
 
 - Python code-base, which enables convenient deployment, such as Google Colab notebook, as well as efficient integration with other ML-based tools, such as other LLM agents
 
-- API documentation are available
+- API documentation is available
 
 Basic Example
 --------------
