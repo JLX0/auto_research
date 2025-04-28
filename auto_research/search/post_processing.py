@@ -238,3 +238,10 @@ class ArticleOrganizer:
                 except Exception as e:
                     print(f"Error organizing file: {e}")
                     continue
+
+            # Zip the organized papers folder if required
+            if self.zip_folder:
+                target_folder_name = os.path.basename(self.target_folder)
+                zip_path = os.path.join(self.source_folder, f"{target_folder_name}.zip")
+                shutil.make_archive(os.path.splitext(zip_path)[0], "zip", self.target_folder)
+                print(f"Organized papers folder zipped to {zip_path}")

@@ -28,7 +28,7 @@ def topic_to_survey(
     organize_files: bool = True,
     order_by_score: bool = True,
     zip_folder: bool = True,
-    api_key: str | None = None,  # New parameter for direct API key input
+    api_key: str | None = None,
 ) -> None:
     """
     Conducts an automated research process based on the provided topic and settings.
@@ -89,20 +89,32 @@ def topic_to_survey(
         while True:
             custom_ranks = input(
                 "\nEnter the ranks of the keywords you want to use, separated by commas "
-                "(e.g., 1,3,5): "
+                "(e.g., 1,3,5 or 1:6 for a range): "
             )
             try:
-                selected_ranks = [
-                    int(rank.strip()) for rank in custom_ranks.split(",") if rank.strip()
-                ]
-                if all(1 <= rank <= len(keyword_list) for rank in selected_ranks):
-                    keywords = [keyword_list[rank - 1] for rank in selected_ranks]
+                # Parse individual indices and ranges
+                keyword_ranks: list[int] = []
+                for part in custom_ranks.split(","):
+                    part = part.strip()
+                    if ":" in part:  # Handle range
+                        start_str, end_str = part.split(":")
+                        start_int = int(start_str.strip())
+                        end_int = int(end_str.strip())
+                        keyword_ranks.extend(range(start_int, end_int + 1))  # +1 to include end
+                    elif part:  # Handle individual index
+                        keyword_ranks.append(int(part))
+
+                # Remove duplicates and sort
+                keyword_ranks = sorted(set(keyword_ranks))
+
+                if all(1 <= rank <= len(keyword_list) for rank in keyword_ranks):
+                    keywords = [keyword_list[rank - 1] for rank in keyword_ranks]
                     print("\nUsing the following keywords:", keywords)
                     break
                 else:
                     print(f"Please enter ranks between 1 and {len(keyword_list)}.")
             except ValueError:
-                print("Invalid input. Please enter valid integers separated by commas.")
+                print("Invalid input. Please enter valid integers or ranges (e.g., 1,3,5 or 1:6).")
     elif option == "custom":
         while True:
             custom_input = input(
@@ -118,7 +130,7 @@ def topic_to_survey(
 
     print("\nFinal keywords to search:", keywords)
 
-    # Initialize and run the AutoSearch to find and download articles
+    # Initialize and run the AutoSearch to find and download articles - disable initial zipping
     paper_search = AutoSearch(
         keywords=keywords,
         num_results=num_results,
@@ -126,6 +138,7 @@ def topic_to_survey(
         date_cutoff=date_cutoff,
         score_threshold=score_threshold,
         destination_folder=destination_folder,
+        zip_folder=False,  # Disable zipping here
     )
     paper_search.run()
 
@@ -141,6 +154,26 @@ def topic_to_survey(
         plotting=False,
     )
     paper_organizer.organize_and_visualize()
+
+    # Add code to zip the organized papers folder
+    if zip_folder:
+        import shutil
+
+        organized_folder_name = "papers_organized"
+        # Create a zip of the papers_organized folder
+        shutil.make_archive(
+            os.path.join(destination_folder, organized_folder_name),
+            "zip",
+            os.path.join(destination_folder, organized_folder_name),
+        )
+        print(
+            f"\nOrganized papers folder zipped to {destination_folder}/{organized_folder_name}.zip"
+        )
+
+        # Create a zip of the entire destination folder (which now includes the
+        # papers_organized.zip)
+        shutil.make_archive(destination_folder, "zip", destination_folder)
+        print(f"\nAll papers and organized papers zip saved to {destination_folder}.zip")
 
     # Get the list of all PDF files in the organized folder
     organized_folder = os.path.join(destination_folder, "papers_organized")
@@ -178,14 +211,26 @@ def topic_to_survey(
         while True:
             custom_ranks = input(
                 "\nEnter the ranks of the papers you want to summarize, separated by commas "
-                "(e.g., 1,3,5): "
+                "(e.g., 1,3,5 or 1:6 for a range): "
             )
             try:
-                selected_ranks = [
-                    int(rank.strip()) for rank in custom_ranks.split(",") if rank.strip()
-                ]
-                if all(1 <= rank <= len(pdf_files_sorted) for rank in selected_ranks):
-                    target_files = [pdf_files_sorted[rank - 1] for rank in selected_ranks]
+                # Parse individual indices and ranges
+                paper_ranks: list[int] = []
+                for part in custom_ranks.split(","):
+                    part = part.strip()
+                    if ":" in part:  # Handle range
+                        start_str, end_str = part.split(":")
+                        start_int = int(start_str.strip())
+                        end_int = int(end_str.strip())
+                        paper_ranks.extend(range(start_int, end_int + 1))  # +1 to include end
+                    elif part:  # Handle individual index
+                        paper_ranks.append(int(part))
+
+                # Remove duplicates and sort
+                paper_ranks = sorted(set(paper_ranks))
+
+                if all(1 <= rank <= len(pdf_files_sorted) for rank in paper_ranks):
+                    target_files = [pdf_files_sorted[rank - 1] for rank in paper_ranks]
                     print(
                         "\nSummarizing the following papers:",
                         [os.path.basename(file) for file in target_files],
@@ -194,7 +239,7 @@ def topic_to_survey(
                 else:
                     print(f"Please enter ranks between 1 and {len(pdf_files_sorted)}.")
             except ValueError:
-                print("Invalid input. Please enter valid integers separated by commas.")
+                print("Invalid input. Please enter valid integers or ranges (e.g., 1,3,5 or 1:6).")
 
     # Summarize the selected papers and accumulate the cost
     summary_cost = 0
